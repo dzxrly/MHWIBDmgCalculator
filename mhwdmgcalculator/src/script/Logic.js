@@ -308,17 +308,17 @@ const baseDmgRate = [ // 基础攻击力倍率
   },
   {
     id: '7',
-    name: '攻击力UP【小】',
+    name: '[旋律]攻击力UP【小】',
     rate: 1.1
   },
   {
     id: '8',
-    name: '攻击力UP【大】',
+    name: '[旋律]攻击力UP【大】',
     rate: 1.15
   },
   {
     id: '9',
-    name: '攻击力UP【特大】',
+    name: '[旋律]攻击力UP【特大】',
     rate: 1.2
   },
   {
@@ -410,17 +410,17 @@ const baseDmgRate = [ // 基础攻击力倍率
 const otherAttack = [ // 额外攻击
   {
     id: '0',
-    name: '攻击力UP (小)',
+    name: '[猫饭]攻击力UP (小)',
     attack: 5
   },
   {
     id: '1',
-    name: '攻击力UP (中)',
+    name: '[猫饭]攻击力UP (中)',
     attack: 10
   },
   {
     id: '2',
-    name: '攻击力UP (大)',
+    name: '[猫饭]攻击力UP (大)',
     attack: 15
   },
   {

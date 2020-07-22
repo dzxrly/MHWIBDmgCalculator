@@ -837,9 +837,9 @@ export default {
       this.res.totalDmg = totalDamge
       this.res.sumAttack = sumAttack
       this.res.physicDmg = physicDmg
-      this.res.monsterPhyDmgClaw = monsterPhyDmgClaw
-      this.res.monsterPhyDmgClawSp1 = monsterPhyDmgClawSp1
-      this.res.monsterPhyDmgClawSp2 = monsterPhyDmgClawSp2
+      this.res.monsterPhyDmgClaw = monsterPhyDmgClaw + toMonsterElDmg
+      this.res.monsterPhyDmgClawSp1 = monsterPhyDmgClawSp1 + toMonsterElDmg
+      this.res.monsterPhyDmgClawSp2 = monsterPhyDmgClawSp2 + toMonsterElDmg
     },
     handleCalculator (formName) {
       this.dmgCalculator()
