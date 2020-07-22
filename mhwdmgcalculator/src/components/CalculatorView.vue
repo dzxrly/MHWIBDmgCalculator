@@ -91,11 +91,31 @@
               clearable
             ></el-input>
           </el-form-item>
+          <el-form-item v-if="formData.weaponId !== '12' && formData.weaponId !== '13'">
+            <el-input
+              v-model="formData.weaponShowEl"
+              placeholder="请输入武器栏显示的属性值面板"
+              clearable
+            ></el-input>
+          </el-form-item>
+          <el-form-item v-if="formData.weaponId === '12' || formData.weaponId === '13'">
+            <el-select
+              style="width: 100%;"
+              v-model="formData.weaponShowEl"
+              placeholder="请选择属性弹种"
+            >
+              <el-option
+                v-for="item in elBulletTypes"
+                :key="item.value"
+                :value="item.value"
+                :label="item.label"
+              ></el-option>
+            </el-select>
+          </el-form-item>
           <el-form-item>
             <el-select
               style="width: 100%;"
               placeholder="请选择客制攻击的等级"
-              clearable
               v-model="formData.customAttLv"
             >
               <el-option
@@ -107,8 +127,22 @@
             </el-select>
           </el-form-item>
           <el-form-item>
+            <el-select
+              style="width: 100%;"
+              placeholder="请选择客制属性·状态异常的等级"
+              v-model="formData.customElLv"
+            >
+              <el-option
+                v-for="item in customElLvOpts"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              ></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item>
             <div class="awakeArea">
-              <span class="title">冥赤龙武器觉醒槽位</span>
+              <span class="title">冥赤龙武器觉醒槽位(攻击力词条)</span>
               <div class="row">
                 <span class="text">觉醒槽Ⅰ</span>
                 <el-select
@@ -187,6 +221,86 @@
             </div>
           </el-form-item>
           <el-form-item>
+            <div class="awakeArea">
+              <span class="title">冥赤龙武器觉醒槽位(属性词条)</span>
+              <div class="row">
+                <span class="text">觉醒槽Ⅰ</span>
+                <el-select
+                  size="small"
+                  placeholder="请选择属性词条等级"
+                  v-model="formData.awakeElementLv[0]"
+                >
+                  <el-option
+                    v-for="item in awakeElLvOpts"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+              <div class="row">
+                <span class="text">觉醒槽Ⅱ</span>
+                <el-select
+                  size="small"
+                  placeholder="请选择属性词条等级"
+                  v-model="formData.awakeElementLv[1]"
+                >
+                  <el-option
+                    v-for="item in awakeElLvOpts"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+              <div class="row">
+                <span class="text">觉醒槽Ⅲ</span>
+                <el-select
+                  size="small"
+                  placeholder="请选择属性词条等级"
+                  v-model="formData.awakeElementLv[2]"
+                >
+                  <el-option
+                    v-for="item in awakeElLvOpts"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+              <div class="row">
+                <span class="text">觉醒槽Ⅳ</span>
+                <el-select
+                  size="small"
+                  placeholder="请选择属性词条等级"
+                  v-model="formData.awakeElementLv[3]"
+                >
+                  <el-option
+                    v-for="item in awakeElLvOpts"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+              <div class="row">
+                <span class="text">觉醒槽Ⅴ</span>
+                <el-select
+                  size="small"
+                  placeholder="请选择属性词条等级"
+                  v-model="formData.awakeElementLv[4]"
+                >
+                  <el-option
+                    v-for="item in awakeElLvOpts"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </div>
+            </div>
+          </el-form-item>
+          <el-form-item>
             <el-select
               class="blunt"
               style="width: 100%;"
@@ -226,6 +340,18 @@
             </div>
           </el-form-item>
           <el-form-item>
+            <div class="baseSkillsRow">
+              <span class="title">属性倍率加成类技能</span>
+              <el-checkbox-group v-model="formData.elSkillList">
+                <el-checkbox
+                  v-for="item in elSkillOpts"
+                  :label="item.id"
+                  :key="item.id"
+                >{{ item.name }}</el-checkbox>
+              </el-checkbox-group>
+            </div>
+          </el-form-item>
+          <el-form-item>
             <el-select
               style="width: 100%;"
               v-model="formData.criticalSituation"
@@ -248,7 +374,13 @@
           <el-form-item>
             <el-input
               v-model="formData.meatRate"
-              placeholder="请输入怪物肉质(非百分比形式)"
+              placeholder="请输入怪物物理肉质(非百分比形式)"
+            ></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-input
+              v-model="formData.elMeatRate"
+              placeholder="请输入怪物属性肉质(非百分比形式)"
             ></el-input>
           </el-form-item>
           <el-form-item>
@@ -277,15 +409,15 @@
         </el-form>
       </div>
       <div class="resultArea">
-        <span>计算结果(设定肉质&nbsp;&nbsp;{{formData.meatRate}})</span>
+        <span>计算结果</span>
         <div class="row">
-          <span class="pre">最终伤害</span><span class="data">{{res.toMonsterPHYDmg}}</span>
+          <span class="pre">最终伤害</span><span class="data">{{res.totalDmg}}</span>
         </div>
         <div class="row">
-          <span class="pre">总攻击力</span><span class="data">{{res.sumAttack}}</span>
+          <span class="pre">物理伤害</span><span class="data">{{res.toMonsterPHYDmg}}</span>
         </div>
         <div class="row">
-          <span class="pre">物理伤害(未计算肉质)</span><span class="data">{{res.physicDmg}}</span>
+          <span class="pre">属性伤害</span><span class="data">{{res.toMonsterElDmg}}</span>
         </div>
         <div class="row">
           <span class="pre">软化后伤害</span><span class="data">{{res.monsterPhyDmgClaw}}</span>
@@ -320,19 +452,24 @@ export default {
       formData: {
         weaponId: '',
         weaponShowAtt: '',
+        weaponShowEl: '',
         customAttLv: '0',
+        customElLv: -1,
         awakeAttackLv: [-1, -1, -1, -1, -1],
+        awakeElementLv: [-1, -1, -1, -1, -1],
         limitRate: '0',
         bluntLv: 4,
         baseAttSkillList: [],
         otherAttSkillList: [],
+        elSkillList: [],
         closeItemNumber: 0,
         farItemNumber: 0,
         bottleType: 0,
         criticalSituation: 1,
         skillNumber: '',
         meatRate: '',
-        bladeNumber: 2
+        elMeatRate: '',
+        bladeNumber: 0
       },
       formRules: {},
       weaponSelectOpts: [
@@ -411,6 +548,28 @@ export default {
           label: '攻击力强化Ⅲ'
         }
       ],
+      customElLvOpts: [
+        {
+          value: -1,
+          label: '无客制属性·状态异常强化'
+        },
+        {
+          value: 0,
+          label: '属性·状态异常强化Ⅰ'
+        },
+        {
+          value: 1,
+          label: '属性·状态异常强化Ⅱ'
+        },
+        {
+          value: 2,
+          label: '属性·状态异常强化Ⅲ'
+        },
+        {
+          value: 3,
+          label: '属性·状态异常强化Ⅳ'
+        }
+      ],
       awakeLvOpts: [
         {
           value: -1,
@@ -441,6 +600,36 @@ export default {
           label: '攻击力强化Ⅵ'
         }
       ],
+      awakeElLvOpts: [
+        {
+          value: -1,
+          label: '空槽位'
+        },
+        {
+          value: 0,
+          label: '属性·状态异常强化Ⅰ'
+        },
+        {
+          value: 1,
+          label: '属性·状态异常强化Ⅱ'
+        },
+        {
+          value: 2,
+          label: '属性·状态异常强化Ⅲ'
+        },
+        {
+          value: 3,
+          label: '属性·状态异常强化Ⅳ'
+        },
+        {
+          value: 4,
+          label: '属性·状态异常强化Ⅴ'
+        },
+        {
+          value: 5,
+          label: '属性·状态异常强化Ⅵ'
+        }
+      ],
       bluntLvOpts: [
         {
           value: 4,
@@ -465,6 +654,7 @@ export default {
       ],
       baseSkillOpts: [],
       otherSkillOpts: [],
+      elSkillOpts: [],
       criticalOpts: [
         {
           value: 0,
@@ -494,37 +684,58 @@ export default {
       bladeOpts: [
         {
           value: 0,
-          label: '红斩'
+          label: '不考虑斩味'
         },
         {
           value: 1,
-          label: '橙斩'
+          label: '红斩'
         },
         {
           value: 2,
-          label: '黄斩(远程武器默认)'
+          label: '橙斩'
         },
         {
           value: 3,
-          label: '绿斩'
+          label: '黄斩'
         },
         {
           value: 4,
-          label: '蓝斩'
+          label: '绿斩'
         },
         {
           value: 5,
-          label: '白斩'
+          label: '蓝斩'
         },
         {
           value: 6,
+          label: '白斩'
+        },
+        {
+          value: 7,
           label: '紫斩'
         }
       ],
+      elBulletTypes: [
+        {
+          value: '0',
+          label: '非属性弹'
+        },
+        {
+          value: '22',
+          label: '火、水、雷、冰属性弹'
+        },
+        {
+          value: '18',
+          label: '龙属性弹'
+        }
+      ],
       res: {
+        totalDmg: 0,
         toMonsterPHYDmg: 0,
+        toMonsterElDmg: 0,
         sumAttack: 0,
         physicDmg: 0,
+        elDmg: 0,
         monsterPhyDmgClaw: 0,
         monsterPhyDmgClawSp1: 0,
         monsterPhyDmgClawSp2: 0
@@ -533,18 +744,16 @@ export default {
   },
   mounted () {
     this.baseSkillOptsInit()
-    this.otherSkillOptsInit()
   },
   methods: {
     baseSkillOptsInit () {
       this.baseSkillOpts = JSON.parse(
         JSON.stringify(baseLogic.getBaseDmgRate())
       )
-    },
-    otherSkillOptsInit () {
       this.otherSkillOpts = JSON.parse(
         JSON.stringify(baseLogic.getOtherAttack())
       )
+      this.elSkillOpts = JSON.parse(JSON.stringify(baseLogic.getElSkill()))
     },
     handleWeaponChange () {
       this.formData.closeItemNumber = 0
@@ -552,7 +761,23 @@ export default {
       this.formData.bottleType = 0
       console.log(this.formData.weaponId)
     },
-    handleCalculator (formName) {
+    isAwakeCheck () {
+      let flag = 0
+      this.formData.elSkillList.forEach(item => {
+        if (String(item) === '9') flag = 1
+        if (String(item) === '10') flag = 2
+      })
+      return flag
+    },
+    isElCriticalCheck () {
+      let flag = 0
+      this.formData.elSkillList.forEach(item => {
+        if (String(item) === '11') flag = 1
+        if (String(item) === '12') flag = 2
+      })
+      return flag
+    },
+    dmgCalculator () {
       let baseDmg = baseLogic.getBaseDmg(
         this.formData.weaponId,
         this.formData.weaponShowAtt,
@@ -560,15 +785,20 @@ export default {
         0,
         this.formData.awakeAttackLv
       )
+      let baseElDmg = baseLogic.getBaseElDmg(this.formData.weaponId, this.formData.weaponShowEl, this.formData.customElLv, 0, this.formData.awakeElementLv)
       let beforeDmgLimit = baseLogic.getBeforeDmgLimit(
         baseDmg,
         4,
         this.formData.baseAttSkillList,
         this.formData.otherAttSkillList
       )
+      let beforeElLimit = baseLogic.getBeforeElLimit(baseElDmg, this.formData.elSkillList)
+      let elDmgLimit = baseLogic.getElLimitation(this.formData.weaponId, baseElDmg, this.isAwakeCheck())
       let dmgLimit = baseLogic.getDmgLimitation(baseDmg)
       let afterDmgLimit = baseLogic.getAfterDmgLimit(beforeDmgLimit, dmgLimit)
+      let afterElDmgLimit = baseLogic.getAfterElLimit(beforeElLimit, elDmgLimit)
       let sumAttack = baseLogic.getSumAttack(afterDmgLimit)
+      let sumElement = baseLogic.getSumElDmg(this.formData.weaponId, afterElDmgLimit, 1, this.isElCriticalCheck())
       let attRate = baseLogic.getAttRate(sumAttack)
       let physicDmgRate = baseLogic.getPhysicalDmgRate(
         this.formData.closeItemNumber,
@@ -582,10 +812,13 @@ export default {
         this.formData.criticalSituation,
         physicDmgRate
       )
+      let elementDamege = baseLogic.getElementDmg(this.formData.weaponId, sumElement, attRate)
+      this.res.elDmg = elementDamege
       let basePHYMeatRate = baseLogic.getBasePHYMeatRate(
         this.formData.meatRate,
         this.formData.bladeNumber
       )
+      let baseElMeatRate = baseLogic.getBaseElMeatRate(this.formData.elMeatRate, this.formData.bladeNumber)
       let afterClawMeat = baseLogic.getBaseMeatAfterClaw(this.formData.meatRate, 0, this.formData.bladeNumber)
       let afterClawMeatSp1 = baseLogic.getBaseMeatAfterClaw(this.formData.meatRate, 5, this.formData.bladeNumber)
       let afterClawMeatSp2 = baseLogic.getBaseMeatAfterClaw(this.formData.meatRate, -5, this.formData.bladeNumber)
@@ -594,15 +827,22 @@ export default {
         basePHYMeatRate,
         0
       )
+      let toMonsterElDmg = baseLogic.getToMonsterElDmg(elementDamege, baseElMeatRate)
       let monsterPhyDmgClaw = baseLogic.getToMonsterPHYDmg(physicDmg, afterClawMeat, 0)
       let monsterPhyDmgClawSp1 = baseLogic.getToMonsterPHYDmg(physicDmg, afterClawMeatSp1, 0)
       let monsterPhyDmgClawSp2 = baseLogic.getToMonsterPHYDmg(physicDmg, afterClawMeatSp2, 0)
+      let totalDamge = baseLogic.getTotalDmg(toMonsterPHYDmg, toMonsterElDmg)
       this.res.toMonsterPHYDmg = toMonsterPHYDmg
+      this.res.toMonsterElDmg = toMonsterElDmg
+      this.res.totalDmg = totalDamge
       this.res.sumAttack = sumAttack
       this.res.physicDmg = physicDmg
       this.res.monsterPhyDmgClaw = monsterPhyDmgClaw
       this.res.monsterPhyDmgClawSp1 = monsterPhyDmgClawSp1
       this.res.monsterPhyDmgClawSp2 = monsterPhyDmgClawSp2
+    },
+    handleCalculator (formName) {
+      this.dmgCalculator()
       // this.$refs[formName].validate(valid => {
 
       // })

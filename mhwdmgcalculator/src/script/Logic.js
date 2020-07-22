@@ -551,7 +551,88 @@ const closeItemRate = [1, 1.2, 1.3, 1.35, 1.4] // 近战零件
 const farItemRate = [1, 1.2, 1.35, 1.4, 1.45] // 远程零件
 const bottleList = [1, 1.18, 1.35] // 弓箭瓶子种类 0非弓箭或无瓶子 1接击瓶 2强击瓶
 const criticalRate = [0.75, 1, 1.25, 1.3, 1.35, 1.4] // 会心倍率分别为负会心、无会心、基础会心、超心1、超心2、超心3
-const bladeRate = [0.5, 0.75, 1, 1.05, 1.2, 1.32, 1.39] // 斩味补正，分别为红、橙、黄、绿、蓝、白、紫
+const bladeRate = [1, 0.5, 0.75, 1, 1.05, 1.2, 1.32, 1.39] // 斩味补正，分别为远程专用、红、橙、黄、绿、蓝、白、紫
+const elBladeRate = [1, 0.25, 0.5, 0.75, 1, 1.0625, 1.15, 1.25] // 斩味属性补正，分别为远程专用、红、橙、黄、绿、蓝、白、紫
+const elementSkillList = [
+  {
+    id: '0',
+    name: '属性强化技能 Lv1',
+    baseElDmgRate: 1,
+    extractElDmg: 3
+  },
+  {
+    id: '1',
+    name: '属性强化技能 Lv2',
+    baseElDmgRate: 1,
+    extractElDmg: 6
+  },
+  {
+    id: '2',
+    name: '属性强化技能 Lv3',
+    baseElDmgRate: 1,
+    extractElDmg: 10
+  },
+  {
+    id: '3',
+    name: '属性强化技能 Lv4',
+    baseElDmgRate: 1.05,
+    extractElDmg: 10
+  },
+  {
+    id: '4',
+    name: '属性强化技能 Lv5',
+    baseElDmgRate: 1.1,
+    extractElDmg: 10
+  },
+  {
+    id: '5',
+    name: '属性强化技能 Lv6',
+    baseElDmgRate: 1.2,
+    extractElDmg: 10
+  },
+  {
+    id: '6',
+    name: '转祸为福 (Lv3)',
+    baseElDmgRate: 1,
+    extractElDmg: 9
+  },
+  {
+    id: '7',
+    name: '属性加速',
+    baseElDmgRate: 1,
+    extractElDmg: 6
+  },
+  {
+    id: '8',
+    name: '真 · 属性加速',
+    baseElDmgRate: 1,
+    extractElDmg: 15
+  },
+  {
+    id: '9',
+    name: '龙脉觉醒',
+    baseElDmgRate: 1,
+    extractElDmg: 8
+  },
+  {
+    id: '10',
+    name: '真 · 龙脉觉醒',
+    baseElDmgRate: 1,
+    extractElDmg: 15
+  },
+  {
+    id: '11',
+    name: '属性会心',
+    baseElDmgRate: 1,
+    extractElDmg: 0
+  },
+  {
+    id: '12',
+    name: '真 · 属性会心',
+    baseElDmgRate: 1,
+    extractElDmg: 0
+  }
+]
 
 export default {
   /*
@@ -565,6 +646,12 @@ export default {
   */
   getOtherAttack () {
     return otherAttack
+  },
+  /*
+  * 获取属性倍率加成
+  */
+  getElSkill () {
+    return elementSkillList
   },
   /*
   * 计算基础攻击力
@@ -583,8 +670,37 @@ export default {
     awakeAttackLv.forEach(num => {
       if (num >= 0) awakeAttSum += weaponItem.awakeAtt[parseInt(num)]
     })
+    if (weaponShowAtt === '') weaponShowAtt = 0
     let baseDmg = parseInt(weaponShowAtt) / weaponItem.rate + attSkin + customAtt[parseInt(customAttLv)] + awakeAttSum
     return baseDmg
+  },
+  /*
+  * 计算基础属性值
+  * @param weaponId 武器id (0~13)
+  * @param weaponShowEl 游戏内武器属性值
+  * @param customElLv 客制属性等级 (-1~3)
+  * @param elSkin 属性零件贴皮等级，暂时弃用，默认值0
+  * @param awakeElLv 5个冥赤觉醒槽的属性觉醒等级 (共5项，每项-1~5，-1代表空槽)
+  */
+  getBaseElDmg (weaponId, weaponShowEl, customElLv = -1, elSkin = 0, awakeElLv = [-1, -1, -1, -1, -1]) {
+    let baseElDmg = 0
+    let weaponItem = {}
+    weaponList.forEach(weapon => {
+      if (weapon.id === weaponId) weaponItem = JSON.parse(JSON.stringify(weapon))
+    })
+    let awakeElSum = 0
+    awakeElLv.forEach(num => {
+      if (num >= 0) awakeElSum += weaponItem.awakeElement[parseInt(num)]
+    })
+    if (weaponShowEl === '') weaponShowEl = 0
+    if (weaponId !== '12' && weaponId !== '13') {
+      if (parseInt(customElLv) >= 0) baseElDmg = parseInt(weaponShowEl) + weaponItem.customElement[parseInt(customElLv)] + elSkin + awakeElSum
+      else baseElDmg = parseInt(weaponShowEl) + elSkin + awakeElSum
+    } else {
+      if (parseInt(customElLv) >= 0) baseElDmg = parseInt(weaponShowEl) + weaponItem.customElement[parseInt(customElLv)]
+      else baseElDmg = parseInt(weaponShowEl)
+    }
+    return baseElDmg
   },
   /*
   * 计算武器攻击力上限
@@ -612,12 +728,90 @@ export default {
     return (baseDmg + bluntSkill[parseInt(bluntLv)]) * baseAttRate + otherAttackSum
   },
   /*
+  * 计算武器属性伤害上限前数据
+  * @param baseElDmg 基础属性攻击力
+  * @param elSkillArray 属性加成类技能数组
+  */
+  getBeforeElLimit (baseElDmg, elSkillArray = []) {
+    let baseElRate = 1
+    let extractEl = 0
+    elSkillArray.forEach(num => {
+      baseElRate *= elementSkillList[parseInt(num)].baseElDmgRate
+      extractEl += elementSkillList[parseInt(num)].extractElDmg
+    })
+    return (baseElDmg * baseElRate + extractEl)
+  },
+  /*
+  * 计算武器属性伤害上限
+  * @param weaponId 武器ID
+  * @param baseElDmg 基础属性伤害
+  * @param isAwake 冥赤套效果(0:无 1:冥赤三件套 2:冥赤五件套)
+  */
+  getElLimitation (weaponId, baseElDmg, isAwake) {
+    let limit = 0
+    if (weaponId === '12' || weaponId === '13') {
+      switch (parseInt(isAwake)) {
+        case 0:
+          limit = baseElDmg * 1.57
+          break
+        case 1:
+          limit = baseElDmg * 1.8
+          break
+        case 2:
+          limit = baseElDmg * 2.35
+          break
+      }
+    } else {
+      switch (parseInt(isAwake)) {
+        case 0:
+          limit = Math.max(baseElDmg * 1.6, baseElDmg + 15)
+          break
+        case 1:
+          limit = Math.max(baseElDmg * 2.2, baseElDmg + 15)
+          break
+        case 2:
+          limit = Math.max(baseElDmg * 2.55, baseElDmg + 15)
+          break
+      }
+    }
+    return limit
+  },
+  /*
+  * 计算武器属性上限后数值
+  * @param beforeElLimit 武器属性上限前数据
+  * @param elLimit 武器属性上限
+  */
+  getAfterElLimit (beforeElLimit, elLimit) {
+    return Math.min(beforeElLimit, elLimit)
+  },
+  /*
   * 计算武器攻击力上限后数值
   * @param beforeDmgLimit 武器攻击力上限前数据
   * @param dmgLimit 武器攻击力上限
   */
   getAfterDmgLimit (beforeDmgLimit, dmgLimit) {
     return Math.min(beforeDmgLimit, dmgLimit)
+  },
+  /*
+  * 计算武器约后属性伤害
+  * @param weaponId 武器ID
+  * @param afterElLimit 武器属性上限后数据
+  * @param limitRate 武器属性上限后倍率（默认为1）
+  * @param isElCritical 属性会心情况（0无 1属性会心 2真属性会心）
+  */
+  getSumElDmg (weaponId, afterElLimit, limitRate = 1, isElCritical) {
+    let weapon = {}
+    weaponList.forEach(item => {
+      if (item.id === weaponId) weapon = JSON.parse(JSON.stringify(item))
+    })
+    switch (parseInt(isElCritical)) {
+      case 0:
+        return Math.round(afterElLimit * limitRate * 1)
+      case 1:
+        return Math.round(afterElLimit * limitRate * weapon.elementCritical)
+      case 2:
+        return Math.round(afterElLimit * limitRate * weapon.trueElementCritical)
+    }
   },
   /*
   * 计算武器总攻击力
@@ -633,6 +827,19 @@ export default {
   */
   getAttRate (sumAttack) {
     return sumAttack / 100
+  },
+  /*
+  * 计算武器最终属性伤害
+  * @param weaponId 武器ID
+  * @param sumElDmg 约后属性伤害
+  * @param attRate 武器攻击力百分比（默认1）
+  * @param elementChanger 属性修改器（默认1）
+  * @param elRate 属性伤害倍率（默认1）
+  */
+  getElementDmg (weaponId, sumElDmg, attRate = 1, elementChanger = 1, elRate = 1) {
+    if (weaponId === '12' || weaponId === '13') {
+      return sumElDmg * attRate * elementChanger * elRate
+    } else return sumElDmg * elementChanger * elRate
   },
   /*
   * 计算武器物理伤害倍率
@@ -653,6 +860,15 @@ export default {
   */
   getPhysicalDmg (skillNumber, attRate, criticalSituation, physicalDmgRate) {
     return parseFloat(skillNumber) * attRate * criticalRate[parseInt(criticalSituation)] * physicalDmgRate
+  },
+  /*
+  * 计算武器属性肉质百分比
+  * @param meatElRate 基础属性肉质
+  * @param bladeNumber 斩味
+  */
+  getBaseElMeatRate (meatElRate, bladeNumber) {
+    let blade = bladeRate[parseInt(bladeNumber)]
+    return (meatElRate * blade) / 100
   },
   /*
   * 计算武器物理肉质百分比
@@ -681,5 +897,21 @@ export default {
   */
   getToMonsterPHYDmg (physicDmg, physicMeatRate, unchangedDmg = 0) {
     return Math.round(physicDmg * physicMeatRate + unchangedDmg)
+  },
+  /*
+  * 计算武器包含肉质的属性伤害
+  * @param elementDmg 武器属性伤害
+  * @param elMeatRate 属性肉质百分比
+  */
+  getToMonsterElDmg (elementDmg, elMeatRate) {
+    return Math.round(elementDmg * elMeatRate)
+  },
+  /*
+  * 计算武器包含肉质的总伤害
+  * @param toMonsterPHYDmg 武器物理伤害
+  * @param toMonsterElDmg 武器属性伤害
+  */
+  getTotalDmg (toMonsterPHYDmg, toMonsterElDmg) {
+    return toMonsterPHYDmg + toMonsterElDmg
   }
 }
