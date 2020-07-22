@@ -273,72 +273,72 @@ const customCritical = [0, 0.1, 0.15, 0.2, 0.25] // 客制会心Lv0~Lv4
 const baseDmgRate = [ // 基础攻击力倍率
   {
     id: '0',
-    name: '猫的炮击术 (盾斧榴弹瓶)',
+    name: '猫的炮击术',
     rate: 1.15
   },
   {
     id: '1',
-    name: '猫的炮击术 (彻甲榴弹)',
-    rate: 1.15
-  },
-  {
-    id: '2',
-    name: '猫的炮击术 (龙击炮)',
-    rate: 1.15
-  },
-  {
-    id: '3',
-    name: '猫的火事力场',
+    name: '猫的火场怪力',
     rate: 1.35
   },
   {
-    id: '4',
+    id: '2',
     name: '猫的射击术',
     rate: 1.1
   },
   {
-    id: '5',
+    id: '3',
     name: '猫的粗暴射击',
     rate: 1.05
   },
   {
-    id: '6',
+    id: '4',
     name: '回避衣装发动',
     rate: 1.3
   },
   {
-    id: '7',
+    id: '5',
     name: '[旋律]攻击力UP【小】',
     rate: 1.1
   },
   {
-    id: '8',
+    id: '6',
     name: '[旋律]攻击力UP【大】',
     rate: 1.15
   },
   {
-    id: '9',
+    id: '7',
     name: '[旋律]攻击力UP【特大】',
     rate: 1.2
   },
   {
-    id: '10',
+    id: '8',
     name: '飞燕',
     rate: 1.3
   },
   {
+    id: '9',
+    name: '炮术 Lv1',
+    rate: 1.1
+  },
+  {
+    id: '10',
+    name: '炮术 Lv2',
+    rate: 1.2
+  },
+  {
     id: '11',
-    name: '炮术 Lv5 (盾斧榴弹瓶)',
-    rate: 1.5
+    name: '炮术 Lv3',
+    rate: 1.3
   },
   {
     id: '12',
-    name: '炮术 Lv5 (彻甲榴弹)',
-    rate: 1.5
+    name: '炮术 Lv4',
+    rate: 1.4
   },
   {
     id: '13',
-    name: '炮术 Lv5 (龙击炮)',
+    name: '炮术 Lv5',
     rate: 1.5
   },
   {
@@ -353,58 +353,88 @@ const baseDmgRate = [ // 基础攻击力倍率
   },
   {
     id: '16',
-    name: '火事力场 Lv7',
-    rate: 1.4
-  },
-  {
-    id: '17',
     name: '无属性强化',
     rate: 1.05
   },
   {
-    id: '18',
+    id: '17',
     name: '通常弹 · 通常箭强化 Lv1',
     rate: 1.1
   },
   {
-    id: '19',
+    id: '18',
     name: '通常弹 · 通常箭强化 Lv2',
     rate: 1.2
   },
   {
+    id: '19',
+    name: '攻击守势 Lv1',
+    rate: 1.05
+  },
+  {
     id: '20',
+    name: '攻击守势 Lv2',
+    rate: 1.1
+  },
+  {
+    id: '21',
     name: '攻击守势 Lv3',
     rate: 1.15
   },
   {
-    id: '21',
+    id: '22',
     name: '贯通弹 · 龙之箭强化 Lv1',
     rate: 1.1
   },
   {
-    id: '22',
+    id: '23',
     name: '贯通弹 · 龙之箭强化 Lv2',
     rate: 1.2
   },
   {
-    id: '23',
+    id: '24',
     name: '特殊射击强化 Lv1',
     rate: 1.1
   },
   {
-    id: '24',
+    id: '25',
     name: '特殊射击强化 Lv2',
     rate: 1.2
   },
   {
-    id: '25',
+    id: '26',
     name: '散弹 · 刚射强化 Lv1',
     rate: 1.1
   },
   {
-    id: '26',
+    id: '27',
     name: '散弹 · 刚射强化 Lv2',
     rate: 1.15
+  },
+  {
+    id: '28',
+    name: '火场怪力 Lv2 & Lv3',
+    rate: 1.05
+  },
+  {
+    id: '29',
+    name: '火场怪力 Lv4',
+    rate: 1.1
+  },
+  {
+    id: '30',
+    name: '火场怪力 Lv5',
+    rate: 1.15
+  },
+  {
+    id: '31',
+    name: '火场怪力 Lv6',
+    rate: 1.25
+  },
+  {
+    id: '32',
+    name: '火场怪力 Lv7',
+    rate: 1.4
   }
 ]
 const otherAttack = [ // 额外攻击
@@ -465,31 +495,131 @@ const otherAttack = [ // 额外攻击
   },
   {
     id: '11',
+    name: '挑战者 Lv1',
+    attack: 4
+  },
+  {
+    id: '12',
+    name: '挑战者 Lv2',
+    attack: 8
+  },
+  {
+    id: '13',
+    name: '挑战者 Lv3',
+    attack: 12
+  },
+  {
+    id: '14',
+    name: '挑战者 Lv4',
+    attack: 16
+  },
+  {
+    id: '15',
+    name: '挑战者 Lv5',
+    attack: 20
+  },
+  {
+    id: '16',
+    name: '挑战者 Lv6',
+    attack: 24
+  },
+  {
+    id: '17',
     name: '挑战者 Lv7',
     attack: 28
   },
   {
-    id: '12',
+    id: '18',
+    name: '攻击 Lv1',
+    attack: 3
+  },
+  {
+    id: '19',
+    name: '攻击 Lv2',
+    attack: 6
+  },
+  {
+    id: '20',
+    name: '攻击 Lv3',
+    attack: 9
+  },
+  {
+    id: '21',
+    name: '攻击 Lv4',
+    attack: 12
+  },
+  {
+    id: '22',
+    name: '攻击 Lv5',
+    attack: 15
+  },
+  {
+    id: '23',
+    name: '攻击 Lv6',
+    attack: 18
+  },
+  {
+    id: '24',
     name: '攻击 Lv7',
     attack: 21
   },
   {
-    id: '13',
+    id: '25',
+    name: '转祸为福 Lv1',
+    attack: 12
+  },
+  {
+    id: '26',
+    name: '转祸为福 Lv2',
+    attack: 15
+  },
+  {
+    id: '27',
     name: '转祸为福 Lv3',
     attack: 18
   },
   {
-    id: '14',
+    id: '28',
+    name: '无伤 Lv1',
+    attack: 5
+  },
+  {
+    id: '29',
+    name: '无伤 Lv2',
+    attack: 10
+  },
+  {
+    id: '30',
     name: '无伤 Lv3',
     attack: 20
   },
   {
-    id: '15',
+    id: '31',
     name: '拔刀术【力】',
     attack: 5
   },
   {
-    id: '16',
+    id: '32',
+    name: '怨恨 Lv1',
+    attack: 5
+  },
+  {
+    id: '33',
+    name: '怨恨 Lv2',
+    attack: 10
+  },
+  {
+    id: '34',
+    name: '怨恨 Lv3',
+    attack: 15
+  },
+  {
+    id: '35',
+    name: '怨恨 Lv4',
+    attack: 20
+  },
+  {
+    id: '36',
     name: '怨恨 Lv5',
     attack: 25
   }
@@ -592,7 +722,7 @@ const elementSkillList = [
   },
   {
     id: '6',
-    name: '转祸为福 (Lv3)',
+    name: '转祸为福 Lv3',
     baseElDmgRate: 1,
     extractElDmg: 9
   },

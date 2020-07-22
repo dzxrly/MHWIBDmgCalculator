@@ -6,11 +6,11 @@
             height: 100%;
             width: 100%;
             background-color: black;
-            box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, 0.22),
-              0 4.8px 14.4px 0 rgba(0, 0, 0, 0.18);
+            box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, 0.22), 0 4.8px 14.4px 0 rgba(0, 0, 0, 0.18);
             text-align: center;
             line-height: 40px;
             color: white;
+            border: solid 1px white;
           }
         ">
         Top
@@ -403,7 +403,7 @@
                 type="primary"
                 size="small"
                 @click="handleCalculator('formData')"
-              >计算</el-button>
+              ><i class="el-icon-check"></i>&nbsp;&nbsp;计算</el-button>
             </div>
           </el-form-item>
         </el-form>
@@ -436,8 +436,8 @@
       <div class="footerDivider"></div>
       <div class="textRow">
         <span class="dataSrc">数据及计算公式来自<a href="http://wiki.mhwmod.com/">狩技MOD组中文Wiki</a></span>
-        <span class="authorName">This Page Made By 鎧羅突擊弩賊</span>
-        <span class="authorId">小黑盒ID: 1310911&nbsp;&nbsp;&nbsp;Ver.1.0Alpha</span>
+        <span class="authorName">一个基于Vue的前端项目 By 鎧羅突擊弩賊</span>
+        <span class="authorId">小黑盒ID: 1310911&nbsp;&nbsp;&nbsp;Ver.1.0Beta</span>
       </div>
     </div>
   </div>
@@ -759,7 +759,6 @@ export default {
       this.formData.closeItemNumber = 0
       this.formData.farItemNumber = 0
       this.formData.bottleType = 0
-      console.log(this.formData.weaponId)
     },
     isAwakeCheck () {
       let flag = 0
@@ -865,6 +864,13 @@ export default {
   border-radius: 0px;
 }
 
+/deep/ .el-button--small {
+  border-radius: 0px;
+  background-color: black;
+  border: none;
+  box-shadow: 0 3.2px 7.2px 0 rgba(0,0,0,.132), 0 0.6px 1.8px 0 rgba(0,0,0,.108);
+}
+
 .calculator-wrap {
   width: 100vw;
   height: 100vh;
@@ -888,7 +894,7 @@ export default {
     }
 
     .dividerRow {
-      height: 5px;
+      height: 8px;
       background-image: linear-gradient(90deg, #99CC33, #FF9900, #FFCC00);
     }
   }
@@ -1021,9 +1027,11 @@ export default {
   }
 
   .footerRow {
+    background-color: black;
+
     .footerDivider {
-      margin: 10px;
-      border-top: 1px solid rgba(102, 102, 102, 0.5);
+      height: 8px;
+      background-image: linear-gradient(90deg, #66CCFF, #CCFFCC, #66CCCC);
     }
 
     .textRow {
@@ -1032,19 +1040,37 @@ export default {
       flex: 1;
       justify-content: flex-start;
       align-items: center;
+      color: white;
 
       .dataSrc {
-        margin-bottom: 5px;
+        margin: 5px 0px;
         font-size: 16px;
         font-weight: bolder;
+
+        a {
+          text-decoration: none;
+        }
+
+        a:link, a:hover, a:visited {
+          background-image: linear-gradient(90deg, #FFCCCC, #CCCCFF, #FFFF99);
+          background-clip: text;
+          -webkit-background-clip: text;
+          color: transparent;
+        }
+
+        a:active {
+          color: #333333;
+        }
       }
 
       .authorName {
         font-size: 14px;
+        font-weight: lighter;
       }
 
       .authorId {
         font-size: 14px;
+        font-weight: lighter;
         color: #666666;
       }
     }
