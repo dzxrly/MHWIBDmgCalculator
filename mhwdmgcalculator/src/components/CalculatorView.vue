@@ -835,14 +835,13 @@ export default {
       this.res.toMonsterPHYDmg = toMonsterPHYDmg
       this.res.toMonsterElDmg = toMonsterElDmg
       this.res.totalDmg = totalDamge
-      this.res.sumAttack = sumAttack
-      this.res.physicDmg = physicDmg
       this.res.monsterPhyDmgClaw = monsterPhyDmgClaw + toMonsterElDmg
       this.res.monsterPhyDmgClawSp1 = monsterPhyDmgClawSp1 + toMonsterElDmg
       this.res.monsterPhyDmgClawSp2 = monsterPhyDmgClawSp2 + toMonsterElDmg
     },
     handleCalculator (formName) {
       this.dmgCalculator()
+      // TODO
       // this.$refs[formName].validate(valid => {
 
       // })
