@@ -87,7 +87,7 @@
           <el-form-item>
             <el-input
               v-model="formData.weaponShowAtt"
-              placeholder="请输入武器栏显示的面板"
+              placeholder="请输入武器栏显示的攻击力面板"
               clearable
             ></el-input>
           </el-form-item>
@@ -301,21 +301,6 @@
             </div>
           </el-form-item>
           <el-form-item>
-            <el-select
-              class="blunt"
-              style="width: 100%;"
-              placeholder="请选择斩味"
-              v-model="formData.bluntLv"
-            >
-              <el-option
-                v-for="item in bluntLvOpts"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              ></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item>
             <div class="baseSkillsRow">
               <span class="title">基础攻击力倍率加成类技能</span>
               <el-checkbox-group v-model="formData.baseAttSkillList">
@@ -329,7 +314,7 @@
           </el-form-item>
           <el-form-item>
             <div class="baseSkillsRow">
-              <span class="title">基础攻击力面板加成类技能</span>
+              <span class="title">基础攻击力数值加成类技能</span>
               <el-checkbox-group v-model="formData.otherAttSkillList">
                 <el-checkbox
                   v-for="item in otherSkillOpts"
@@ -398,17 +383,29 @@
             </el-select>
           </el-form-item>
           <el-form-item>
-            <div class="btnRow">
-              <el-button
-                type="primary"
-                size="small"
-                @click="handleCalculator('formData')"
-              ><i class="el-icon-check"></i>&nbsp;&nbsp;计算</el-button>
-            </div>
+            <el-select
+              style="width: 100%;"
+              v-model="formData.isBladeCheck"
+              placeholder="请选择是否启用刃中补正"
+            >
+              <el-option
+                v-for="item in isBladeCheckOpts"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              ></el-option>
+            </el-select>
           </el-form-item>
         </el-form>
       </div>
       <div class="resultArea">
+        <div class="btnRow">
+          <el-button
+            type="primary"
+            size="small"
+            @click="handleCalculator('formData')"
+          ><i class="el-icon-check"></i>&nbsp;&nbsp;计算</el-button>
+        </div>
         <span>计算结果</span>
         <div class="row">
           <span class="pre">最终伤害</span><span class="data">{{res.totalDmg}}</span>
@@ -458,7 +455,6 @@ export default {
         awakeAttackLv: [-1, -1, -1, -1, -1],
         awakeElementLv: [-1, -1, -1, -1, -1],
         limitRate: '0',
-        bluntLv: 4,
         baseAttSkillList: [],
         otherAttSkillList: [],
         elSkillList: [],
@@ -469,7 +465,8 @@ export default {
         skillNumber: '',
         meatRate: '',
         elMeatRate: '',
-        bladeNumber: 0
+        bladeNumber: 0,
+        isBladeCheck: false
       },
       formRules: {},
       weaponSelectOpts: [
@@ -729,6 +726,16 @@ export default {
           label: '龙属性弹'
         }
       ],
+      isBladeCheckOpts: [
+        {
+          value: false,
+          label: '不启用刃中补正'
+        },
+        {
+          value: true,
+          label: '启用刃中补正'
+        }
+      ],
       res: {
         totalDmg: 0,
         toMonsterPHYDmg: 0,
@@ -776,6 +783,12 @@ export default {
       })
       return flag
     },
+    isBluntCheck (bladeNumber) {
+      this.formData.otherAttSkillList.forEach(num => {
+        if (String(num) === '37') return bladeNumber
+      })
+      return 0
+    },
     dmgCalculator () {
       let baseDmg = baseLogic.getBaseDmg(
         this.formData.weaponId,
@@ -787,7 +800,7 @@ export default {
       let baseElDmg = baseLogic.getBaseElDmg(this.formData.weaponId, this.formData.weaponShowEl, this.formData.customElLv, 0, this.formData.awakeElementLv)
       let beforeDmgLimit = baseLogic.getBeforeDmgLimit(
         baseDmg,
-        4,
+        this.isBluntCheck(this.formData.bladeNumber),
         this.formData.baseAttSkillList,
         this.formData.otherAttSkillList
       )
@@ -800,10 +813,11 @@ export default {
       let sumElement = baseLogic.getSumElDmg(this.formData.weaponId, afterElDmgLimit, 1, this.isElCriticalCheck())
       let attRate = baseLogic.getAttRate(sumAttack)
       let physicDmgRate = baseLogic.getPhysicalDmgRate(
+        this.formData.weaponId,
         this.formData.closeItemNumber,
         this.formData.farItemNumber,
         this.formData.bottleType,
-        1
+        this.formData.isBladeCheck
       )
       let physicDmg = baseLogic.getPhysicalDmg(
         this.formData.skillNumber,
@@ -868,7 +882,7 @@ export default {
   border-radius: 0px;
   background-color: black;
   border: none;
-  box-shadow: 0 3.2px 7.2px 0 rgba(0,0,0,.132), 0 0.6px 1.8px 0 rgba(0,0,0,.108);
+  box-shadow: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108);
 }
 
 .calculator-wrap {
@@ -912,11 +926,6 @@ export default {
 
       .el-form {
         .el-form-item {
-          .btnRow {
-            display: flex;
-            justify-content: flex-end;
-          }
-
           .itemRow {
             padding: 5px 20px;
             display: flex;
@@ -983,6 +992,12 @@ export default {
       justify-content: flex-start;
       align-items: flex-start;
       box-shadow: 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108);
+
+      .btnRow {
+        margin: 10px 0px;
+        display: flex;
+        justify-content: flex-end;
+      }
 
       .row {
         margin: 10px 0px;

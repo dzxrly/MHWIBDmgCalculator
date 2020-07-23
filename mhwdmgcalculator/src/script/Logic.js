@@ -622,9 +622,14 @@ const otherAttack = [ // 额外攻击
     id: '36',
     name: '怨恨 Lv5',
     attack: 25
+  },
+  {
+    id: '37',
+    name: '钝器能手',
+    attack: 0
   }
 ]
-const bluntSkill = [15, 25, 30, 30, 0] // 钝器能手，对应：0绿斩、1黄斩、2橙斩、3红斩、4其他
+const bluntSkill = [0, 30, 30, 25, 15, 0, 0, 0] // 钝器能手，分别为远程专用、红、橙、黄、绿、蓝、白、紫
 const weaponLimitRate = [ // 武器攻击力上限后倍率
   {
     id: '0',
@@ -824,8 +829,8 @@ export default {
     })
     if (weaponShowEl === '') weaponShowEl = 0
     if (weaponId !== '12' && weaponId !== '13') {
-      if (parseInt(customElLv) >= 0) baseElDmg = parseInt(weaponShowEl) + weaponItem.customElement[parseInt(customElLv)] + elSkin + awakeElSum
-      else baseElDmg = parseInt(weaponShowEl) + elSkin + awakeElSum
+      if (parseInt(customElLv) >= 0) baseElDmg = parseInt(weaponShowEl) / 10 + weaponItem.customElement[parseInt(customElLv)] + elSkin + awakeElSum
+      else baseElDmg = parseInt(weaponShowEl) / 10 + elSkin + awakeElSum
     } else {
       if (parseInt(customElLv) >= 0) baseElDmg = parseInt(weaponShowEl) + weaponItem.customElement[parseInt(customElLv)]
       else baseElDmg = parseInt(weaponShowEl)
@@ -842,11 +847,11 @@ export default {
   /*
   * 计算武器攻击力上限前数据
   * @param baseDmg 基础攻击力
-  * @param bluntLv 斩味：0绿斩、1黄斩、2橙斩、3红斩、4其他
+  * @param bluntLv 钝器能手，分别为远程专用、红、橙、黄、绿、蓝、白、紫
   * @param baseAttRates 基础攻击力倍率数组
   * @param otherAttacks 额外攻击力加成数组
   */
-  getBeforeDmgLimit (baseDmg, bluntLv = 4, baseAttRates = [], otherAttacks = []) {
+  getBeforeDmgLimit (baseDmg, bluntLv = 0, baseAttRates = [], otherAttacks = []) {
     let baseAttRate = 1
     baseAttRates.forEach(item => {
       baseAttRate *= baseDmgRate[parseInt(item)].rate
@@ -973,13 +978,19 @@ export default {
   },
   /*
   * 计算武器物理伤害倍率
+  * @param weaponId 武器ID
   * @param closeItemNumber 近战零件数量
   * @param farItemNumber 远程零件数量
   * @param bottleType 瓶子种类
-  * @param bladeRate 刃中补正（暂不使用，默认为1）
+  * @param bladeRate 刃中补正
   */
-  getPhysicalDmgRate (closeItemNumber, farItemNumber, bottleType, bladeRate = 1) {
-    return closeItemRate[parseInt(closeItemNumber)] * farItemRate[parseInt(farItemNumber)] * bottleList[parseInt(bottleType)] * bladeRate
+  getPhysicalDmgRate (weaponId, closeItemNumber, farItemNumber, bottleType, bladeRate = false) {
+    let weapon = {}
+    weaponList.forEach(w => {
+      if (w.id === weaponId) weapon = w
+    })
+    if (bladeRate) return closeItemRate[parseInt(closeItemNumber)] * farItemRate[parseInt(farItemNumber)] * bottleList[parseInt(bottleType)] * weapon.bladeRate
+    else return closeItemRate[parseInt(closeItemNumber)] * farItemRate[parseInt(farItemNumber)] * bottleList[parseInt(bottleType)]
   },
   /*
   * 计算武器物理伤害
@@ -997,7 +1008,7 @@ export default {
   * @param bladeNumber 斩味
   */
   getBaseElMeatRate (meatElRate, bladeNumber) {
-    let blade = bladeRate[parseInt(bladeNumber)]
+    let blade = elBladeRate[parseInt(bladeNumber)]
     return (meatElRate * blade) / 100
   },
   /*
