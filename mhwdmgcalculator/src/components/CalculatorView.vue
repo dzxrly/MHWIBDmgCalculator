@@ -434,7 +434,12 @@
       <div class="textRow">
         <span class="dataSrc">数据及计算公式来自<a href="http://wiki.mhwmod.com/">狩技MOD组中文Wiki</a></span>
         <span class="authorName">一个基于Vue的前端项目 By 鎧羅突擊弩賊</span>
-        <span class="authorId">小黑盒ID: 1310911&nbsp;&nbsp;&nbsp;Ver.1.0Beta</span>
+        <span class="authorId">小黑盒ID:1310911&nbsp;&nbsp;Ver.1.0Beta&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator">
+            <img
+              :src="gitIconSrc"
+              width="14"
+              height="14"
+            >Github</a></span>
       </div>
     </div>
   </div>
@@ -446,6 +451,7 @@ export default {
   name: 'CalculatorView',
   data () {
     return {
+      gitIconSrc: '#',
       formData: {
         weaponId: '',
         weaponShowAtt: '',
@@ -751,8 +757,12 @@ export default {
   },
   mounted () {
     this.baseSkillOptsInit()
+    this.iconStcInit()
   },
   methods: {
+    iconStcInit () {
+      this.gitIconSrc = require('../assets/github-fill.svg')
+    },
     baseSkillOptsInit () {
       this.baseSkillOpts = JSON.parse(
         JSON.stringify(baseLogic.getBaseDmgRate())
@@ -1087,6 +1097,18 @@ export default {
         font-size: 14px;
         font-weight: lighter;
         color: #666666;
+
+        a {
+          text-decoration: none;
+        }
+
+        a:link, a:hover, a:visited {
+          color: white;
+        }
+
+        a:active {
+          color: #333333;
+        }
       }
     }
   }
