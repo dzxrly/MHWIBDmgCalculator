@@ -640,47 +640,67 @@ const weaponLimitRate = [ // 武器攻击力上限后倍率
   },
   {
     id: '1',
-    name: '[太刀] 气刃等级 (白)',
+    name: '太刀-气刃等级 (白)',
     rate: 1.05
   },
   {
     id: '2',
-    name: '[太刀] 气刃等级 (黄)',
+    name: '太刀-气刃等级 (黄)',
     rate: 1.1
   },
   {
     id: '3',
-    name: '[太刀] 气刃等级 (红)',
+    name: '太刀-气刃等级 (红)',
     rate: 1.2
   },
   {
     id: '4',
-    name: '[大锤] 强蓄',
+    name: '大锤-强蓄',
     rate: 1.07
   },
   {
     id: '5',
-    name: '[狩猎笛] 自我强化',
+    name: '狩猎笛-自我强化',
     rate: 1.15
   },
   {
     id: '6',
-    name: '[斩斧] 强击瓶',
+    name: '斩斧-强击瓶(仅用于剑模式)',
     rate: 1.17
   },
   {
     id: '7',
-    name: '[盾斧] 红盾',
-    rate: 1.1
+    name: '斩斧-属性解放终结(高出力)',
+    rate: 1.2
   },
   {
     id: '8',
-    name: '[虫棍] 红灯 + 白灯',
-    rate: 1.1
+    name: '斩斧-属性解放终结(提前终结)',
+    rate: 0.7
   },
   {
     id: '9',
-    name: '[虫棍] 三灯',
+    name: '斩斧-零距离属性解放终结(高出力)',
+    rate: 1.4
+  },
+  {
+    id: '10',
+    name: '斩斧-零距离属性解放终结(提前终结)',
+    rate: 0.7
+  },
+  {
+    id: '11',
+    name: '盾斧-红盾(仅用于斧攻击)',
+    rate: 1.1
+  },
+  {
+    id: '12',
+    name: '虫棍-红灯 + 白灯',
+    rate: 1.1
+  },
+  {
+    id: '13',
+    name: '虫棍-三灯',
     rate: 1.15
   }
 ]
@@ -789,6 +809,12 @@ export default {
   */
   getElSkill () {
     return elementSkillList
+  },
+  /*
+  * 获取武器上限后倍率
+  */
+  getAttLimitAfterRate () {
+    return weaponLimitRate
   },
   /*
   * 计算基础攻击力
@@ -953,10 +979,14 @@ export default {
   /*
   * 计算武器总攻击力
   * @param afterDmgLimit 武器攻击力上限后数据
-  * @param limitRate 武器攻击力上限后倍率（默认为1）
+  * @param limitRate 武器攻击力上限后倍率（默认为无）
   */
-  getSumAttack (afterDmgLimit, limitRate = 0) {
-    return Math.round(afterDmgLimit * weaponLimitRate[parseInt(limitRate)].rate)
+  getSumAttack (afterDmgLimit, limitRate = ['0']) {
+    let rate = 1
+    limitRate.forEach(item => {
+      rate *= weaponLimitRate[parseInt(item)].rate
+    })
+    return Math.round(afterDmgLimit * rate)
   },
   /*
   * 计算武器总攻击力百分比

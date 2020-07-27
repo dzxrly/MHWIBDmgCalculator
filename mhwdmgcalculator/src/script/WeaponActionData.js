@@ -988,22 +988,511 @@ const actionDataList = [
   {
     name: '大锤',
     id: '4',
-    actions: []
+    actions: [
+      {
+        name: '挥旋',
+        actionNum: 20,
+        elementChanger: 1
+      },
+      {
+        name: '返挥',
+        actionNum: 16,
+        elementChanger: 1
+      },
+      {
+        name: '纵挥 Ⅰ',
+        actionNum: 37,
+        elementChanger: 1
+      },
+      {
+        name: '纵挥 Ⅱ',
+        actionNum: 23,
+        elementChanger: 1
+      },
+      {
+        name: '压迫/回旋强压迫',
+        actionNum: 86,
+        elementChanger: 1
+      },
+      {
+        name: '蓄力挥旋(1蓄)',
+        actionNum: 18,
+        elementChanger: 1
+      },
+      {
+        name: '蓄力返挥(1蓄)',
+        actionNum: 25,
+        elementChanger: 1
+      },
+      {
+        name: '蓄力压迫(2蓄)',
+        actionNum: 38,
+        elementChanger: 1
+      },
+      {
+        name: '横挥/回旋横挥',
+        actionNum: 15,
+        elementChanger: 1
+      },
+      {
+        name: '蓄力敲打(3蓄-第一次命中)',
+        actionNum: 15,
+        elementChanger: 1
+      },
+      {
+        name: '蓄力敲打(3蓄-第二次命中)',
+        actionNum: 76,
+        elementChanger: 1
+      },
+      {
+        name: '蓄力强压迫(2蓄)',
+        actionNum: 45,
+        elementChanger: 1
+      },
+      {
+        name: '蓄力强敲打(3蓄-第一或第二次命中)',
+        actionNum: 15,
+        elementChanger: 1
+      },
+      {
+        name: '蓄力强敲打(3蓄-最终命中)',
+        actionNum: 85,
+        elementChanger: 1
+      },
+      {
+        name: '回旋攻击(第一次命中)',
+        actionNum: 26,
+        elementChanger: 1
+      },
+      {
+        name: '回旋攻击(后续单次命中)',
+        actionNum: 18,
+        elementChanger: 1
+      },
+      {
+        name: '回旋返挥/蓄力返挥(超蓄力)',
+        actionNum: 55,
+        elementChanger: 1
+      },
+      {
+        name: '回转挥旋',
+        actionNum: 32,
+        elementChanger: 1
+      },
+      {
+        name: '敲打 Ⅰ/敲打终结(第一或第二次命中)',
+        actionNum: 28,
+        elementChanger: 1
+      },
+      {
+        name: '敲打 Ⅱ',
+        actionNum: 32,
+        elementChanger: 1
+      },
+      {
+        name: '敲打 Ⅲ',
+        actionNum: 45,
+        elementChanger: 1
+      },
+      {
+        name: '敲打 Ⅳ',
+        actionNum: 65,
+        elementChanger: 1
+      },
+      {
+        name: '敲打终结(第三次命中)',
+        actionNum: 100,
+        elementChanger: 1
+      },
+      {
+        name: '跳跃敲打',
+        actionNum: 37,
+        elementChanger: 1
+      },
+      {
+        name: '跳跃蓄力攻击 Lv1',
+        actionNum: 65,
+        elementChanger: 1
+      },
+      {
+        name: '跳跃蓄力攻击 Lv2',
+        actionNum: 70,
+        elementChanger: 1
+      },
+      {
+        name: '跳跃蓄力攻击 Lv3',
+        actionNum: 80,
+        elementChanger: 1
+      },
+      {
+        name: '空中回转攻击(旋转)',
+        actionNum: 25,
+        elementChanger: 1
+      },
+      {
+        name: '空中回转攻击(最终命中)',
+        actionNum: 100,
+        elementChanger: 1
+      },
+      {
+        name: '飞翔爪',
+        actionNum: 8,
+        elementChanger: 0
+      },
+      {
+        name: '旋转飞扑攻击',
+        actionNum: 8,
+        elementChanger: 0.8
+      },
+      {
+        name: '飞扑攻击/旋转飞扑攻击终结',
+        actionNum: 40,
+        elementChanger: 1
+      },
+      {
+        name: '飞翔爪武器攻击(第一次命中)',
+        actionNum: 20,
+        elementChanger: 1
+      },
+      {
+        name: '飞翔爪武器攻击(第二次命中)',
+        actionNum: 55,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘蓄力攻击(第一次命中)',
+        actionNum: 68,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘蓄力攻击(第二次命中)',
+        actionNum: 85,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘蓄力攻击(第三次命中)',
+        actionNum: 111,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘蓄力攻击(尾部骑乘Lv1第一次命中)',
+        actionNum: 32,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘蓄力攻击(尾部骑乘Lv2第一次命中)',
+        actionNum: 42,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘蓄力攻击(尾部骑乘Lv3第一次命中)',
+        actionNum: 55,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘蓄力攻击(尾部骑乘Lv1第二次命中)',
+        actionNum: 60,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘蓄力攻击(尾部骑乘Lv2第二次命中)',
+        actionNum: 77,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘蓄力攻击(尾部骑乘Lv3第二次命中)',
+        actionNum: 90,
+        elementChanger: 1
+      }
+    ]
   },
   {
     name: '狩猎笛',
     id: '5',
-    actions: []
+    actions: [
+      {
+        name: '左挥',
+        actionNum: 22,
+        elementChanger: 1
+      },
+      {
+        name: '前扣',
+        actionNum: 28,
+        elementChanger: 1
+      },
+      {
+        name: '右挥',
+        actionNum: 27,
+        elementChanger: 1
+      },
+      {
+        name: '连音攻击(第一次命中)',
+        actionNum: 15,
+        elementChanger: 1
+      },
+      {
+        name: '连音攻击(第二次命中)',
+        actionNum: 22,
+        elementChanger: 1
+      },
+      {
+        name: '后扣',
+        actionNum: 37,
+        elementChanger: 1
+      },
+      {
+        name: '大地一击(第一次命中)',
+        actionNum: 14,
+        elementChanger: 1
+      },
+      {
+        name: '大地一击(第二次命中)',
+        actionNum: 39,
+        elementChanger: 1
+      },
+      {
+        name: '柄击/响音攻击第一击',
+        actionNum: 10,
+        elementChanger: 1
+      },
+      {
+        name: '响音攻击',
+        actionNum: 17,
+        elementChanger: 0.8
+      },
+      {
+        name: '演奏',
+        actionNum: 29,
+        elementChanger: 1
+      },
+      {
+        name: '重奏',
+        actionNum: 35,
+        elementChanger: 1
+      },
+      {
+        name: '响周波·打(第一次命中)',
+        actionNum: 50,
+        elementChanger: 0
+      },
+      {
+        name: '响周波·打(第二次命中)',
+        actionNum: 100,
+        elementChanger: 0
+      },
+      {
+        name: '响周波·打(第三次命中)',
+        actionNum: 150,
+        elementChanger: 0
+      },
+      {
+        name: '跳跃敲打',
+        actionNum: 35,
+        elementChanger: 1
+      },
+      {
+        name: '跳跃强敲打',
+        actionNum: 55,
+        elementChanger: 1
+      },
+      {
+        name: '空中演奏',
+        actionNum: 35,
+        elementChanger: 1
+      },
+      {
+        name: '飞翔爪武器攻击(第一次命中)',
+        actionNum: 29,
+        elementChanger: 1
+      },
+      {
+        name: '翔爪武器攻击(第二次命中)',
+        actionNum: 45,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘攻击(反复攻击单次命中)',
+        actionNum: 18,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘攻击(终结命中)',
+        actionNum: 55,
+        elementChanger: 1
+      }
+    ]
   },
   {
     name: '长枪',
     id: '6',
-    actions: []
+    actions: [
+      {
+        name: '中段突刺 Ⅰ',
+        actionNum: 20,
+        elementChanger: 0.7
+      },
+      {
+        name: '中段突刺 Ⅱ',
+        actionNum: 20,
+        elementChanger: 0.7
+      },
+      {
+        name: '中段突刺 Ⅲ',
+        actionNum: 27,
+        elementChanger: 0.7
+      },
+      {
+        name: '上段突刺 Ⅰ/抵消突刺',
+        actionNum: 22,
+        elementChanger: 0.7
+      },
+      {
+        name: '上段突刺 Ⅱ',
+        actionNum: 22,
+        elementChanger: 0.7
+      },
+      {
+        name: '上段突刺 Ⅲ',
+        actionNum: 27,
+        elementChanger: 0.7
+      },
+      {
+        name: '横扫 Ⅰ/Ⅱ/Ⅲ',
+        actionNum: 20,
+        elementChanger: 0.7
+      },
+      {
+        name: '防御突刺',
+        actionNum: 20,
+        elementChanger: 0.7
+      },
+      {
+        name: '反击突刺',
+        actionNum: 40,
+        elementChanger: 0.7
+      },
+      {
+        name: '飞身跃入突刺(单次命中)',
+        actionNum: 8,
+        elementChanger: 0.3
+      },
+      {
+        name: '盾攻击',
+        actionNum: 14,
+        elementChanger: 0
+      },
+      {
+        name: '转身攻击',
+        actionNum: 50,
+        elementChanger: 0.8
+      },
+      {
+        name: '跳跃突刺/跳跃突进突刺',
+        actionNum: 30,
+        elementChanger: 0.7
+      },
+      {
+        name: '反击钩爪(第一次命中)',
+        actionNum: 8,
+        elementChanger: 0
+      },
+      {
+        name: '反击钩爪(第二次命中)',
+        actionNum: 16,
+        elementChanger: 0
+      },
+      {
+        name: '飞翔爪武器攻击(第一次命中)',
+        actionNum: 33,
+        elementChanger: 1
+      },
+      {
+        name: '飞翔爪武器攻击(第二次命中)',
+        actionNum: 45,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘终结突刺(第一次命中)',
+        actionNum: 40,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘终结突刺(第二次命中)',
+        actionNum: 10,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘终结突刺(第三次命中)',
+        actionNum: 20,
+        elementChanger: 1
+      }
+    ]
   },
   {
     name: '铳枪',
     id: '7',
-    actions: []
+    actions: [
+      {
+        name: '踏步上突刺',
+        actionNum: 30,
+        elementChanger: 1
+      },
+      {
+        name: '水平突刺',
+        actionNum: 24,
+        elementChanger: 1
+      },
+      {
+        name: '防御突刺',
+        actionNum: 18,
+        elementChanger: 1
+      },
+      {
+        name: '上捞斩',
+        actionNum: 30,
+        elementChanger: 1
+      },
+      {
+        name: '敲打',
+        actionNum: 48,
+        elementChanger: 1
+      },
+      {
+        name: '横扫斩',
+        actionNum: 68,
+        elementChanger: 1
+      },
+      {
+        name: '跳跃突刺',
+        actionNum: 25,
+        elementChanger: 1
+      },
+      {
+        name: '跳跃装填敲打/跳跃敲打(第二次命中)',
+        actionNum: 44,
+        elementChanger: 1
+      },
+      {
+        name: '跳跃敲打(第一次命中)',
+        actionNum: 32,
+        elementChanger: 1
+      },
+      {
+        name: '跳跃上捞斩',
+        actionNum: 35,
+        elementChanger: 1
+      },
+      {
+        name: '飞翔爪武器攻击(第一次命中)',
+        actionNum: 45,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘攻击(突刺)',
+        actionNum: 25,
+        elementChanger: 1
+      }
+    ]
   },
   {
     name: '斩斧',

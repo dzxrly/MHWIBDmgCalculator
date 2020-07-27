@@ -337,6 +337,18 @@
             </div>
           </el-form-item>
           <el-form-item>
+            <div class="baseSkillsRow">
+              <span class="title">武器伤害上限后补正类技能</span>
+              <el-checkbox-group v-model="formData.attLimitAfterRate">
+                <el-checkbox
+                  v-for="item in attLmtAfterRateOpts"
+                  :label="item.id"
+                  :key="item.id"
+                >{{ item.name }}</el-checkbox>
+              </el-checkbox-group>
+            </div>
+          </el-form-item>
+          <el-form-item>
             <el-select
               style="width: 100%;"
               v-model="formData.criticalSituation"
@@ -464,6 +476,7 @@ export default {
         baseAttSkillList: [],
         otherAttSkillList: [],
         elSkillList: [],
+        attLimitAfterRate: [],
         closeItemNumber: 0,
         farItemNumber: 0,
         bottleType: 0,
@@ -658,6 +671,7 @@ export default {
       baseSkillOpts: [],
       otherSkillOpts: [],
       elSkillOpts: [],
+      attLmtAfterRateOpts: [],
       criticalOpts: [
         {
           value: 0,
@@ -770,6 +784,9 @@ export default {
       this.otherSkillOpts = JSON.parse(
         JSON.stringify(baseLogic.getOtherAttack())
       )
+      this.attLmtAfterRateOpts = JSON.parse(
+        JSON.stringify(baseLogic.getAttLimitAfterRate())
+      )
       this.elSkillOpts = JSON.parse(JSON.stringify(baseLogic.getElSkill()))
     },
     handleWeaponChange () {
@@ -819,7 +836,7 @@ export default {
       let dmgLimit = baseLogic.getDmgLimitation(baseDmg)
       let afterDmgLimit = baseLogic.getAfterDmgLimit(beforeDmgLimit, dmgLimit)
       let afterElDmgLimit = baseLogic.getAfterElLimit(beforeElLimit, elDmgLimit)
-      let sumAttack = baseLogic.getSumAttack(afterDmgLimit)
+      let sumAttack = baseLogic.getSumAttack(afterDmgLimit, this.formData.attLimitAfterRate)
       let sumElement = baseLogic.getSumElDmg(this.formData.weaponId, afterElDmgLimit, 1, this.isElCriticalCheck())
       let attRate = baseLogic.getAttRate(sumAttack)
       let physicDmgRate = baseLogic.getPhysicalDmgRate(
@@ -974,16 +991,18 @@ export default {
           .baseSkillsRow {
             padding: 5px 20px;
             display: flex;
-            flex-flow: column nowrap;
+            flex-flow: column wrap;
             justify-content: flex-start;
             align-items: flex-start;
             box-shadow: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108);
 
             .el-checkbox-group {
+              overflow-x: auto;
               display: flex;
               flex-flow: column wrap;
               justify-content: flex-start;
               align-items: flex-start;
+              width: 40vh;
             }
           }
         }
