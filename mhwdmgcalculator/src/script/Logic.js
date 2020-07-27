@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+// 伤害计算基本逻辑 All Data from http://wiki.mhwmod.com/
+import WeaponActionData from '../script/WeaponActionData'
 const weaponList = [
   {
     id: '0',

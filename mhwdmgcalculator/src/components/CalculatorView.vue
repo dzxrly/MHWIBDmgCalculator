@@ -87,14 +87,14 @@
           <el-form-item>
             <el-input
               v-model="formData.weaponShowAtt"
-              placeholder="请输入武器栏显示的攻击力面板"
+              placeholder="请输入武器栏显示的攻击力面板(原始面板)"
               clearable
             ></el-input>
           </el-form-item>
           <el-form-item v-if="formData.weaponId !== '12' && formData.weaponId !== '13'">
             <el-input
               v-model="formData.weaponShowEl"
-              placeholder="请输入武器栏显示的属性值面板"
+              placeholder="请输入武器栏显示的属性值面板(原始面板)"
               clearable
             ></el-input>
           </el-form-item>
@@ -434,7 +434,7 @@
       <div class="textRow">
         <span class="dataSrc">数据及计算公式来自<a href="http://wiki.mhwmod.com/">狩技MOD组中文Wiki</a></span>
         <span class="authorName">一个基于Vue的前端项目 By 鎧羅突擊弩賊</span>
-        <span class="authorId">小黑盒ID:1310911&nbsp;&nbsp;Ver.1.0Beta&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator">
+        <span class="authorId">小黑盒ID:1310911&nbsp;&nbsp;Ver.1.0.1&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator">
             <img
               :src="gitIconSrc"
               width="14"
