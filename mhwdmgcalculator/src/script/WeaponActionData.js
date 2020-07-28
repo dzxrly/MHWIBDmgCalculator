@@ -1497,12 +1497,259 @@ const actionDataList = [
   {
     name: '斩斧',
     id: '8',
-    actions: []
+    actions: [
+      {
+        name: '斧:横斩/剑:变形斩',
+        actionNum: 23,
+        elementChanger: 1
+      },
+      {
+        name: '斧:突进斩',
+        actionNum: 19,
+        elementChanger: 1
+      },
+      {
+        name: '斧:上捞斩',
+        actionNum: 31,
+        elementChanger: 1
+      },
+      {
+        name: '斧:直斩',
+        actionNum: 45,
+        elementChanger: 1
+      },
+      {
+        name: '斧:挥旋(右)',
+        actionNum: 21,
+        elementChanger: 0.8
+      },
+      {
+        name: '斧:挥旋(左)',
+        actionNum: 23,
+        elementChanger: 0.8
+      },
+      {
+        name: '斧:强化敲打(第一次命中)',
+        actionNum: 15,
+        elementChanger: 1
+      },
+      {
+        name: '斧:强化敲打(第二次命中)',
+        actionNum: 72,
+        elementChanger: 1
+      },
+      {
+        name: '斧:纵斩',
+        actionNum: 34,
+        elementChanger: 1
+      },
+      {
+        name: '斧:横扫变形斩(第一次命中)',
+        actionNum: 20,
+        elementChanger: 1
+      },
+      {
+        name: '斧:横扫变形斩(第二次命中)',
+        actionNum: 70,
+        elementChanger: 1
+      },
+      {
+        name: '斧:横扫变形斩(第三次命中)',
+        actionNum: 35,
+        elementChanger: 1
+      },
+      {
+        name: '剑:直斩/斧:变形斩',
+        actionNum: 29,
+        elementChanger: 1
+      },
+      {
+        name: '剑:右上捞斩',
+        actionNum: 21,
+        elementChanger: 1
+      },
+      {
+        name: '剑:左上捞斩',
+        actionNum: 18,
+        elementChanger: 1
+      },
+      {
+        name: '剑:衔接斩',
+        actionNum: 15,
+        elementChanger: 1
+      },
+      {
+        name: '剑:二连斩(第一次命中)',
+        actionNum: 22,
+        elementChanger: 1
+      },
+      {
+        name: '剑:二连斩(第二次命中)',
+        actionNum: 26,
+        elementChanger: 1
+      },
+      {
+        name: '剑:飞天连击(第一次命中)',
+        actionNum: 24,
+        elementChanger: 1
+      },
+      {
+        name: '剑:飞天连击(第一次命中)',
+        actionNum: 35,
+        elementChanger: 1
+      },
+      {
+        name: '剑:变形纵斩',
+        actionNum: 45,
+        elementChanger: 1
+      },
+      {
+        name: '[高出力]剑:瓶追击',
+        actionNum: 9,
+        elementChanger: 1
+      },
+      {
+        name: '[高出力]剑:直斩/斧:变形斩',
+        actionNum: 30,
+        elementChanger: 1
+      },
+      {
+        name: '[高出力]剑:右上捞斩',
+        actionNum: 22,
+        elementChanger: 1
+      },
+      {
+        name: '[高出力]剑:左上捞斩',
+        actionNum: 19,
+        elementChanger: 1
+      },
+      {
+        name: '[高出力]剑:二连斩(第一次命中)',
+        actionNum: 23,
+        elementChanger: 1
+      },
+      {
+        name: '[高出力]剑:二连斩(第二次命中)',
+        actionNum: 26,
+        elementChanger: 1
+      },
+      {
+        name: '[高出力]剑:连接斩',
+        actionNum: 20,
+        elementChanger: 1
+      },
+      {
+        name: '[高出力]剑:飞天连击(第一次命中)',
+        actionNum: 25,
+        elementChanger: 1
+      },
+      {
+        name: '[高出力]剑:飞天连击(第二次命中)',
+        actionNum: 38,
+        elementChanger: 1
+      },
+      {
+        name: '斧:跳跃斩',
+        actionNum: 43,
+        elementChanger: 1
+      },
+      {
+        name: '剑:跳跃斩',
+        actionNum: 35,
+        elementChanger: 1
+      },
+      {
+        name: '斧:跳跃横扫斩',
+        actionNum: 74,
+        elementChanger: 1
+      },
+      {
+        name: '剑:跳跃上捞斩',
+        actionNum: 35,
+        elementChanger: 1
+      },
+      {
+        name: '属性解放突刺',
+        actionNum: 10,
+        elementChanger: 0.2
+      },
+      {
+        name: '属性解放(小爆炸)',
+        actionNum: 8,
+        elementChanger: 0.5
+      },
+      {
+        name: '零距离属性解放突刺',
+        actionNum: 18,
+        elementChanger: 1
+      },
+      {
+        name: '零距离属性解放(小爆炸)',
+        actionNum: 13,
+        elementChanger: 0.5
+      },
+      {
+        name: '(零距离)属性解放终结',
+        actionNum: 85,
+        elementChanger: 1
+      },
+      {
+        name: '飞翔爪武器攻击(第一次命中)',
+        actionNum: 24,
+        elementChanger: 1
+      },
+      {
+        name: '飞翔爪武器攻击(第二次命中)',
+        actionNum: 45,
+        elementChanger: 1
+      },
+      {
+        name: '特殊钩爪发射(第一次命中)',
+        actionNum: 7,
+        elementChanger: 1
+      },
+      {
+        name: '特殊钩爪发射(第二次命中)',
+        actionNum: 55,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘属性解放(突刺)',
+        actionNum: 20,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘属性解放(小爆炸)',
+        actionNum: 5,
+        elementChanger: 0.5
+      },
+      {
+        name: '骑乘属性解放(终结)',
+        actionNum: 100,
+        elementChanger: 1
+      }
+    ]
   },
   {
     name: '盾斧',
     id: '9',
-    actions: []
+    actions: [
+      {
+        name: '剑:突进斩',
+        actionNum: 20,
+        elementChanger: 1
+      },
+      {
+        name: '剑:牵制斩',
+        actionNum: 12,
+        elementChanger: 1
+      },
+      {
+        name: '剑:反击斩',
+        actionNum: 15,
+        elementChanger: 1
+      }
+    ]
   },
   {
     name: '操虫棍',
