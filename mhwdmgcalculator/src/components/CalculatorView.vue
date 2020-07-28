@@ -444,7 +444,8 @@
     <div class="footerRow">
       <div class="footerDivider"></div>
       <div class="textRow">
-        <span class="dataSrc">数据及计算公式来自<a href="http://wiki.mhwmod.com/">狩技MOD组中文Wiki</a></span>
+        <span class="dataSrc">计算公式及绝大部分数据来自<a href="http://wiki.mhwmod.com/">狩技MOD组中文Wiki</a></span>
+        <span class="dataSrc">武器招式名称与动作值来自<a href="https://tieba.baidu.com/p/6591591373">【搬运】冰原所有武器动作值、各种补正表</a></span>
         <span class="authorName">一个基于Vue的前端项目 By 鎧羅突擊弩賊</span>
         <span class="authorId">小黑盒ID:1310911&nbsp;&nbsp;Ver.1.0.1&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator">
             <img

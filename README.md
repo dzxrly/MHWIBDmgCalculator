@@ -4,7 +4,11 @@
 
 当前版本`Ver.1.0.1`
 
-> 所有数据及计算公式引用自[狩技 MOD 组中文 Wiki](http://wiki.mhwmod.com/)
+> ## 数据来源
+>
+> 伤害计算公式、绝大部分补正与加成信息引用自[狩技 MOD 组中文 Wiki](http://wiki.mhwmod.com/)
+>
+> 武器招式中文名与动作值来自[【搬运】冰原所有武器动作值、各种补正表](https://tieba.baidu.com/p/6591591373) By [全团的希望](https://tieba.baidu.com/home/main?un=_%E5%90%8E_%E7%9F%A5HO%E8%A7%89&ie=utf-8&id=tb.1.756c6ba6.IDeQsAudnybJlsDQl8giPA?t=1579074945&fr=pb)
 
 计算器链接：[https://dzxrly.github.io/MHWIBDmgCalculator/#/](https://dzxrly.github.io/MHWIBDmgCalculator/#/)
 
