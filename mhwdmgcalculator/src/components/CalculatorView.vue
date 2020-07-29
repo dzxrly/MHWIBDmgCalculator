@@ -989,6 +989,10 @@ export default {
   box-shadow: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108);
 }
 
+/deep/ .el-button--small:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 .calculator-wrap {
   width: 100%;
   height: 100%;
