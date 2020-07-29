@@ -629,6 +629,31 @@ const otherAttack = [ // 额外攻击
     id: '37',
     name: '钝器能手',
     attack: 0
+  },
+  {
+    id: '38',
+    name: '盾斧-榴弹瓶(大解/超解第一次命中)',
+    attack: 10
+  },
+  {
+    id: '39',
+    name: '盾斧-榴弹瓶(超解第二次命中)',
+    attack: 20
+  },
+  {
+    id: '40',
+    name: '盾斧-榴弹瓶(超解第三次命中)',
+    attack: 10
+  },
+  {
+    id: '41',
+    name: '盾斧-榴弹瓶(红斧瓶爆炸)',
+    attack: 4
+  },
+  {
+    id: '42',
+    name: '盾斧-榴弹瓶(红斧瓶爆炸(大解/超解))',
+    attack: 6
   }
 ]
 const bluntSkill = [0, 30, 30, 25, 15, 0, 0, 0] // 钝器能手，分别为远程专用、红、橙、黄、绿、蓝、白、紫
@@ -792,31 +817,31 @@ const elementSkillList = [
 ]
 
 export default {
-  /*
+  /**
   * 获取基础攻击力倍率
   */
   getBaseDmgRate () {
     return baseDmgRate
   },
-  /*
+  /**
   * 获取额外攻击力加成
   */
   getOtherAttack () {
     return otherAttack
   },
-  /*
+  /**
   * 获取属性倍率加成
   */
   getElSkill () {
     return elementSkillList
   },
-  /*
+  /**
   * 获取武器上限后倍率
   */
   getAttLimitAfterRate () {
     return weaponLimitRate
   },
-  /*
+  /**
   * 计算基础攻击力
   * @param weaponId 武器id (0~13)
   * @param weaponShowAtt 游戏内武器栏显示的攻击力
@@ -837,7 +862,7 @@ export default {
     let baseDmg = parseInt(weaponShowAtt) / weaponItem.rate + attSkin + customAtt[parseInt(customAttLv)] + awakeAttSum
     return baseDmg
   },
-  /*
+  /**
   * 计算基础属性值
   * @param weaponId 武器id (0~13)
   * @param weaponShowEl 游戏内武器属性值
@@ -865,14 +890,14 @@ export default {
     }
     return baseElDmg
   },
-  /*
+  /**
   * 计算武器攻击力上限
   * @param baseDmg 基础攻击力
   */
   getDmgLimitation (baseDmg) {
     return baseDmg * 2.0
   },
-  /*
+  /**
   * 计算武器攻击力上限前数据
   * @param baseDmg 基础攻击力
   * @param bluntLv 钝器能手，分别为远程专用、红、橙、黄、绿、蓝、白、紫
@@ -890,7 +915,7 @@ export default {
     })
     return (baseDmg + bluntSkill[parseInt(bluntLv)]) * baseAttRate + otherAttackSum
   },
-  /*
+  /**
   * 计算武器属性伤害上限前数据
   * @param baseElDmg 基础属性攻击力
   * @param elSkillArray 属性加成类技能数组
@@ -904,7 +929,7 @@ export default {
     })
     return (baseElDmg * baseElRate + extractEl)
   },
-  /*
+  /**
   * 计算武器属性伤害上限
   * @param weaponId 武器ID
   * @param baseElDmg 基础属性伤害
@@ -939,7 +964,7 @@ export default {
     }
     return limit
   },
-  /*
+  /**
   * 计算武器属性上限后数值
   * @param beforeElLimit 武器属性上限前数据
   * @param elLimit 武器属性上限
@@ -947,7 +972,7 @@ export default {
   getAfterElLimit (beforeElLimit, elLimit) {
     return Math.min(beforeElLimit, elLimit)
   },
-  /*
+  /**
   * 计算武器攻击力上限后数值
   * @param beforeDmgLimit 武器攻击力上限前数据
   * @param dmgLimit 武器攻击力上限
@@ -955,7 +980,7 @@ export default {
   getAfterDmgLimit (beforeDmgLimit, dmgLimit) {
     return Math.min(beforeDmgLimit, dmgLimit)
   },
-  /*
+  /**
   * 计算武器约后属性伤害
   * @param weaponId 武器ID
   * @param afterElLimit 武器属性上限后数据
@@ -976,7 +1001,7 @@ export default {
         return Math.round(afterElLimit * limitRate * weapon.trueElementCritical)
     }
   },
-  /*
+  /**
   * 计算武器总攻击力
   * @param afterDmgLimit 武器攻击力上限后数据
   * @param limitRate 武器攻击力上限后倍率（默认为无）
@@ -988,14 +1013,14 @@ export default {
     })
     return Math.round(afterDmgLimit * rate)
   },
-  /*
+  /**
   * 计算武器总攻击力百分比
   * @param sumAttack 总攻击力
   */
   getAttRate (sumAttack) {
     return sumAttack / 100
   },
-  /*
+  /**
   * 计算武器最终属性伤害
   * @param weaponId 武器ID
   * @param sumElDmg 约后属性伤害
@@ -1008,7 +1033,7 @@ export default {
       return sumElDmg * attRate * elementChanger * elRate
     } else return sumElDmg * elementChanger * elRate
   },
-  /*
+  /**
   * 计算武器物理伤害倍率
   * @param weaponId 武器ID
   * @param closeItemNumber 近战零件数量
@@ -1024,7 +1049,7 @@ export default {
     if (bladeRate) return closeItemRate[parseInt(closeItemNumber)] * farItemRate[parseInt(farItemNumber)] * bottleList[parseInt(bottleType)] * weapon.bladeRate
     else return closeItemRate[parseInt(closeItemNumber)] * farItemRate[parseInt(farItemNumber)] * bottleList[parseInt(bottleType)]
   },
-  /*
+  /**
   * 计算武器物理伤害
   * @param skillNumber 动作值
   * @param attRate 攻击动作百分比
@@ -1034,7 +1059,7 @@ export default {
   getPhysicalDmg (skillNumber, attRate, criticalSituation, physicalDmgRate) {
     return parseFloat(skillNumber) * attRate * criticalRate[parseInt(criticalSituation)] * physicalDmgRate
   },
-  /*
+  /**
   * 计算武器属性肉质百分比
   * @param meatElRate 基础属性肉质
   * @param bladeNumber 斩味
@@ -1043,7 +1068,7 @@ export default {
     let blade = elBladeRate[parseInt(bladeNumber)]
     return (meatElRate * blade) / 100
   },
-  /*
+  /**
   * 计算武器物理肉质百分比
   * @param meatRate 基础物理肉质
   * @param bladeNumber 斩味
@@ -1052,7 +1077,7 @@ export default {
     let blade = bladeRate[parseInt(bladeNumber)]
     return (meatRate * blade) / 100
   },
-  /*
+  /**
   * 计算软化后的物理肉质百分比
   * @param meatRate 基础物理肉质
   * @param offset 肉质偏移
@@ -1062,7 +1087,7 @@ export default {
     let baseMeat = Math.floor(0.75 * meatRate) + (25 + offset) * bladeRate[parseInt(bladeNumber)]
     return baseMeat / 100
   },
-  /*
+  /**
   * 计算武器包含肉质的物理伤害
   * @param physicDmg 武器物理伤害
   * @param physicMeatRate 物理肉质百分比
@@ -1071,7 +1096,7 @@ export default {
   getToMonsterPHYDmg (physicDmg, physicMeatRate, unchangedDmg = 0) {
     return Math.round(physicDmg * physicMeatRate + unchangedDmg)
   },
-  /*
+  /**
   * 计算武器包含肉质的属性伤害
   * @param elementDmg 武器属性伤害
   * @param elMeatRate 属性肉质百分比
@@ -1079,7 +1104,7 @@ export default {
   getToMonsterElDmg (elementDmg, elMeatRate) {
     return Math.round(elementDmg * elMeatRate)
   },
-  /*
+  /**
   * 计算武器包含肉质的总伤害
   * @param toMonsterPHYDmg 武器物理伤害
   * @param toMonsterElDmg 武器属性伤害

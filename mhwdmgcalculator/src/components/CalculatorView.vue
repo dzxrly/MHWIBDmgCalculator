@@ -16,14 +16,14 @@
         Top
       </div>
     </el-backtop>
-    <div class="headerRow">
-      <div class="titleTextRow">
+    <div class="header-row">
+      <div class="title-text-row">
         <span>MHWIB简易伤害计算器</span>
       </div>
-      <div class="dividerRow"></div>
+      <div class="divider-row"></div>
     </div>
-    <div class="calculatorPane">
-      <div class="inputArea">
+    <div class="calculator-pane">
+      <div class="input-area">
         <el-form
           :model="formData"
           ref="formData"
@@ -46,7 +46,7 @@
             </el-select>
           </el-form-item>
           <el-form-item v-if="formData.weaponId === '11'">
-            <div class="itemRow">
+            <div class="item-row">
               <div class="row">
                 <el-radio-group v-model="formData.bottleType">
                   <el-radio :label="0">无</el-radio>
@@ -57,7 +57,7 @@
             </div>
           </el-form-item>
           <el-form-item v-if="formData.weaponId === '12' || formData.weaponId === '13'">
-            <div class="itemRow">
+            <div class="item-row">
               <div class="row">
                 <span>近身射击强化零件个数</span>
                 <el-input-number
@@ -103,6 +103,7 @@
               style="width: 100%;"
               v-model="formData.weaponShowEl"
               placeholder="请选择属性弹种"
+              @change="handleSetElement"
             >
               <el-option
                 v-for="item in elBulletTypes"
@@ -141,7 +142,7 @@
             </el-select>
           </el-form-item>
           <el-form-item>
-            <div class="awakeArea">
+            <div class="awake-area">
               <span class="title">冥赤龙武器觉醒槽位(攻击力词条)</span>
               <div class="row">
                 <span class="text">觉醒槽Ⅰ</span>
@@ -221,7 +222,7 @@
             </div>
           </el-form-item>
           <el-form-item>
-            <div class="awakeArea">
+            <div class="awake-area">
               <span class="title">冥赤龙武器觉醒槽位(属性词条)</span>
               <div class="row">
                 <span class="text">觉醒槽Ⅰ</span>
@@ -301,7 +302,7 @@
             </div>
           </el-form-item>
           <el-form-item>
-            <div class="baseSkillsRow">
+            <div class="base-skills-row">
               <span class="title">基础攻击力倍率加成类技能</span>
               <el-checkbox-group v-model="formData.baseAttSkillList">
                 <el-checkbox
@@ -313,7 +314,7 @@
             </div>
           </el-form-item>
           <el-form-item>
-            <div class="baseSkillsRow">
+            <div class="base-skills-row">
               <span class="title">基础攻击力数值加成类技能</span>
               <el-checkbox-group v-model="formData.otherAttSkillList">
                 <el-checkbox
@@ -325,7 +326,7 @@
             </div>
           </el-form-item>
           <el-form-item>
-            <div class="baseSkillsRow">
+            <div class="base-skills-row">
               <span class="title">属性倍率加成类技能</span>
               <el-checkbox-group v-model="formData.elSkillList">
                 <el-checkbox
@@ -337,7 +338,7 @@
             </div>
           </el-form-item>
           <el-form-item>
-            <div class="baseSkillsRow">
+            <div class="base-skills-row">
               <span class="title">武器伤害上限后补正类技能</span>
               <el-checkbox-group v-model="formData.attLimitAfterRate">
                 <el-checkbox
@@ -362,10 +363,31 @@
               ></el-option>
             </el-select>
           </el-form-item>
+          <el-form-item v-if="formData.weaponId !== ''">
+            <el-select
+              style="width: 100%;"
+              v-model="formData.skillNumber"
+              placeholder="请选择武器动作(不做选择可自定义)"
+              @change="handleAction"
+            >
+              <el-option
+                v-for="(item, index) in actionList"
+                :key="index"
+                :label="item.name"
+                :value="index"
+              ></el-option>
+            </el-select>
+          </el-form-item>
           <el-form-item>
             <el-input
-              v-model="formData.skillNumber"
+              v-model="formData.action"
               placeholder="请输入武器动作值"
+            ></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-input
+              v-model="formData.elementChanger"
+              placeholder="请输入动作的属性补正"
             ></el-input>
           </el-form-item>
           <el-form-item>
@@ -410,13 +432,19 @@
           </el-form-item>
         </el-form>
       </div>
-      <div class="resultArea">
-        <div class="btnRow">
+      <div class="result-area">
+        <div class="btn-row">
           <el-button
             type="primary"
             size="small"
             @click="handleCalculator('formData')"
           ><i class="el-icon-check"></i>&nbsp;&nbsp;计算</el-button>
+          <div
+            class="note"
+            @click="handleGoToNote"
+          >
+            <span>使用须知</span>
+          </div>
         </div>
         <span>计算结果</span>
         <div class="row">
@@ -441,18 +469,26 @@
         </div>
       </div>
     </div>
-    <div class="footerRow">
-      <div class="footerDivider"></div>
-      <div class="textRow">
-        <span class="dataSrc">计算公式及绝大部分数据来自<a href="http://wiki.mhwmod.com/">狩技MOD组中文Wiki</a></span>
-        <span class="dataSrc">武器招式名称与动作值来自<a href="https://tieba.baidu.com/p/6591591373">【搬运】冰原所有武器动作值、各种补正表</a></span>
-        <span class="authorName">一个基于Vue的前端项目 By 鎧羅突擊弩賊</span>
-        <span class="authorId">小黑盒ID:1310911&nbsp;&nbsp;Ver.1.0.1&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator">
-            <img
-              :src="gitIconSrc"
-              width="14"
-              height="14"
-            >Github</a></span>
+    <div class="footer-row">
+      <div class="footer-divider"></div>
+      <div class="text-row">
+        <div class="span-row">
+          <span class="data-src">计算公式及绝大部分数据来自</span>
+          <span class="data-src"><a href="http://wiki.mhwmod.com/">狩技MOD组中文Wiki</a></span>
+        </div>
+        <div class="span-row">
+          <span class="data-src">武器招式名称与动作值来自</span>
+          <span class="data-src"><a href="https://tieba.baidu.com/p/6591591373">[搬运]冰原所有武器动作值各种补正表</a></span>
+        </div>
+        <div class="span-row">
+          <span class="author-name">一个基于Vue的前端项目 By 鎧羅突擊弩賊</span>
+          <span class="author-id">小黑盒ID:1310911&nbsp;&nbsp;Ver.1.0.2&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator">
+              <img
+                :src="gitIconSrc"
+                width="14"
+                height="14"
+              >Github</a></span>
+        </div>
       </div>
     </div>
   </div>
@@ -460,6 +496,7 @@
 
 <script>
 import baseLogic from '../script/Logic'
+import weaponInfoData from '../script/WeaponActionData'
 export default {
   name: 'CalculatorView',
   data () {
@@ -483,6 +520,8 @@ export default {
         bottleType: 0,
         criticalSituation: 1,
         skillNumber: '',
+        action: '',
+        elementChanger: '',
         meatRate: '',
         elMeatRate: '',
         bladeNumber: 0,
@@ -673,6 +712,7 @@ export default {
       otherSkillOpts: [],
       elSkillOpts: [],
       attLmtAfterRateOpts: [],
+      actionList: [],
       criticalOpts: [
         {
           value: 0,
@@ -740,11 +780,11 @@ export default {
         },
         {
           value: '22',
-          label: '火、水、雷、冰属性弹'
+          label: '火炎弹/水冷弹/电击弹/冰结弹'
         },
         {
           value: '18',
-          label: '龙属性弹'
+          label: '灭龙弹'
         }
       ],
       isBladeCheckOpts: [
@@ -790,30 +830,66 @@ export default {
       )
       this.elSkillOpts = JSON.parse(JSON.stringify(baseLogic.getElSkill()))
     },
+    getActions (weaponId) {
+      this.actionList.length = 0
+      this.actionList = weaponInfoData.getActionListById(weaponId)
+    },
     handleWeaponChange () {
       this.formData.closeItemNumber = 0
       this.formData.farItemNumber = 0
       this.formData.bottleType = 0
+      this.formData.skillNumber = ''
+      this.formData.action = ''
+      this.formData.elementChanger = ''
+      if (this.formData.weaponId !== '') this.getActions(this.formData.weaponId)
+    },
+    handleAction () {
+      this.formData.action = this.actionList[this.formData.skillNumber].actionNum
+      this.formData.elementChanger = this.actionList[this.formData.skillNumber].elementChanger
+      if ((this.formData.weaponId === '12' || this.formData.weaponId === '13') && this.formData.skillNumber === 0) {
+        this.formData.weaponShowEl = '22'
+      }
+      if ((this.formData.weaponId === '12' || this.formData.weaponId === '13') && this.formData.skillNumber === 1) {
+        this.formData.weaponShowEl = '18'
+      }
+    },
+    handleGoToNote () {
+      window.open('https://github.com/dzxrly/MHWIBDmgCalculator/blob/master/README.md')
+    },
+    handleSetElement () {
+      if ((this.formData.weaponId === '12' || this.formData.weaponId === '13') && this.formData.weaponShowEl === '22') {
+        this.formData.skillNumber = 0
+        this.formData.action = 8
+        this.formData.elementChanger = 1
+      } else if ((this.formData.weaponId === '12' || this.formData.weaponId === '13') && this.formData.weaponShowEl === '18') {
+        this.formData.skillNumber = 1
+        this.formData.action = 2
+        this.formData.elementChanger = 1
+      } else {
+        this.formData.skillNumber = ''
+        this.formData.action = ''
+        this.formData.elementChanger = ''
+      }
     },
     isAwakeCheck () {
       let flag = 0
       this.formData.elSkillList.forEach(item => {
-        if (String(item) === '9') flag = 1
-        if (String(item) === '10') flag = 2
+        if (item.toString() === '9') flag = 1
+        if (item.toString() === '10') flag = 2
       })
       return flag
     },
     isElCriticalCheck () {
       let flag = 0
       this.formData.elSkillList.forEach(item => {
-        if (String(item) === '11') flag = 1
-        if (String(item) === '12') flag = 2
+        if (item.toString() === '11') flag = 1
+        if (item.toString() === '12') flag = 2
       })
       return flag
     },
     isBluntCheck (bladeNumber) {
       this.formData.otherAttSkillList.forEach(num => {
-        if (String(num) === '37') return bladeNumber
+        if (num.toString() === '37') return bladeNumber
       })
       return 0
     },
@@ -848,12 +924,12 @@ export default {
         this.formData.isBladeCheck
       )
       let physicDmg = baseLogic.getPhysicalDmg(
-        this.formData.skillNumber,
+        this.formData.action,
         attRate,
         this.formData.criticalSituation,
         physicDmgRate
       )
-      let elementDamege = baseLogic.getElementDmg(this.formData.weaponId, sumElement, attRate)
+      let elementDamege = baseLogic.getElementDmg(this.formData.weaponId, sumElement, attRate, this.formData.elementChanger)
       this.res.elDmg = elementDamege
       let basePHYMeatRate = baseLogic.getBasePHYMeatRate(
         this.formData.meatRate,
@@ -914,13 +990,13 @@ export default {
 }
 
 .calculator-wrap {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-flow: column nowrap;
 
-  .headerRow {
-    .titleTextRow {
+  .header-row {
+    .title-text-row {
       display: flex;
       flex: 1;
       justify-content: flex-start;
@@ -935,26 +1011,26 @@ export default {
       }
     }
 
-    .dividerRow {
+    .divider-row {
       height: 8px;
       background-image: linear-gradient(90deg, #99CC33, #FF9900, #FFCC00);
     }
   }
 
-  .calculatorPane {
+  .calculator-pane {
     flex: 1;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: flex-start;
 
-    .inputArea {
+    .input-area {
       flex: 1 1 auto;
       margin: 20px;
 
       .el-form {
         .el-form-item {
-          .itemRow {
+          .item-row {
             padding: 5px 20px;
             display: flex;
             flex-flow: column nowrap;
@@ -974,7 +1050,7 @@ export default {
             }
           }
 
-          .awakeArea {
+          .awake-area {
             padding: 5px 20px;
             display: flex;
             flex-flow: column nowrap;
@@ -989,7 +1065,7 @@ export default {
             }
           }
 
-          .baseSkillsRow {
+          .base-skills-row {
             padding: 5px 20px;
             display: flex;
             flex-flow: column wrap;
@@ -1010,7 +1086,7 @@ export default {
       }
     }
 
-    .resultArea {
+    .result-area {
       position: sticky;
       position: -webkit-sticky;
       top: 50px;
@@ -1023,10 +1099,27 @@ export default {
       align-items: flex-start;
       box-shadow: 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108);
 
-      .btnRow {
+      .btn-row {
         margin: 10px 0px;
         display: flex;
         justify-content: flex-end;
+        align-items: center;
+
+        .note {
+          margin: 0px 10px;
+          line-height: 35px;
+          cursor: pointer;
+
+          span {
+            color: #909399;
+            font-size: 12px;
+            font-weight: bolder;
+          }
+        }
+
+        .note:hover {
+          text-decoration: underline #909399;
+        }
       }
 
       .row {
@@ -1071,15 +1164,15 @@ export default {
     }
   }
 
-  .footerRow {
+  .footer-row {
     background-color: black;
 
-    .footerDivider {
+    .footer-divider {
       height: 8px;
       background-image: linear-gradient(90deg, #66CCFF, #CCFFCC, #66CCCC);
     }
 
-    .textRow {
+    .text-row {
       display: flex;
       flex-flow: column;
       flex: 1;
@@ -1087,47 +1180,56 @@ export default {
       align-items: center;
       color: white;
 
-      .dataSrc {
-        margin: 5px 0px;
-        font-size: 16px;
-        font-weight: bolder;
+      .span-row {
+        display: flex;
+        flex-flow: row wrap;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
 
-        a {
-          text-decoration: none;
+        .data-src {
+          margin: 2px 0px;
+          font-size: 14px;
+          font-weight: bolder;
+
+          a {
+            text-decoration: none;
+          }
+
+          a:link, a:hover, a:visited {
+            background-image: linear-gradient(90deg, #FFCCCC, #CCCCFF, #FFFF99);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+          }
+
+          a:active {
+            color: #333333;
+          }
         }
 
-        a:link, a:hover, a:visited {
-          background-image: linear-gradient(90deg, #FFCCCC, #CCCCFF, #FFFF99);
-          background-clip: text;
-          -webkit-background-clip: text;
-          color: transparent;
+        .author-name {
+          font-size: 12px;
+          font-weight: lighter;
         }
 
-        a:active {
-          color: #333333;
-        }
-      }
+        .author-id {
+          margin: 0px 5px;
+          font-size: 12px;
+          font-weight: lighter;
+          color: #666666;
 
-      .authorName {
-        font-size: 14px;
-        font-weight: lighter;
-      }
+          a {
+            text-decoration: none;
+          }
 
-      .authorId {
-        font-size: 14px;
-        font-weight: lighter;
-        color: #666666;
+          a:link, a:hover, a:visited {
+            color: white;
+          }
 
-        a {
-          text-decoration: none;
-        }
-
-        a:link, a:hover, a:visited {
-          color: white;
-        }
-
-        a:active {
-          color: #333333;
+          a:active {
+            color: #333333;
+          }
         }
       }
     }

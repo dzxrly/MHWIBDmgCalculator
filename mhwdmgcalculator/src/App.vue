@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -11,7 +11,10 @@ export default {
 </script>
 
 <style>
-html, body {
+html,
+body {
+  height: 100vh;
+  width: 100vw;
   margin: 0;
   padding: 0;
 }
@@ -21,5 +24,27 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+}
+
+@media screen and (max-width: 413px) {
+  body .el-select-dropdown {
+    max-width: 310px;
+  }
+  .el-select-dropdown__item,
+  .el-select-dropdown__item selected hover {
+    display: inline-block;
+    min-width: 310px;
+  }
+}
+
+@media screen and (max-width: 309px) {
+  body .el-select-dropdown {
+    max-width: 250px;
+  }
+  .el-select-dropdown__item,
+  .el-select-dropdown__item selected hover {
+    display: inline-block;
+    min-width: 250px;
+  }
 }
 </style>

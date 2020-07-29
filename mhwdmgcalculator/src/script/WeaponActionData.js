@@ -1748,27 +1748,784 @@ const actionDataList = [
         name: '剑:反击斩',
         actionNum: 15,
         elementChanger: 1
+      },
+      {
+        name: '剑:回旋斩击/斧:变形斩/属性强化回旋斩',
+        actionNum: 30,
+        elementChanger: 1
+      },
+      {
+        name: '剑:蓄力上捞斩',
+        actionNum: 13,
+        elementChanger: 1
+      },
+      {
+        name: '剑:蓄力二连斩(第一次命中)',
+        actionNum: 27,
+        elementChanger: 1
+      },
+      {
+        name: '剑:蓄力二连斩(第二次命中)',
+        actionNum: 18,
+        elementChanger: 1
+      },
+      {
+        name: '剑:高压属性斩',
+        actionNum: 60,
+        elementChanger: 1
+      },
+      {
+        name: '剑:盾突刺(第一次命中)',
+        actionNum: 12,
+        elementChanger: 1
+      },
+      {
+        name: '剑:盾突刺(第二次命中)',
+        actionNum: 8,
+        elementChanger: 1
+      },
+      {
+        name: '剑:移动斩',
+        actionNum: 30,
+        elementChanger: 1
+      },
+      {
+        name: '斧:敲打/剑:变形斩',
+        actionNum: 50,
+        elementChanger: 1
+      },
+      {
+        name: '斧:突进敲打',
+        actionNum: 52,
+        elementChanger: 1
+      },
+      {
+        name: '斧:上捞斩',
+        actionNum: 38,
+        elementChanger: 1
+      },
+      {
+        name: '斧:直斩',
+        actionNum: 48,
+        elementChanger: 1
+      },
+      {
+        name: '斧:属性解放斩Ⅰ/突进属性解放斩Ⅰ',
+        actionNum: 25,
+        elementChanger: 1
+      },
+      {
+        name: '斧:属性解放斩Ⅱ(第一次命中)',
+        actionNum: 20,
+        elementChanger: 1
+      },
+      {
+        name: '斧:属性解放斩Ⅱ(第二次命中)',
+        actionNum: 66,
+        elementChanger: 1
+      },
+      {
+        name: '斧:高出力属性解放斩',
+        actionNum: 82,
+        elementChanger: 1
+      },
+      {
+        name: '斧:高出力属性解放斩[属性瓶]',
+        actionNum: 82,
+        elementChanger: 1.4
+      },
+      {
+        name: '斧:超高出力属性解放斩(第一次命中)',
+        actionNum: 15,
+        elementChanger: 1
+      },
+      {
+        name: '斧:超高出力属性解放斩(第二次命中)',
+        actionNum: 82,
+        elementChanger: 1
+      },
+      {
+        name: '斧:超高出力属性解放斩(第三次命中)',
+        actionNum: 66,
+        elementChanger: 1
+      },
+      {
+        name: '斧:超高出力属性解放斩[属性瓶](第一次命中)',
+        actionNum: 15,
+        elementChanger: 1.2
+      },
+      {
+        name: '斧:超高出力属性解放斩[属性瓶](第二次命中)',
+        actionNum: 82,
+        elementChanger: 1.35
+      },
+      {
+        name: '斧:超高出力属性解放斩[属性瓶](第三次命中)',
+        actionNum: 66,
+        elementChanger: 1.2
+      },
+      {
+        name: '属性回填斧强化斩',
+        actionNum: 30,
+        elementChanger: 1
+      },
+      {
+        name: '红斧瓶爆炸',
+        actionNum: 5,
+        elementChanger: 0.2
+      },
+      {
+        name: '红斧瓶爆炸[属性瓶]',
+        actionNum: 5,
+        elementChanger: 0.8
+      },
+      {
+        name: '红斧瓶爆炸(大解/超解)',
+        actionNum: 5,
+        elementChanger: 0.2
+      },
+      {
+        name: '红斧瓶爆炸[属性瓶](大解/超解)',
+        actionNum: 5,
+        elementChanger: 1
+      },
+      {
+        name: '剑:跳跃斩',
+        actionNum: 22,
+        elementChanger: 1
+      },
+      {
+        name: '斧:跳跃斩/剑:跳跃变形斩',
+        actionNum: 55,
+        elementChanger: 1
+      },
+      {
+        name: '剑:跳跃上捞斩',
+        actionNum: 21,
+        elementChanger: 1
+      },
+      {
+        name: '剑:直斩(第一次命中)',
+        actionNum: 18,
+        elementChanger: 1
+      },
+      {
+        name: '剑:直斩(第二命中)',
+        actionNum: 16,
+        elementChanger: 1
+      },
+      {
+        name: '飞翔爪武器攻击(第一次命中)',
+        actionNum: 10,
+        elementChanger: 1
+      },
+      {
+        name: '飞翔爪武器攻击(第二次命中)',
+        actionNum: 48,
+        elementChanger: 1
+      },
+      {
+        name: '飞翔爪武器攻击(后续单次命中)',
+        actionNum: 6,
+        elementChanger: 0.3
+      },
+      {
+        name: '骑乘超高出力属性解放斩(第一次命中)',
+        actionNum: 55,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘超高出力属性解放斩(第二次命中)',
+        actionNum: 150,
+        elementChanger: 1
       }
     ]
   },
   {
     name: '操虫棍',
     id: '10',
-    actions: []
+    actions: [
+      {
+        name: '突刺',
+        actionNum: 10,
+        elementChanger: 0.8
+      },
+      {
+        name: '飞身跃入斩',
+        actionNum: 26,
+        elementChanger: 0.8
+      },
+      {
+        name: '连续上捞斩(第一次命中)',
+        actionNum: 16,
+        elementChanger: 0.7
+      },
+      {
+        name: '连续上捞斩(第二次命中)',
+        actionNum: 14,
+        elementChanger: 0.8
+      },
+      {
+        name: '袈裟斩',
+        actionNum: 18,
+        elementChanger: 0.8
+      },
+      {
+        name: '二连斩(第一次命中)',
+        actionNum: 18,
+        elementChanger: 0.7
+      },
+      {
+        name: '二连斩(第二次命中)',
+        actionNum: 24,
+        elementChanger: 0.8
+      },
+      {
+        name: '横扫斩/强化横扫斩(第二次命中)',
+        actionNum: 22,
+        elementChanger: 0.8
+      },
+      {
+        name: '敲打',
+        actionNum: 30,
+        elementChanger: 0.8
+      },
+      {
+        name: '强化连续上捞斩(第一次命中)',
+        actionNum: 16,
+        elementChanger: 0.8
+      },
+      {
+        name: '强化连续上捞斩(第二次命中)',
+        actionNum: 14,
+        elementChanger: 0.8
+      },
+      {
+        name: '强化连续上捞斩(第三次命中)',
+        actionNum: 15,
+        elementChanger: 0.8
+      },
+      {
+        name: '强化袈裟斩(第一次命中)',
+        actionNum: 15,
+        elementChanger: 0.8
+      },
+      {
+        name: '强化袈裟斩(第二次命中)',
+        actionNum: 19,
+        elementChanger: 0.8
+      },
+      {
+        name: '强化二连斩(第一次命中)',
+        actionNum: 16,
+        elementChanger: 0.6
+      },
+      {
+        name: '强化二连斩(第二次命中)',
+        actionNum: 14,
+        elementChanger: 0.8
+      },
+      {
+        name: '强化二连斩(第三次命中)',
+        actionNum: 28,
+        elementChanger: 0.8
+      },
+      {
+        name: '强化突刺(第一次命中)',
+        actionNum: 12,
+        elementChanger: 0.8
+      },
+      {
+        name: '强化突刺(第二次命中)',
+        actionNum: 11,
+        elementChanger: 0.8
+      },
+      {
+        name: '强化横扫斩(第一次命中)',
+        actionNum: 18,
+        elementChanger: 0.8
+      },
+      {
+        name: '飞圆斩(第一次命中)',
+        actionNum: 24,
+        elementChanger: 0.8
+      },
+      {
+        name: '飞圆斩(第一次命中)',
+        actionNum: 42,
+        elementChanger: 0.8
+      },
+      {
+        name: '连接斩',
+        actionNum: 10,
+        elementChanger: 0.7
+      },
+      {
+        name: '回避斩',
+        actionNum: 17,
+        elementChanger: 0.8
+      },
+      {
+        name: '跳跃斩',
+        actionNum: 15,
+        elementChanger: 1
+      },
+      {
+        name: '跳跃突进斩',
+        actionNum: 28,
+        elementChanger: 1
+      },
+      {
+        name: '强化跳跃斩',
+        actionNum: 8,
+        elementChanger: 0.6
+      },
+      {
+        name: '强化跳跃突进斩(第一次命中)',
+        actionNum: 6,
+        elementChanger: 0.5
+      },
+      {
+        name: '强化跳跃突进斩(第二次命中)',
+        actionNum: 4,
+        elementChanger: 0.5
+      },
+      {
+        name: '强化跳跃突进斩(第三次命中)',
+        actionNum: 7,
+        elementChanger: 0.5
+      },
+      {
+        name: '强化跳跃突进斩(第四次命中)',
+        actionNum: 4,
+        elementChanger: 0.5
+      },
+      {
+        name: '强化跳跃突进斩(第五次命中)',
+        actionNum: 3,
+        elementChanger: 0.5
+      },
+      {
+        name: '强化跳跃突进斩(终结命中)',
+        actionNum: 32,
+        elementChanger: 1
+      },
+      {
+        name: '急袭突刺(空中)',
+        actionNum: 28,
+        elementChanger: 1
+      },
+      {
+        name: '急袭突刺(着陆)',
+        actionNum: 42,
+        elementChanger: 1
+      },
+      {
+        name: '急袭突刺(终结-第一次命中)',
+        actionNum: 7,
+        elementChanger: 0
+      },
+      {
+        name: '急袭突刺(终结-第二次命中)',
+        actionNum: 36,
+        elementChanger: 1
+      },
+      {
+        name: '空中飞翔爪',
+        actionNum: 8,
+        elementChanger: 0
+      },
+      {
+        name: '飞翔爪武器攻击(第一次命中)',
+        actionNum: 14,
+        elementChanger: 0.7
+      },
+      {
+        name: '飞翔爪武器攻击(第二次命中)',
+        actionNum: 15,
+        elementChanger: 0.7
+      },
+      {
+        name: '飞翔爪武器攻击(第三次命中)',
+        actionNum: 15,
+        elementChanger: 0.7
+      },
+      {
+        name: '飞翔爪武器攻击(第四次命中)',
+        actionNum: 18,
+        elementChanger: 0.7
+      },
+      {
+        name: '飞翔爪武器攻击(终结命中)',
+        actionNum: 32,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘(移动部位-第一次命中)',
+        actionNum: 8,
+        elementChanger: 0.7
+      },
+      {
+        name: '骑乘(移动部位-第二/三次命中)',
+        actionNum: 4,
+        elementChanger: 0.7
+      },
+      {
+        name: '骑乘(移动部位-第四次命中)',
+        actionNum: 8,
+        elementChanger: 0.7
+      },
+      {
+        name: '骑乘(终结技-第一/二次命中)',
+        actionNum: 13,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘(终结技-第三次命中)',
+        actionNum: 5,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘(终结技-第四次命中)',
+        actionNum: 32,
+        elementChanger: 1
+      }
+    ]
   },
   {
     name: '弓',
     id: '11',
-    actions: []
+    actions: [
+      {
+        name: '平射 Lv1',
+        actionNum: 7,
+        elementChanger: 0.2
+      },
+      {
+        name: '平射 Lv2',
+        actionNum: 9,
+        elementChanger: 0.35
+      },
+      {
+        name: '平射 Lv3',
+        actionNum: 10,
+        elementChanger: 0.7
+      },
+      {
+        name: '平射 Lv4',
+        actionNum: 11,
+        elementChanger: 0.8
+      },
+      {
+        name: '迅雷闪击',
+        actionNum: 6,
+        elementChanger: 0.3
+      },
+      {
+        name: '刚射 Lv2',
+        actionNum: 9,
+        elementChanger: 0.5
+      },
+      {
+        name: '刚射 Lv3',
+        actionNum: 11,
+        elementChanger: 0.7
+      },
+      {
+        name: '刚射 Lv4',
+        actionNum: 11,
+        elementChanger: 1
+      },
+      {
+        name: '龙之矢 Lv1',
+        actionNum: 19,
+        elementChanger: 0.15
+      },
+      {
+        name: '龙之矢 Lv2',
+        actionNum: 20,
+        elementChanger: 0.2
+      },
+      {
+        name: '龙之矢 Lv3',
+        actionNum: 23,
+        elementChanger: 0.3
+      },
+      {
+        name: '龙之矢 Lv4',
+        actionNum: 24,
+        elementChanger: 0.3
+      },
+      {
+        name: '飞身跃入近身攻击',
+        actionNum: 35,
+        elementChanger: 1
+      },
+      {
+        name: '跳跃近身攻击',
+        actionNum: 10,
+        elementChanger: 1
+      },
+      {
+        name: '上树弓 Lv3',
+        actionNum: 22,
+        elementChanger: 1
+      },
+      {
+        name: '上树弓 Lv4',
+        actionNum: 29,
+        elementChanger: 1
+      },
+      {
+        name: '飞翔爪武器攻击(第一次命中)',
+        actionNum: 20,
+        elementChanger: 1
+      },
+      {
+        name: '飞翔爪武器攻击(第二次命中)',
+        actionNum: 20,
+        elementChanger: 1
+      },
+      {
+        name: '飞翔爪武器攻击(第三次命中)',
+        actionNum: 35,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘蓄力射击 Lv1',
+        actionNum: 5,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘蓄力射击 Lv2',
+        actionNum: 15,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘蓄力射击 Lv3',
+        actionNum: 30,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘蓄力射击 Lv4',
+        actionNum: 45,
+        elementChanger: 1
+      }
+    ]
   },
   {
     name: '重弩炮',
     id: '12',
-    actions: []
+    actions: [
+      {
+        name: '火炎弹/水冷弹/电击弹/冰结弹',
+        actionNum: 8,
+        elementChanger: 1
+      },
+      {
+        name: '灭龙弹',
+        actionNum: 2,
+        elementChanger: 1
+      },
+      {
+        name: '近战攻击',
+        actionNum: 30,
+        elementChanger: 0
+      },
+      {
+        name: '跳跃装填',
+        actionNum: 30,
+        elementChanger: 0
+      },
+      {
+        name: '骑乘攻击',
+        actionNum: 35,
+        elementChanger: 1
+      },
+      {
+        name: '通常弹 Lv1',
+        actionNum: 10,
+        elementChanger: 0
+      },
+      {
+        name: '通常弹 Lv2',
+        actionNum: 20,
+        elementChanger: 0
+      },
+      {
+        name: '通常弹 Lv3',
+        actionNum: 34,
+        elementChanger: 0
+      },
+      {
+        name: '贯通弹 Lv1',
+        actionNum: 7,
+        elementChanger: 0
+      },
+      {
+        name: '贯通弹 Lv2',
+        actionNum: 7,
+        elementChanger: 0
+      },
+      {
+        name: '贯通弹 Lv3',
+        actionNum: 9,
+        elementChanger: 0
+      },
+      {
+        name: '散弹 Lv1',
+        actionNum: 6,
+        elementChanger: 0
+      },
+      {
+        name: '散弹 Lv2',
+        actionNum: 7,
+        elementChanger: 0
+      },
+      {
+        name: '散弹 Lv3',
+        actionNum: 8,
+        elementChanger: 0
+      },
+      {
+        name: '斩裂弹(命中瞬间)',
+        actionNum: 1,
+        elementChanger: 0
+      },
+      {
+        name: '斩裂弹(爆裂)',
+        actionNum: 6,
+        elementChanger: 0
+      },
+      {
+        name: '飞翔爪武器攻击(机关龙弹-连击)',
+        actionNum: 15,
+        elementChanger: 0
+      },
+      {
+        name: '飞翔爪武器攻击(机关龙弹-终结)',
+        actionNum: 96,
+        elementChanger: 0
+      },
+      {
+        name: '飞翔爪武器攻击(狙击龙弹)',
+        actionNum: 158,
+        elementChanger: 0
+      }
+    ]
   },
   {
     name: '轻弩炮',
     id: '13',
-    actions: []
+    actions: [
+      {
+        name: '火炎弹/水冷弹/电击弹/冰结弹',
+        actionNum: 8,
+        elementChanger: 1
+      },
+      {
+        name: '灭龙弹',
+        actionNum: 2,
+        elementChanger: 1
+      },
+      {
+        name: '近战攻击',
+        actionNum: 25,
+        elementChanger: 0
+      },
+      {
+        name: '跳跃装填',
+        actionNum: 25,
+        elementChanger: 0
+      },
+      {
+        name: '骑乘攻击',
+        actionNum: 20,
+        elementChanger: 1
+      },
+      {
+        name: '骑乘攻击(终结)',
+        actionNum: 35,
+        elementChanger: 1
+      },
+      {
+        name: '通常弹 Lv1',
+        actionNum: 10,
+        elementChanger: 0
+      },
+      {
+        name: '通常弹 Lv2',
+        actionNum: 20,
+        elementChanger: 0
+      },
+      {
+        name: '通常弹 Lv3',
+        actionNum: 34,
+        elementChanger: 0
+      },
+      {
+        name: '贯通弹 Lv1',
+        actionNum: 7,
+        elementChanger: 0
+      },
+      {
+        name: '贯通弹 Lv2',
+        actionNum: 7,
+        elementChanger: 0
+      },
+      {
+        name: '贯通弹 Lv3',
+        actionNum: 9,
+        elementChanger: 0
+      },
+      {
+        name: '散弹 Lv1',
+        actionNum: 6,
+        elementChanger: 0
+      },
+      {
+        name: '散弹 Lv2',
+        actionNum: 7,
+        elementChanger: 0
+      },
+      {
+        name: '散弹 Lv3',
+        actionNum: 8,
+        elementChanger: 0
+      },
+      {
+        name: '斩裂弹(命中瞬间)',
+        actionNum: 1,
+        elementChanger: 0
+      },
+      {
+        name: '斩裂弹(爆裂)',
+        actionNum: 6,
+        elementChanger: 0
+      }
+    ]
   }
 ]
+
+export default {
+  /**
+   * 根据武器编号获取武器动作值列表
+   * @param {String} weaponId
+   */
+  getActionListById (weaponId) {
+    let actions = []
+    actionDataList.forEach(item => {
+      if (weaponId.toString() === item.id) {
+        actions = item.actions
+      }
+    })
+    return actions
+  },
+  /**
+   * 根据序号获取武器动作值列表
+   * @param {Number} orderNumber
+   */
+  getActionListByOrder (orderNumber) {
+    return actionDataList[parseInt(orderNumber)].actions
+  }
+}
