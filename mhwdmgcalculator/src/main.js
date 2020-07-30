@@ -13,6 +13,9 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  components: { App },
-  template: '<App/>'
+  render: h => h(App),
+  /* 这句非常重要，否则预渲染将不会启动 */
+  mounted () {
+    document.dispatchEvent(new Event('render-event'))
+  }
 })
