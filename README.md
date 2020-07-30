@@ -2,7 +2,13 @@
 
 ## 一个基于 `Vue.js` 的简易伤害计算器
 
-计算器链接：[https://dzxrly.github.io/MHWIBDmgCalculator/#/](https://dzxrly.github.io/MHWIBDmgCalculator/#/) 当前版本`Ver.1.0.2`
+计算器链接：
+
+[https://dzxrly.github.io/MHWIBDmgCalculator/#/](https://dzxrly.github.io/MHWIBDmgCalculator/#/)(Github Page)
+
+[https://egg-targaryen.gitee.io/mhwibdmgcalculator/#/](https://egg-targaryen.gitee.io/mhwibdmgcalculator/#/)(Gitee 码云, 国内访问更快)
+
+当前版本`Ver.1.0.3`
 
 ## 数据来源
 
@@ -49,6 +55,10 @@
 |   功能   |    Done    |                        补全所有武器动作值信息                        |
 
 ## 更新日志
+
+- 2020-7-30`Ver.1.0.3`
+
+  - **性能优化**动态导入 JS，优化网页访问速度
 
 - 2020-7-29`Ver.1.0.2`
 

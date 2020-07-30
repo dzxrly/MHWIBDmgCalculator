@@ -482,7 +482,7 @@
         </div>
         <div class="span-row">
           <span class="author-name">一个基于Vue的前端项目 By 鎧羅突擊弩賊</span>
-          <span class="author-id">小黑盒ID:1310911&nbsp;&nbsp;Ver.1.0.2&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator">
+          <span class="author-id">小黑盒ID:1310911&nbsp;&nbsp;Ver.1.0.3&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator">
               <img
                 :src="gitIconSrc"
                 width="14"
@@ -496,11 +496,11 @@
 
 <script>
 import baseLogic from '../script/Logic'
-import weaponInfoData from '../script/WeaponActionData'
 export default {
   name: 'CalculatorView',
   data () {
     return {
+      version: 'Ver.1.0.3',
       gitIconSrc: '#',
       formData: {
         weaponId: '',
@@ -832,7 +832,14 @@ export default {
     },
     getActions (weaponId) {
       this.actionList.length = 0
-      this.actionList = weaponInfoData.getActionListById(weaponId)
+      const WAD = () => import('../script/WeaponActionData')
+      WAD().then((module) => {
+        return module.default
+      }).catch(err => {
+        this.$message.error('武器动作值信息获取失败,请刷新页面重试,errCode=' + err)
+      }).then(m => {
+        this.actionList = m.getActionListById(weaponId)
+      })
     },
     handleWeaponChange () {
       this.formData.closeItemNumber = 0
