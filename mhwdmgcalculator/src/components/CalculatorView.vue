@@ -492,7 +492,7 @@
         </div>
         <div class="span-row">
           <span class="author-name">一个基于Vue的前端项目 By 鎧羅突擊弩賊</span>
-          <span class="author-id">小黑盒ID:1310911&nbsp;&nbsp;Ver.1.0.3&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator">
+          <span class="author-id">小黑盒ID:1310911&nbsp;&nbsp;Ver.1.0.4&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator">
               <img
                 :src="gitIconSrc"
                 width="14"
@@ -510,7 +510,6 @@ export default {
   name: 'CalculatorView',
   data () {
     return {
-      version: 'Ver.1.0.4',
       gitIconSrc: '#',
       formData: {
         weaponId: '',
