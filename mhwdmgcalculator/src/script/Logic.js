@@ -815,6 +815,7 @@ const elementSkillList = [
     extractElDmg: 0
   }
 ]
+const scopeRate = 1.3 // 特殊会心镜物理伤害倍率
 
 export default {
   /**
@@ -1039,15 +1040,20 @@ export default {
   * @param closeItemNumber 近战零件数量
   * @param farItemNumber 远程零件数量
   * @param bottleType 瓶子种类
+  * @param angryRate 愤怒补正
   * @param bladeRate 刃中补正
+  * @param isScope 是否启用会心镜
   */
-  getPhysicalDmgRate (weaponId, closeItemNumber, farItemNumber, bottleType, bladeRate = false) {
+  getPhysicalDmgRate (weaponId, closeItemNumber, farItemNumber, bottleType, angryRate = 1, bladeRate = false, isScope = false) {
     let weapon = {}
     weaponList.forEach(w => {
       if (w.id === weaponId) weapon = w
     })
     if (bladeRate) return closeItemRate[parseInt(closeItemNumber)] * farItemRate[parseInt(farItemNumber)] * bottleList[parseInt(bottleType)] * weapon.bladeRate
-    else return closeItemRate[parseInt(closeItemNumber)] * farItemRate[parseInt(farItemNumber)] * bottleList[parseInt(bottleType)]
+    else {
+      if (isScope) return closeItemRate[parseInt(closeItemNumber)] * farItemRate[parseInt(farItemNumber)] * bottleList[parseInt(bottleType)] * scopeRate
+      else return closeItemRate[parseInt(closeItemNumber)] * farItemRate[parseInt(farItemNumber)] * bottleList[parseInt(bottleType)]
+    }
   },
   /**
   * 计算武器物理伤害

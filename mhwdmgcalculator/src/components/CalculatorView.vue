@@ -82,6 +82,16 @@
                   placeholder="0"
                 ></el-input-number>
               </div>
+              <div
+                class="row"
+                v-if="formData.weaponId === '12'"
+              >
+                <el-switch
+                  v-model="formData.isScope"
+                  active-text="启用会心镜"
+                  inactive-text="无会心镜"
+                ></el-switch>
+              </div>
             </div>
           </el-form-item>
           <el-form-item>
@@ -500,7 +510,7 @@ export default {
   name: 'CalculatorView',
   data () {
     return {
-      version: 'Ver.1.0.3',
+      version: 'Ver.1.0.4',
       gitIconSrc: '#',
       formData: {
         weaponId: '',
@@ -525,7 +535,8 @@ export default {
         meatRate: '',
         elMeatRate: '',
         bladeNumber: 0,
-        isBladeCheck: false
+        isBladeCheck: false,
+        isScope: false
       },
       formRules: {},
       weaponSelectOpts: [
@@ -848,6 +859,8 @@ export default {
       this.formData.skillNumber = ''
       this.formData.action = ''
       this.formData.elementChanger = ''
+      this.formData.isScope = false
+      this.formData.isBladeCheck = false
       if (this.formData.weaponId !== '') this.getActions(this.formData.weaponId)
     },
     handleAction () {
@@ -928,7 +941,8 @@ export default {
         this.formData.closeItemNumber,
         this.formData.farItemNumber,
         this.formData.bottleType,
-        this.formData.isBladeCheck
+        this.formData.isBladeCheck,
+        this.formData.isScope
       )
       let physicDmg = baseLogic.getPhysicalDmg(
         this.formData.action,
@@ -1098,6 +1112,7 @@ export default {
     }
 
     .result-area {
+      max-width: 650px;
       position: sticky;
       position: -webkit-sticky;
       top: 50px;
