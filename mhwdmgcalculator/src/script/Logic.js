@@ -1049,10 +1049,10 @@ export default {
     weaponList.forEach(w => {
       if (w.id === weaponId) weapon = w
     })
-    if (bladeRate) return closeItemRate[parseInt(closeItemNumber)] * farItemRate[parseInt(farItemNumber)] * bottleList[parseInt(bottleType)] * weapon.bladeRate
+    if (bladeRate) return closeItemRate[parseInt(closeItemNumber)] * farItemRate[parseInt(farItemNumber)] * parseFloat(angryRate) * bottleList[parseInt(bottleType)] * weapon.bladeRate
     else {
-      if (isScope) return closeItemRate[parseInt(closeItemNumber)] * farItemRate[parseInt(farItemNumber)] * bottleList[parseInt(bottleType)] * scopeRate
-      else return closeItemRate[parseInt(closeItemNumber)] * farItemRate[parseInt(farItemNumber)] * bottleList[parseInt(bottleType)]
+      if (isScope) return closeItemRate[parseInt(closeItemNumber)] * farItemRate[parseInt(farItemNumber)] * parseFloat(angryRate) * bottleList[parseInt(bottleType)] * scopeRate
+      else return closeItemRate[parseInt(closeItemNumber)] * farItemRate[parseInt(farItemNumber)] * parseFloat(angryRate) * bottleList[parseInt(bottleType)]
     }
   },
   /**

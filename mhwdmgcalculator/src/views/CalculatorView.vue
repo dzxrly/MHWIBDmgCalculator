@@ -16,12 +16,8 @@
         Top
       </div>
     </el-backtop>
-    <div class="header-row">
-      <div class="title-text-row">
-        <span>MHWIB简易伤害计算器</span>
-      </div>
-      <div class="divider-row"></div>
-    </div>
+    <Header></Header>
+    <DataSrcDeclare></DataSrcDeclare>
     <div class="calculator-pane">
       <div class="input-area">
         <el-form
@@ -66,7 +62,7 @@
                   :min="0"
                   :precision="0"
                   :max="4"
-                  size="mini"
+                  size="small"
                   placeholder="0"
                 ></el-input-number>
               </div>
@@ -78,7 +74,7 @@
                   :min="0"
                   :precision="0"
                   :max="4"
-                  size="mini"
+                  size="small"
                   placeholder="0"
                 ></el-input-number>
               </div>
@@ -86,11 +82,18 @@
                 class="row"
                 v-if="formData.weaponId === '12'"
               >
-                <el-switch
+                <el-select
+                  style="width: 100%;"
+                  placeholder="是否启用会心镜"
                   v-model="formData.isScope"
-                  active-text="启用会心镜"
-                  inactive-text="无会心镜"
-                ></el-switch>
+                >
+                  <el-option
+                    v-for="item in isScopeOpts"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
               </div>
             </div>
           </el-form-item>
@@ -413,6 +416,12 @@
             ></el-input>
           </el-form-item>
           <el-form-item>
+            <el-input
+              v-model="formData.angryRate"
+              placeholder="请输入怪物怒后补正倍率(可选)"
+            ></el-input>
+          </el-form-item>
+          <el-form-item>
             <el-select
               style="width: 100%;"
               v-model="formData.bladeNumber"
@@ -479,38 +488,24 @@
         </div>
       </div>
     </div>
-    <div class="footer-row">
-      <div class="footer-divider"></div>
-      <div class="text-row">
-        <div class="span-row">
-          <span class="data-src">计算公式及绝大部分数据来自</span>
-          <span class="data-src"><a href="http://wiki.mhwmod.com/">狩技MOD组中文Wiki</a></span>
-        </div>
-        <div class="span-row">
-          <span class="data-src">武器招式名称与动作值来自</span>
-          <span class="data-src"><a href="https://tieba.baidu.com/p/6591591373">[搬运]冰原所有武器动作值各种补正表</a></span>
-        </div>
-        <div class="span-row">
-          <span class="author-name">一个基于Vue的前端项目 By 鎧羅突擊弩賊</span>
-          <span class="author-id">小黑盒ID:1310911&nbsp;&nbsp;Ver.1.0.4&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator">
-              <img
-                :src="gitIconSrc"
-                width="14"
-                height="14"
-              >Github</a></span>
-        </div>
-      </div>
-    </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import baseLogic from '../script/Logic'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import DataSrcDeclare from '../components/DataSrcDeclare'
 export default {
   name: 'CalculatorView',
+  components: {
+    Header,
+    Footer,
+    DataSrcDeclare
+  },
   data () {
     return {
-      gitIconSrc: '#',
       formData: {
         weaponId: '',
         weaponShowAtt: '',
@@ -535,7 +530,8 @@ export default {
         elMeatRate: '',
         bladeNumber: 0,
         isBladeCheck: false,
-        isScope: false
+        isScope: false,
+        angryRate: ''
       },
       formRules: {},
       weaponSelectOpts: [
@@ -807,6 +803,16 @@ export default {
           label: '启用刃中补正'
         }
       ],
+      isScopeOpts: [
+        {
+          value: false,
+          label: '无超级会心镜'
+        },
+        {
+          value: true,
+          label: '启用超级会心镜'
+        }
+      ],
       res: {
         totalDmg: 0,
         toMonsterPHYDmg: 0,
@@ -822,12 +828,8 @@ export default {
   },
   mounted () {
     this.baseSkillOptsInit()
-    this.iconStcInit()
   },
   methods: {
-    iconStcInit () {
-      this.gitIconSrc = require('../assets/github-fill.svg')
-    },
     baseSkillOptsInit () {
       this.baseSkillOpts = JSON.parse(
         JSON.stringify(baseLogic.getBaseDmgRate())
@@ -940,6 +942,7 @@ export default {
         this.formData.closeItemNumber,
         this.formData.farItemNumber,
         this.formData.bottleType,
+        this.formData.angryRate,
         this.formData.isBladeCheck,
         this.formData.isScope
       )
@@ -1019,28 +1022,6 @@ export default {
   display: flex;
   flex-flow: column nowrap;
 
-  .header-row {
-    .title-text-row {
-      display: flex;
-      flex: 1;
-      justify-content: flex-start;
-      align-items: center;
-      height: 50px;
-      background-color: #0f0f0f;
-
-      span {
-        margin: 0px 20px;
-        color: white;
-        font-weight: lighter;
-      }
-    }
-
-    .divider-row {
-      height: 8px;
-      background-image: linear-gradient(90deg, #99CC33, #FF9900, #FFCC00);
-    }
-  }
-
   .calculator-pane {
     flex: 1;
     display: flex;
@@ -1058,7 +1039,7 @@ export default {
             padding: 5px 20px;
             display: flex;
             flex-flow: column nowrap;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: flex-start;
             box-shadow: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108);
             transition: all 0.3s linear;
@@ -1111,10 +1092,10 @@ export default {
     }
 
     .result-area {
-      max-width: 650px;
       position: sticky;
       position: -webkit-sticky;
       top: 50px;
+      max-width: 900px;
       margin: 20px;
       flex: 1 1 auto;
       padding: 5px 20px;
@@ -1187,75 +1168,28 @@ export default {
         }
       }
     }
-  }
 
-  .footer-row {
-    background-color: black;
-
-    .footer-divider {
-      height: 8px;
-      background-image: linear-gradient(90deg, #66CCFF, #CCFFCC, #66CCCC);
+    @media screen and (max-width: 1920px) {
+      .result-area {
+        max-width: 660px;
+      }
     }
 
-    .text-row {
-      display: flex;
-      flex-flow: column;
-      flex: 1;
-      justify-content: flex-start;
-      align-items: center;
-      color: white;
+    @media screen and (max-width: 1200px) {
+      .result-area {
+        max-width: 456px;
+      }
+    }
 
-      .span-row {
-        display: flex;
-        flex-flow: row wrap;
-        flex: 1;
-        justify-content: center;
-        align-items: center;
+    @media screen and (max-width: 992px) {
+      .result-area {
+        max-width: 344px;
+      }
+    }
 
-        .data-src {
-          margin: 2px 0px;
-          font-size: 14px;
-          font-weight: bolder;
-
-          a {
-            text-decoration: none;
-          }
-
-          a:link, a:hover, a:visited {
-            background-image: linear-gradient(90deg, #FFCCCC, #CCCCFF, #FFFF99);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-          }
-
-          a:active {
-            color: #333333;
-          }
-        }
-
-        .author-name {
-          font-size: 12px;
-          font-weight: lighter;
-        }
-
-        .author-id {
-          margin: 0px 5px;
-          font-size: 12px;
-          font-weight: lighter;
-          color: #666666;
-
-          a {
-            text-decoration: none;
-          }
-
-          a:link, a:hover, a:visited {
-            color: white;
-          }
-
-          a:active {
-            color: #333333;
-          }
-        }
+    @media screen and (max-width: 768px) {
+      .result-area {
+        max-width: 320px;
       }
     }
   }
