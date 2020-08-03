@@ -873,6 +873,9 @@ export default {
       if ((this.formData.weaponId === '12' || this.formData.weaponId === '13') && this.formData.skillNumber === 1) {
         this.formData.weaponShowEl = '18'
       }
+      if ((this.formData.weaponId === '12' || this.formData.weaponId === '13') && this.formData.skillNumber !== 0 && this.formData.skillNumber !== 1) {
+        this.formData.weaponShowEl = '0'
+      }
     },
     handleGoToNote () {
       window.open('https://github.com/dzxrly/MHWIBDmgCalculator/blob/master/README.md')
@@ -1021,6 +1024,7 @@ export default {
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
+  position: relative;
 
   .calculator-pane {
     flex: 1;
