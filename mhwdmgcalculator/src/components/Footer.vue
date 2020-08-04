@@ -3,12 +3,10 @@
     <div class="footer-divider"></div>
     <div class="text-row">
       <span class="author-name">一个基于Vue的前端项目 By 鎧羅突擊弩賊</span>
-      <span class="author-id">小黑盒ID:1310911&nbsp;&nbsp;Ver.1.0.5&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator">
-          <img
-            :src="gitIconSrc"
-            width="12"
-            height="12"
-          >Github</a></span>
+      <span class="author-id">小黑盒ID:1310911&nbsp;&nbsp;Ver.1.0.6&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator">
+          <img :src="gitIconSrc"
+               width="12"
+               height="12">Github</a></span>
     </div>
   </div>
 </template>
@@ -16,16 +14,16 @@
 <script>
 export default {
   name: 'Footer',
-  data () {
+  data() {
     return {
       gitIconSrc: '#'
     }
   },
-  mounted () {
+  mounted() {
     this.iconSrcInit()
   },
   methods: {
-    iconSrcInit () {
+    iconSrcInit() {
       this.gitIconSrc = require('../assets/github-fill.svg')
     }
   }
@@ -34,44 +32,37 @@ export default {
 
 <style lang="stylus" scoped>
 .footer-wrap {
-  box-shadow: 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108);
-  background-color: black;
-
+  box-shadow 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108)
+  background-color black
   .footer-divider {
-    height: 8px;
-    background: linear-gradient(to right, rgb(198, 255, 221), rgb(251, 215, 134), rgb(247, 121, 125));
+    height 8px
+    background linear-gradient(to right, rgb(198, 255, 221), rgb(251, 215, 134), rgb(247, 121, 125))
   }
-
   .text-row {
-    margin: 10px 0px;
-    display: flex;
-    flex-flow: row wrap;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    color: white;
-
+    margin 10px 0px
+    display flex
+    flex-flow row wrap
+    flex 1
+    justify-content center
+    align-items center
+    color white
     .author-name {
-      font-size: 12px;
-      font-weight: lighter;
+      font-size 12px
+      font-weight lighter
     }
-
     .author-id {
-      margin: 0px 5px;
-      font-size: 12px;
-      font-weight: lighter;
-      color: #666666;
-
+      margin 0px 5px
+      font-size 12px
+      font-weight lighter
+      color #666666
       a {
-        text-decoration: none;
+        text-decoration none
       }
-
       a:link, a:hover, a:visited {
-        color: white;
+        color white
       }
-
       a:active {
-        color: #333333;
+        color #333333
       }
     }
   }

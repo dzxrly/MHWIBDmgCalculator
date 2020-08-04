@@ -19,41 +19,36 @@ export default {
 
 <style lang="stylus" scoped>
 .data-src-wrap {
-  background-color: #FFFFFF;
-  font-size: 14px;
-  margin: 20px;
-  box-shadow: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108);
-  flex: auto;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: flex-start;
-  border-left: 5px solid #F7797D;
-
+  background-color #FFFFFF
+  font-size 14px
+  margin 20px
+  box-shadow 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108)
+  flex auto
+  display flex
+  flex-flow column nowrap
+  justify-content center
+  align-items flex-start
+  border-left 5px solid #F7797D
   .data-src-row {
-    margin: 5px 10px;
-    flex: auto;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: left;
-
+    margin 5px 10px
+    flex auto
+    display flex
+    flex-flow row wrap
+    justify-content flex-start
+    align-items center
+    text-align left
     .data-src-pre {
-      color: #46494C;
+      color #46494C
     }
-
     .data-src-link {
       a {
-        text-decoration: none;
+        text-decoration none
       }
-
       a:link, a:hover, a:visited {
-        color: #4C5C68;
+        color #4C5C68
       }
-
       a:active {
-        color: #4C5C68;
+        color #4C5C68
       }
     }
   }

@@ -20,25 +20,19 @@
     <DataSrcDeclare></DataSrcDeclare>
     <div class="calculator-pane">
       <div class="input-area">
-        <el-form
-          :model="formData"
-          ref="formData"
-          :rules="formRules"
-        >
+        <el-form :model="formData"
+                 ref="formData"
+                 :rules="formRules">
           <el-form-item>
-            <el-select
-              style="width: 100%;"
-              placeholder="请选择一把武器"
-              clearable
-              v-model="formData.weaponId"
-              @change="handleWeaponChange"
-            >
-              <el-option
-                v-for="item in weaponSelectOpts"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              ></el-option>
+            <el-select style="width: 100%;"
+                       placeholder="请选择一把武器"
+                       clearable
+                       v-model="formData.weaponId"
+                       @change="handleWeaponChange">
+              <el-option v-for="item in weaponSelectOpts"
+                         :key="item.value"
+                         :label="item.label"
+                         :value="item.value"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item v-if="formData.weaponId === '11'">
@@ -56,102 +50,76 @@
             <div class="item-row">
               <div class="row">
                 <span>近身射击强化零件个数</span>
-                <el-input-number
-                  v-model="formData.closeItemNumber"
-                  :step="1"
-                  :min="0"
-                  :precision="0"
-                  :max="4"
-                  size="small"
-                  placeholder="0"
-                ></el-input-number>
+                <el-input-number v-model="formData.closeItemNumber"
+                                 :step="1"
+                                 :min="0"
+                                 :precision="0"
+                                 :max="4"
+                                 size="small"
+                                 placeholder="0"></el-input-number>
               </div>
               <div class="row">
                 <span>远程射击强化零件个数</span>
-                <el-input-number
-                  v-model="formData.farItemNumber"
-                  :step="1"
-                  :min="0"
-                  :precision="0"
-                  :max="4"
-                  size="small"
-                  placeholder="0"
-                ></el-input-number>
+                <el-input-number v-model="formData.farItemNumber"
+                                 :step="1"
+                                 :min="0"
+                                 :precision="0"
+                                 :max="4"
+                                 size="small"
+                                 placeholder="0"></el-input-number>
               </div>
-              <div
-                class="row"
-                v-if="formData.weaponId === '12'"
-              >
-                <el-select
-                  style="width: 100%;"
-                  placeholder="是否启用会心镜"
-                  v-model="formData.isScope"
-                >
-                  <el-option
-                    v-for="item in isScopeOpts"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
+              <div class="row"
+                   v-if="formData.weaponId === '12'">
+                <el-select style="width: 100%;"
+                           placeholder="是否启用会心镜"
+                           v-model="formData.isScope">
+                  <el-option v-for="item in isScopeOpts"
+                             :key="item.value"
+                             :label="item.label"
+                             :value="item.value"></el-option>
                 </el-select>
               </div>
             </div>
           </el-form-item>
           <el-form-item>
-            <el-input
-              v-model="formData.weaponShowAtt"
-              placeholder="请输入武器栏显示的攻击力面板(原始面板)"
-              clearable
-            ></el-input>
+            <el-input v-model="formData.weaponShowAtt"
+                      placeholder="请输入武器栏显示的攻击力面板(原始面板)"
+                      clearable></el-input>
           </el-form-item>
           <el-form-item v-if="formData.weaponId !== '12' && formData.weaponId !== '13'">
-            <el-input
-              v-model="formData.weaponShowEl"
-              placeholder="请输入武器栏显示的属性值面板(原始面板)"
-              clearable
-            ></el-input>
+            <el-input v-model="formData.weaponShowEl"
+                      placeholder="请输入武器栏显示的属性值面板(原始面板)"
+                      clearable></el-input>
           </el-form-item>
           <el-form-item v-if="formData.weaponId === '12' || formData.weaponId === '13'">
-            <el-select
-              style="width: 100%;"
-              v-model="formData.weaponShowEl"
-              placeholder="请选择属性弹种"
-              @change="handleSetElement"
-            >
-              <el-option
-                v-for="item in elBulletTypes"
-                :key="item.value"
-                :value="item.value"
-                :label="item.label"
-              ></el-option>
+            <el-select style="width: 100%;"
+                       v-model="formData.weaponShowEl"
+                       placeholder="请选择属性弹种"
+                       @change="handleSetElement">
+              <el-option v-for="item in elBulletTypes"
+                         :key="item.value"
+                         :value="item.value"
+                         :label="item.label"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-select
-              style="width: 100%;"
-              placeholder="请选择客制攻击的等级"
-              v-model="formData.customAttLv"
-            >
-              <el-option
-                v-for="item in customAttLvOpts"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              ></el-option>
+            <el-select style="width: 100%;"
+                       placeholder="请选择客制攻击的等级"
+                       v-model="formData.customAttLv">
+              <el-option v-for="item in customAttLvOpts"
+                         :key="item.value"
+                         :label="item.label"
+                         :value="item.value"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-select
-              style="width: 100%;"
-              placeholder="请选择客制属性·状态异常的等级"
-              v-model="formData.customElLv"
-            >
-              <el-option
-                v-for="item in customElLvOpts"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              ></el-option>
+            <el-select style="width: 100%;"
+                       placeholder="请选择客制属性·状态异常的等级"
+                       v-model="formData.customElLv">
+              <el-option v-for="item in customElLvOpts"
+                         :key="item.value"
+                         :label="item.label"
+                         :value="item.value"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item>
@@ -159,77 +127,57 @@
               <span class="title">冥赤龙武器觉醒槽位(攻击力词条)</span>
               <div class="row">
                 <span class="text">觉醒槽Ⅰ</span>
-                <el-select
-                  size="small"
-                  placeholder="请选择攻击词条等级"
-                  v-model="formData.awakeAttackLv[0]"
-                >
-                  <el-option
-                    v-for="item in awakeLvOpts"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
+                <el-select size="small"
+                           placeholder="请选择攻击词条等级"
+                           v-model="formData.awakeAttackLv[0]">
+                  <el-option v-for="item in awakeLvOpts"
+                             :key="item.value"
+                             :label="item.label"
+                             :value="item.value"></el-option>
                 </el-select>
               </div>
               <div class="row">
                 <span class="text">觉醒槽Ⅱ</span>
-                <el-select
-                  size="small"
-                  placeholder="请选择攻击词条等级"
-                  v-model="formData.awakeAttackLv[1]"
-                >
-                  <el-option
-                    v-for="item in awakeLvOpts"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
+                <el-select size="small"
+                           placeholder="请选择攻击词条等级"
+                           v-model="formData.awakeAttackLv[1]">
+                  <el-option v-for="item in awakeLvOpts"
+                             :key="item.value"
+                             :label="item.label"
+                             :value="item.value"></el-option>
                 </el-select>
               </div>
               <div class="row">
                 <span class="text">觉醒槽Ⅲ</span>
-                <el-select
-                  size="small"
-                  placeholder="请选择攻击词条等级"
-                  v-model="formData.awakeAttackLv[2]"
-                >
-                  <el-option
-                    v-for="item in awakeLvOpts"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
+                <el-select size="small"
+                           placeholder="请选择攻击词条等级"
+                           v-model="formData.awakeAttackLv[2]">
+                  <el-option v-for="item in awakeLvOpts"
+                             :key="item.value"
+                             :label="item.label"
+                             :value="item.value"></el-option>
                 </el-select>
               </div>
               <div class="row">
                 <span class="text">觉醒槽Ⅳ</span>
-                <el-select
-                  size="small"
-                  placeholder="请选择攻击词条等级"
-                  v-model="formData.awakeAttackLv[3]"
-                >
-                  <el-option
-                    v-for="item in awakeLvOpts"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
+                <el-select size="small"
+                           placeholder="请选择攻击词条等级"
+                           v-model="formData.awakeAttackLv[3]">
+                  <el-option v-for="item in awakeLvOpts"
+                             :key="item.value"
+                             :label="item.label"
+                             :value="item.value"></el-option>
                 </el-select>
               </div>
               <div class="row">
                 <span class="text">觉醒槽Ⅴ</span>
-                <el-select
-                  size="small"
-                  placeholder="请选择攻击词条等级"
-                  v-model="formData.awakeAttackLv[4]"
-                >
-                  <el-option
-                    v-for="item in awakeLvOpts"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
+                <el-select size="small"
+                           placeholder="请选择攻击词条等级"
+                           v-model="formData.awakeAttackLv[4]">
+                  <el-option v-for="item in awakeLvOpts"
+                             :key="item.value"
+                             :label="item.label"
+                             :value="item.value"></el-option>
                 </el-select>
               </div>
             </div>
@@ -239,77 +187,57 @@
               <span class="title">冥赤龙武器觉醒槽位(属性词条)</span>
               <div class="row">
                 <span class="text">觉醒槽Ⅰ</span>
-                <el-select
-                  size="small"
-                  placeholder="请选择属性词条等级"
-                  v-model="formData.awakeElementLv[0]"
-                >
-                  <el-option
-                    v-for="item in awakeElLvOpts"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
+                <el-select size="small"
+                           placeholder="请选择属性词条等级"
+                           v-model="formData.awakeElementLv[0]">
+                  <el-option v-for="item in awakeElLvOpts"
+                             :key="item.value"
+                             :label="item.label"
+                             :value="item.value"></el-option>
                 </el-select>
               </div>
               <div class="row">
                 <span class="text">觉醒槽Ⅱ</span>
-                <el-select
-                  size="small"
-                  placeholder="请选择属性词条等级"
-                  v-model="formData.awakeElementLv[1]"
-                >
-                  <el-option
-                    v-for="item in awakeElLvOpts"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
+                <el-select size="small"
+                           placeholder="请选择属性词条等级"
+                           v-model="formData.awakeElementLv[1]">
+                  <el-option v-for="item in awakeElLvOpts"
+                             :key="item.value"
+                             :label="item.label"
+                             :value="item.value"></el-option>
                 </el-select>
               </div>
               <div class="row">
                 <span class="text">觉醒槽Ⅲ</span>
-                <el-select
-                  size="small"
-                  placeholder="请选择属性词条等级"
-                  v-model="formData.awakeElementLv[2]"
-                >
-                  <el-option
-                    v-for="item in awakeElLvOpts"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
+                <el-select size="small"
+                           placeholder="请选择属性词条等级"
+                           v-model="formData.awakeElementLv[2]">
+                  <el-option v-for="item in awakeElLvOpts"
+                             :key="item.value"
+                             :label="item.label"
+                             :value="item.value"></el-option>
                 </el-select>
               </div>
               <div class="row">
                 <span class="text">觉醒槽Ⅳ</span>
-                <el-select
-                  size="small"
-                  placeholder="请选择属性词条等级"
-                  v-model="formData.awakeElementLv[3]"
-                >
-                  <el-option
-                    v-for="item in awakeElLvOpts"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
+                <el-select size="small"
+                           placeholder="请选择属性词条等级"
+                           v-model="formData.awakeElementLv[3]">
+                  <el-option v-for="item in awakeElLvOpts"
+                             :key="item.value"
+                             :label="item.label"
+                             :value="item.value"></el-option>
                 </el-select>
               </div>
               <div class="row">
                 <span class="text">觉醒槽Ⅴ</span>
-                <el-select
-                  size="small"
-                  placeholder="请选择属性词条等级"
-                  v-model="formData.awakeElementLv[4]"
-                >
-                  <el-option
-                    v-for="item in awakeElLvOpts"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
+                <el-select size="small"
+                           placeholder="请选择属性词条等级"
+                           v-model="formData.awakeElementLv[4]">
+                  <el-option v-for="item in awakeElLvOpts"
+                             :key="item.value"
+                             :label="item.label"
+                             :value="item.value"></el-option>
                 </el-select>
               </div>
             </div>
@@ -318,11 +246,9 @@
             <div class="base-skills-row">
               <span class="title">基础攻击力倍率加成类技能</span>
               <el-checkbox-group v-model="formData.baseAttSkillList">
-                <el-checkbox
-                  v-for="item in baseSkillOpts"
-                  :label="item.id"
-                  :key="item.id"
-                >{{ item.name }}</el-checkbox>
+                <el-checkbox v-for="item in baseSkillOpts"
+                             :label="item.id"
+                             :key="item.id">{{ item.name }}</el-checkbox>
               </el-checkbox-group>
             </div>
           </el-form-item>
@@ -330,11 +256,9 @@
             <div class="base-skills-row">
               <span class="title">基础攻击力数值加成类技能</span>
               <el-checkbox-group v-model="formData.otherAttSkillList">
-                <el-checkbox
-                  v-for="item in otherSkillOpts"
-                  :label="item.id"
-                  :key="item.id"
-                >{{ item.name }}</el-checkbox>
+                <el-checkbox v-for="item in otherSkillOpts"
+                             :label="item.id"
+                             :key="item.id">{{ item.name }}</el-checkbox>
               </el-checkbox-group>
             </div>
           </el-form-item>
@@ -342,11 +266,9 @@
             <div class="base-skills-row">
               <span class="title">属性倍率加成类技能</span>
               <el-checkbox-group v-model="formData.elSkillList">
-                <el-checkbox
-                  v-for="item in elSkillOpts"
-                  :label="item.id"
-                  :key="item.id"
-                >{{ item.name }}</el-checkbox>
+                <el-checkbox v-for="item in elSkillOpts"
+                             :label="item.id"
+                             :key="item.id">{{ item.name }}</el-checkbox>
               </el-checkbox-group>
             </div>
           </el-form-item>
@@ -354,137 +276,105 @@
             <div class="base-skills-row">
               <span class="title">武器伤害上限后补正类技能</span>
               <el-checkbox-group v-model="formData.attLimitAfterRate">
-                <el-checkbox
-                  v-for="item in attLmtAfterRateOpts"
-                  :label="item.id"
-                  :key="item.id"
-                >{{ item.name }}</el-checkbox>
+                <el-checkbox v-for="item in attLmtAfterRateOpts"
+                             :label="item.id"
+                             :key="item.id">{{ item.name }}</el-checkbox>
               </el-checkbox-group>
             </div>
           </el-form-item>
           <el-form-item>
-            <el-select
-              style="width: 100%;"
-              v-model="formData.criticalSituation"
-              placeholder="请选择会心情况"
-            >
-              <el-option
-                v-for="item in criticalOpts"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              ></el-option>
+            <el-select style="width: 100%;"
+                       v-model="formData.criticalSituation"
+                       placeholder="请选择会心情况">
+              <el-option v-for="item in criticalOpts"
+                         :key="item.value"
+                         :label="item.label"
+                         :value="item.value"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item v-if="formData.weaponId !== ''">
-            <el-select
-              style="width: 100%;"
-              v-model="formData.skillNumber"
-              placeholder="请选择武器动作(不做选择可自定义)"
-              @change="handleAction"
-            >
-              <el-option
-                v-for="(item, index) in actionList"
-                :key="index"
-                :label="item.name"
-                :value="index"
-              ></el-option>
+            <el-select style="width: 100%;"
+                       v-model="formData.skillNumber"
+                       placeholder="请选择武器动作(不做选择可自定义)"
+                       @change="handleAction">
+              <el-option v-for="(item, index) in actionList"
+                         :key="index"
+                         :label="item.name"
+                         :value="index"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-input
-              v-model="formData.action"
-              placeholder="请输入武器动作值"
-            ></el-input>
+            <el-input v-model="formData.action"
+                      placeholder="请输入武器动作值"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-input
-              v-model="formData.elementChanger"
-              placeholder="请输入动作的属性补正"
-            ></el-input>
+            <el-input v-model="formData.elementChanger"
+                      placeholder="请输入动作的属性补正"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-input
-              v-model="formData.meatRate"
-              placeholder="请输入怪物物理肉质(非百分比形式)"
-            ></el-input>
+            <el-input v-model="formData.meatRate"
+                      placeholder="请输入怪物物理肉质(非百分比形式)"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-input
-              v-model="formData.elMeatRate"
-              placeholder="请输入怪物属性肉质(非百分比形式)"
-            ></el-input>
+            <el-input v-model="formData.elMeatRate"
+                      placeholder="请输入怪物属性肉质(非百分比形式)"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-input
-              v-model="formData.angryRate"
-              placeholder="请输入怪物怒后补正倍率(可选)"
-            ></el-input>
+            <el-input v-model="formData.angryRate"
+                      placeholder="请输入怪物怒后补正倍率(可选)"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-select
-              style="width: 100%;"
-              v-model="formData.bladeNumber"
-              placeholder="请选择斩味"
-            >
-              <el-option
-                v-for="item in bladeOpts"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              ></el-option>
+            <el-select style="width: 100%;"
+                       v-model="formData.bladeNumber"
+                       placeholder="请选择斩味">
+              <el-option v-for="item in bladeOpts"
+                         :key="item.value"
+                         :label="item.label"
+                         :value="item.value"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-select
-              style="width: 100%;"
-              v-model="formData.isBladeCheck"
-              placeholder="请选择是否启用刃中补正"
-            >
-              <el-option
-                v-for="item in isBladeCheckOpts"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              ></el-option>
+            <el-select style="width: 100%;"
+                       v-model="formData.isBladeCheck"
+                       placeholder="请选择是否启用刃中补正">
+              <el-option v-for="item in isBladeCheckOpts"
+                         :key="item.value"
+                         :label="item.label"
+                         :value="item.value"></el-option>
             </el-select>
           </el-form-item>
         </el-form>
       </div>
       <div class="result-area">
         <div class="btn-row">
-          <el-button
-            type="primary"
-            size="small"
-            @click="handleCalculator('formData')"
-          ><i class="el-icon-check"></i>&nbsp;&nbsp;计算</el-button>
-          <div
-            class="note"
-            @click="handleGoToNote"
-          >
+          <el-button type="primary"
+                     size="small"
+                     @click="handleCalculator('formData')"><i class="el-icon-check"></i>&nbsp;&nbsp;计算</el-button>
+          <div class="note"
+               @click="handleGoToNote">
             <span>使用须知</span>
           </div>
         </div>
         <span>计算结果</span>
         <div class="row">
-          <span class="pre">最终伤害</span><span class="data">{{res.totalDmg}}</span>
+          <span class="pre">最终伤害</span><span class="data">{{ res.totalDmg }}</span>
         </div>
         <div class="row">
-          <span class="pre">物理伤害</span><span class="data">{{res.toMonsterPHYDmg}}</span>
+          <span class="pre">物理伤害</span><span class="data">{{ res.toMonsterPHYDmg }}</span>
         </div>
         <div class="row">
-          <span class="pre">属性伤害</span><span class="data">{{res.toMonsterElDmg}}</span>
+          <span class="pre">属性伤害</span><span class="data">{{ res.toMonsterElDmg }}</span>
         </div>
         <div class="row">
-          <span class="pre">软化后伤害</span><span class="data">{{res.monsterPhyDmgClaw}}</span>
+          <span class="pre">软化后伤害</span><span class="data">{{ res.monsterPhyDmgClaw }}</span>
         </div>
         <div class="col">
           <span class="pre">软化后伤害(麒麟、熔岩龙、爆锤龙、惶怒恐暴龙、溟波龙、金火龙、银火龙)</span>
-          <span class="data">{{res.monsterPhyDmgClawSp1}}</span>
+          <span class="data">{{ res.monsterPhyDmgClawSp1 }}</span>
         </div>
         <div class="col">
           <span class="pre">软化后伤害(冥赤龙)</span>
-          <span class="data">{{res.monsterPhyDmgClawSp2}}</span>
+          <span class="data">{{ res.monsterPhyDmgClawSp2 }}</span>
         </div>
       </div>
     </div>
@@ -504,7 +394,7 @@ export default {
     Footer,
     DataSrcDeclare
   },
-  data () {
+  data() {
     return {
       formData: {
         weaponId: '',
@@ -826,34 +716,31 @@ export default {
       }
     }
   },
-  mounted () {
+  mounted() {
     this.baseSkillOptsInit()
   },
   methods: {
-    baseSkillOptsInit () {
-      this.baseSkillOpts = JSON.parse(
-        JSON.stringify(baseLogic.getBaseDmgRate())
-      )
-      this.otherSkillOpts = JSON.parse(
-        JSON.stringify(baseLogic.getOtherAttack())
-      )
-      this.attLmtAfterRateOpts = JSON.parse(
-        JSON.stringify(baseLogic.getAttLimitAfterRate())
-      )
+    baseSkillOptsInit() {
+      this.baseSkillOpts = JSON.parse(JSON.stringify(baseLogic.getBaseDmgRate()))
+      this.otherSkillOpts = JSON.parse(JSON.stringify(baseLogic.getOtherAttack()))
+      this.attLmtAfterRateOpts = JSON.parse(JSON.stringify(baseLogic.getAttLimitAfterRate()))
       this.elSkillOpts = JSON.parse(JSON.stringify(baseLogic.getElSkill()))
     },
-    getActions (weaponId) {
+    getActions(weaponId) {
       this.actionList.length = 0
       const WAD = () => import('../script/WeaponActionData')
-      WAD().then((module) => {
-        return module.default
-      }).catch(err => {
-        this.$message.error('武器动作值信息获取失败,请刷新页面重试,errCode=' + err)
-      }).then(m => {
-        this.actionList = m.getActionListById(weaponId)
-      })
+      WAD()
+        .then((module) => {
+          return module.default
+        })
+        .catch((err) => {
+          this.$message.error('武器动作值信息获取失败,请刷新页面重试,errCode=' + err)
+        })
+        .then((m) => {
+          this.actionList = m.getActionListById(weaponId)
+        })
     },
-    handleWeaponChange () {
+    handleWeaponChange() {
       this.formData.closeItemNumber = 0
       this.formData.farItemNumber = 0
       this.formData.bottleType = 0
@@ -864,7 +751,7 @@ export default {
       this.formData.isBladeCheck = false
       if (this.formData.weaponId !== '') this.getActions(this.formData.weaponId)
     },
-    handleAction () {
+    handleAction() {
       this.formData.action = this.actionList[this.formData.skillNumber].actionNum
       this.formData.elementChanger = this.actionList[this.formData.skillNumber].elementChanger
       if ((this.formData.weaponId === '12' || this.formData.weaponId === '13') && this.formData.skillNumber === 0) {
@@ -877,10 +764,10 @@ export default {
         this.formData.weaponShowEl = '0'
       }
     },
-    handleGoToNote () {
+    handleGoToNote() {
       window.open('https://github.com/dzxrly/MHWIBDmgCalculator/blob/master/README.md')
     },
-    handleSetElement () {
+    handleSetElement() {
       if ((this.formData.weaponId === '12' || this.formData.weaponId === '13') && this.formData.weaponShowEl === '22') {
         this.formData.skillNumber = 0
         this.formData.action = 8
@@ -895,43 +782,32 @@ export default {
         this.formData.elementChanger = ''
       }
     },
-    isAwakeCheck () {
+    isAwakeCheck() {
       let flag = 0
-      this.formData.elSkillList.forEach(item => {
+      this.formData.elSkillList.forEach((item) => {
         if (item.toString() === '9') flag = 1
         if (item.toString() === '10') flag = 2
       })
       return flag
     },
-    isElCriticalCheck () {
+    isElCriticalCheck() {
       let flag = 0
-      this.formData.elSkillList.forEach(item => {
+      this.formData.elSkillList.forEach((item) => {
         if (item.toString() === '11') flag = 1
         if (item.toString() === '12') flag = 2
       })
       return flag
     },
-    isBluntCheck (bladeNumber) {
-      this.formData.otherAttSkillList.forEach(num => {
+    isBluntCheck(bladeNumber) {
+      this.formData.otherAttSkillList.forEach((num) => {
         if (num.toString() === '37') return bladeNumber
       })
       return 0
     },
-    dmgCalculator () {
-      let baseDmg = baseLogic.getBaseDmg(
-        this.formData.weaponId,
-        this.formData.weaponShowAtt,
-        this.formData.customAttLv,
-        0,
-        this.formData.awakeAttackLv
-      )
+    dmgCalculator() {
+      let baseDmg = baseLogic.getBaseDmg(this.formData.weaponId, this.formData.weaponShowAtt, this.formData.customAttLv, 0, this.formData.awakeAttackLv)
       let baseElDmg = baseLogic.getBaseElDmg(this.formData.weaponId, this.formData.weaponShowEl, this.formData.customElLv, 0, this.formData.awakeElementLv)
-      let beforeDmgLimit = baseLogic.getBeforeDmgLimit(
-        baseDmg,
-        this.isBluntCheck(this.formData.bladeNumber),
-        this.formData.baseAttSkillList,
-        this.formData.otherAttSkillList
-      )
+      let beforeDmgLimit = baseLogic.getBeforeDmgLimit(baseDmg, this.isBluntCheck(this.formData.bladeNumber), this.formData.baseAttSkillList, this.formData.otherAttSkillList)
       let beforeElLimit = baseLogic.getBeforeElLimit(baseElDmg, this.formData.elSkillList)
       let elDmgLimit = baseLogic.getElLimitation(this.formData.weaponId, baseElDmg, this.isAwakeCheck())
       let dmgLimit = baseLogic.getDmgLimitation(baseDmg)
@@ -949,27 +825,15 @@ export default {
         this.formData.isBladeCheck,
         this.formData.isScope
       )
-      let physicDmg = baseLogic.getPhysicalDmg(
-        this.formData.action,
-        attRate,
-        this.formData.criticalSituation,
-        physicDmgRate
-      )
+      let physicDmg = baseLogic.getPhysicalDmg(this.formData.action, attRate, this.formData.criticalSituation, physicDmgRate)
       let elementDamege = baseLogic.getElementDmg(this.formData.weaponId, sumElement, attRate, this.formData.elementChanger)
       this.res.elDmg = elementDamege
-      let basePHYMeatRate = baseLogic.getBasePHYMeatRate(
-        this.formData.meatRate,
-        this.formData.bladeNumber
-      )
+      let basePHYMeatRate = baseLogic.getBasePHYMeatRate(this.formData.meatRate, this.formData.bladeNumber)
       let baseElMeatRate = baseLogic.getBaseElMeatRate(this.formData.elMeatRate, this.formData.bladeNumber)
       let afterClawMeat = baseLogic.getBaseMeatAfterClaw(this.formData.meatRate, 0, this.formData.bladeNumber)
       let afterClawMeatSp1 = baseLogic.getBaseMeatAfterClaw(this.formData.meatRate, 5, this.formData.bladeNumber)
       let afterClawMeatSp2 = baseLogic.getBaseMeatAfterClaw(this.formData.meatRate, -5, this.formData.bladeNumber)
-      let toMonsterPHYDmg = baseLogic.getToMonsterPHYDmg(
-        physicDmg,
-        basePHYMeatRate,
-        0
-      )
+      let toMonsterPHYDmg = baseLogic.getToMonsterPHYDmg(physicDmg, basePHYMeatRate, 0)
       let toMonsterElDmg = baseLogic.getToMonsterElDmg(elementDamege, baseElMeatRate)
       let monsterPhyDmgClaw = baseLogic.getToMonsterPHYDmg(physicDmg, afterClawMeat, 0)
       let monsterPhyDmgClawSp1 = baseLogic.getToMonsterPHYDmg(physicDmg, afterClawMeatSp1, 0)
@@ -982,7 +846,7 @@ export default {
       this.res.monsterPhyDmgClawSp1 = monsterPhyDmgClawSp1 + toMonsterElDmg
       this.res.monsterPhyDmgClawSp2 = monsterPhyDmgClawSp2 + toMonsterElDmg
     },
-    handleCalculator (formName) {
+    handleCalculator(formName) {
       this.dmgCalculator()
       // TODO
       // this.$refs[formName].validate(valid => {
@@ -995,205 +859,174 @@ export default {
 
 <style lang="stylus" scoped>
 /deep/ .el-input__inner {
-  border-radius: 0px;
-  border: solid 1px #DCDFE6;
-  border-width: 0 0 1px 0;
+  border-radius 0px
+  border solid 1px #DCDFE6
+  border-width 0 0 1px 0
 }
-
 /deep/ .el-input-number__decrease {
-  border-radius: 0px;
+  border-radius 0px
 }
-
 /deep/ .el-input-number__increase {
-  border-radius: 0px;
+  border-radius 0px
 }
-
 /deep/ .el-button--small {
-  border-radius: 0px;
-  background-color: black;
-  border: none;
-  box-shadow: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108);
+  border-radius 0px
+  background-color black
+  border none
+  box-shadow 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108)
 }
-
 /deep/ .el-button--small:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color rgba(0, 0, 0, 0.8)
 }
-
 .calculator-wrap {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  position: relative;
-
+  width 100%
+  height 100%
+  display flex
+  flex-flow column nowrap
+  position relative
   .calculator-pane {
-    flex: 1;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: flex-start;
-
+    flex 1
+    display flex
+    flex-flow row wrap
+    justify-content space-around
+    align-items flex-start
     .input-area {
-      flex: 1 1 auto;
-      margin: 20px;
-
+      flex 1 1 auto
+      margin 20px
       .el-form {
         .el-form-item {
           .item-row {
-            padding: 5px 20px;
-            display: flex;
-            flex-flow: column nowrap;
-            justify-content: center;
-            align-items: flex-start;
-            box-shadow: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108);
-            transition: all 0.3s linear;
-
+            padding 5px 20px
+            display flex
+            flex-flow column nowrap
+            justify-content center
+            align-items flex-start
+            box-shadow 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108)
+            transition all 0.3s linear
             .row {
-              display: flex;
-              flex-flow: row wrap;
-              justify-content: flex-start;
-
+              display flex
+              flex-flow row wrap
+              justify-content flex-start
               .el-radio-group {
-                margin: 20px 5px;
+                margin 20px 5px
               }
             }
           }
-
           .awake-area {
-            padding: 5px 20px;
-            display: flex;
-            flex-flow: column nowrap;
-            justify-content: flex-start;
-            align-items: flex-start;
-            box-shadow: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108);
-
+            padding 5px 20px
+            display flex
+            flex-flow column nowrap
+            justify-content flex-start
+            align-items flex-start
+            box-shadow 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108)
             .row {
-              display: flex;
-              flex-flow: row wrap;
-              justify-content: flex-start;
+              display flex
+              flex-flow row wrap
+              justify-content flex-start
             }
           }
-
           .base-skills-row {
-            padding: 5px 20px;
-            display: flex;
-            flex-flow: column wrap;
-            justify-content: flex-start;
-            align-items: flex-start;
-            box-shadow: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108);
-
+            padding 5px 20px
+            display flex
+            flex-flow column wrap
+            justify-content flex-start
+            align-items flex-start
+            box-shadow 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108)
             .el-checkbox-group {
-              overflow-x: auto;
-              display: flex;
-              flex-flow: column wrap;
-              justify-content: flex-start;
-              align-items: flex-start;
-              width: 40vh;
+              overflow-x auto
+              display flex
+              flex-flow column wrap
+              justify-content flex-start
+              align-items flex-start
+              width 40vh
             }
           }
         }
       }
     }
-
     .result-area {
-      position: sticky;
-      position: -webkit-sticky;
-      top: 50px;
-      max-width: 900px;
-      margin: 20px;
-      flex: 1 1 auto;
-      padding: 5px 20px;
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: flex-start;
-      align-items: flex-start;
-      box-shadow: 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108);
-
+      position sticky
+      position -webkit-sticky
+      top 50px
+      max-width 900px
+      margin 20px
+      flex 1 1 auto
+      padding 5px 20px
+      display flex
+      flex-flow column nowrap
+      justify-content flex-start
+      align-items flex-start
+      box-shadow 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108)
       .btn-row {
-        margin: 10px 0px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-
+        margin 10px 0px
+        display flex
+        justify-content flex-end
+        align-items center
         .note {
-          margin: 0px 10px;
-          line-height: 35px;
-          cursor: pointer;
-
+          margin 0px 10px
+          line-height 35px
+          cursor pointer
           span {
-            color: #909399;
-            font-size: 12px;
-            font-weight: bolder;
+            color #909399
+            font-size 12px
+            font-weight bolder
           }
         }
-
         .note:hover {
-          text-decoration: underline #909399;
+          text-decoration underline #909399
         }
       }
-
       .row {
-        margin: 10px 0px;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: flex-start;
-        align-items: center;
-
+        margin 10px 0px
+        display flex
+        flex-flow row wrap
+        justify-content flex-start
+        align-items center
         span {
-          font-size: 14px;
+          font-size 14px
         }
-
         .pre {
-          color: #666666;
+          color #666666
         }
-
         .data {
-          margin: 0 10px;
+          margin 0 10px
         }
       }
-
       .col {
-        margin: 10px 0px;
-        display: flex;
-        flex-flow: column wrap;
-        justify-content: flex-start;
-        align-items: flex-start;
-
+        margin 10px 0px
+        display flex
+        flex-flow column wrap
+        justify-content flex-start
+        align-items flex-start
         span {
-          font-size: 14px;
+          font-size 14px
         }
-
         .pre {
-          color: #666666;
+          color #666666
         }
-
         .data {
-          margin-top: 5px;
+          margin-top 5px
         }
       }
     }
-
-    @media screen and (max-width: 1920px) {
+    @media screen and (max-width 1920px) {
       .result-area {
-        max-width: 660px;
+        max-width 660px
       }
     }
-
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width 1200px) {
       .result-area {
-        max-width: 456px;
+        max-width 456px
       }
     }
-
-    @media screen and (max-width: 992px) {
+    @media screen and (max-width 992px) {
       .result-area {
-        max-width: 344px;
+        max-width 344px
       }
     }
-
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width 768px) {
       .result-area {
-        max-width: 320px;
+        max-width 320px
       }
     }
   }

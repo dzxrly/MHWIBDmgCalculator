@@ -8,7 +8,7 @@
 
 [https://egg-targaryen.gitee.io/mhwibdmgcalculator/#/](https://egg-targaryen.gitee.io/mhwibdmgcalculator/#/)(Gitee 码云, 国内访问更快)
 
-当前版本`Ver.1.0.5`
+当前版本`Ver.1.0.6`
 
 ## 数据来源
 
@@ -51,11 +51,16 @@
 |   功能   |   TO DO    |                           武器贴皮强化计算                           |
 |   功能   |   TO DO    |                             固定伤害计算                             |
 | BUG 修复 |    Done    | 武器攻击力、属性面板填写时应提醒填写原始(未客制强化、贴皮强化)的面板 |
+| BUG 修复 |    Done    |              修复了怒后补正为空时无法得出计算结果的 BUG              |
 |   功能   |    Done    |                        补全所有武器动作值信息                        |
 |   功能   |    Done    |                            会心镜加成计算                            |
 |   功能   |    Done    |                             怒后补正计算                             |
 
 ## 更新日志
+
+- 2020-08-04 `Ver.1.0.6`
+
+  - **BUG 修复**-修复了怒后补正为空时无法得出计算结果的 BUG
 
 - 2020-08-02 `Ver.1.0.5`
 
