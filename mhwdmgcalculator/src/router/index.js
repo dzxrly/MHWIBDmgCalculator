@@ -10,7 +10,10 @@ export default new Router({
     {
       path: '/',
       name: 'CalculatorView',
-      component: CalculatorView
+      component: CalculatorView,
+      meta: {
+        title: 'MHWIB简易伤害计算器'
+      }
     }
   ]
 })
