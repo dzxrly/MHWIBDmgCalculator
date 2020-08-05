@@ -736,7 +736,7 @@ const closeItemRate = [1, 1.2, 1.3, 1.35, 1.4] // 近战零件
 const farItemRate = [1, 1.2, 1.35, 1.4, 1.45] // 远程零件
 const bottleList = [1, 1.18, 1.35] // 弓箭瓶子种类 0非弓箭或无瓶子 1接击瓶 2强击瓶
 const criticalRate = [0.75, 1, 1.25, 1.3, 1.35, 1.4] // 会心倍率分别为负会心、无会心、基础会心、超心1、超心2、超心3
-const bladeRate = [1, 0.5, 0.75, 1, 1.05, 1.2, 1.32, 1.39] // 斩味补正，分别为远程专用、红、橙、黄、绿、蓝、白、紫
+const bladeTypeRate = [1, 0.5, 0.75, 1, 1.05, 1.2, 1.32, 1.39] // 斩味补正，分别为远程专用、红、橙、黄、绿、蓝、白、紫
 const elBladeRate = [1, 0.25, 0.5, 0.75, 1, 1.0625, 1.15, 1.25] // 斩味属性补正，分别为远程专用、红、橙、黄、绿、蓝、白、紫
 const elementSkillList = [
   {
@@ -1084,7 +1084,7 @@ export default {
    * @param bladeNumber 斩味
    */
   getBasePHYMeatRate(meatRate, bladeNumber) {
-    let blade = bladeRate[parseInt(bladeNumber)]
+    let blade = bladeTypeRate[parseInt(bladeNumber)]
     return (meatRate * blade) / 100
   },
   /**
@@ -1094,7 +1094,7 @@ export default {
    * @param bladeNumber 斩味
    */
   getBaseMeatAfterClaw(meatRate, offset, bladeNumber) {
-    let baseMeat = Math.floor(0.75 * meatRate) + (25 + offset) * bladeRate[parseInt(bladeNumber)]
+    let baseMeat = (Math.floor(0.75 * meatRate) + (25 + offset)) * bladeTypeRate[parseInt(bladeNumber)]
     return baseMeat / 100
   },
   /**
