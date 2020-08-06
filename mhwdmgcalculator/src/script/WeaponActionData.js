@@ -2051,7 +2051,7 @@ const actionDataList = [
         elementChanger: 0.8
       },
       {
-        name: '飞圆斩(第一次命中)',
+        name: '飞圆斩(第二次命中)',
         actionNum: 42,
         elementChanger: 0.8
       },
