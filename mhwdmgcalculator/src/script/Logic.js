@@ -923,8 +923,9 @@ export default {
    * 计算武器属性伤害上限前数据
    * @param baseElDmg 基础属性攻击力
    * @param elSkillArray 属性加成类技能数组
+   * @param dragonEquipment 是否装备耐龙衣装
    */
-  getBeforeElLimit(baseElDmg, elSkillArray = []) {
+  getBeforeElLimit(baseElDmg, elSkillArray = [], dragonEquipment = false) {
     let baseElRate = 1
     let extractEl = 0
     elSkillArray.forEach(num => {
@@ -1121,5 +1122,93 @@ export default {
    */
   getTotalDmg(toMonsterPHYDmg, toMonsterElDmg) {
     return toMonsterPHYDmg + toMonsterElDmg
+  },
+  /**
+   * 计算龙脉觉醒与真龙脉觉醒
+   * @param formData 输入的全部选项
+   */
+  isAwakeCheck(formData) {
+    let flag = 0
+    formData.elSkillList.forEach(item => {
+      if (item.toString() === '9') flag = 1
+      if (item.toString() === '10') flag = 2
+    })
+    return flag
+  },
+  /**
+   * 计算属性会心与真属性会心
+   * @param formData 输入的全部选项
+   */
+  isElCriticalCheck(formData) {
+    let flag = 0
+    formData.elSkillList.forEach(item => {
+      if (item.toString() === '11') flag = 1
+      if (item.toString() === '12') flag = 2
+    })
+    return flag
+  },
+  /**
+   * 计算钝器能手
+   * @param formData 输入的全部选项
+   */
+  isBluntCheck(formData) {
+    formData.otherAttSkillList.forEach(num => {
+      if (num.toString() === '37') return formData.bladeNumber
+    })
+    return 0
+  },
+  /**
+   * 计算最终伤害
+   * @param formData 输入的全部选项
+   */
+  calDamage(formData) {
+    let baseDmg = this.getBaseDmg(formData.weaponId, formData.weaponShowAtt, formData.customAttLv, 0, formData.awakeAttackLv)
+    let baseElDmg = this.getBaseElDmg(formData.weaponId, formData.weaponShowEl, formData.customElLv, 0, formData.awakeElementLv)
+    let beforeDmgLimit = this.getBeforeDmgLimit(baseDmg, this.isBluntCheck(formData), formData.baseAttSkillList, formData.otherAttSkillList)
+    let beforeElLimit = this.getBeforeElLimit(baseElDmg, formData.elSkillList)
+    let elDmgLimit = this.getElLimitation(formData.weaponId, baseElDmg, this.isAwakeCheck(formData))
+    let dmgLimit = this.getDmgLimitation(baseDmg)
+    let afterDmgLimit = this.getAfterDmgLimit(beforeDmgLimit, dmgLimit)
+    let afterElDmgLimit = this.getAfterElLimit(beforeElLimit, elDmgLimit)
+    let sumAttack = this.getSumAttack(afterDmgLimit, formData.attLimitAfterRate)
+    let sumElement = this.getSumElDmg(formData.weaponId, afterElDmgLimit, 1, this.isElCriticalCheck(formData))
+    let attRate = this.getAttRate(sumAttack)
+    let physicDmgRate = this.getPhysicalDmgRate(formData.weaponId, formData.closeItemNumber, formData.farItemNumber, formData.bottleType, formData.angryRate, formData.isBladeCheck, formData.isScope)
+    let physicDmg = this.getPhysicalDmg(formData.action, attRate, formData.criticalSituation, physicDmgRate)
+    let elementDamage = this.getElementDmg(formData.weaponId, sumElement, attRate, formData.elementChanger)
+    let basePHYMeatRate = this.getBasePHYMeatRate(formData.meatRate, formData.bladeNumber)
+    let baseElMeatRate = this.getBaseElMeatRate(formData.elMeatRate, formData.bladeNumber)
+    let afterClawMeat = this.getBaseMeatAfterClaw(formData.meatRate, 0, formData.bladeNumber)
+    let afterClawMeatSp1 = this.getBaseMeatAfterClaw(formData.meatRate, 5, formData.bladeNumber)
+    let afterClawMeatSp2 = this.getBaseMeatAfterClaw(formData.meatRate, -5, formData.bladeNumber)
+    let toMonsterPHYDmg = this.getToMonsterPHYDmg(physicDmg, basePHYMeatRate, 0)
+    let toMonsterElDmg = this.getToMonsterElDmg(elementDamage, baseElMeatRate)
+    let monsterPhyDmgClaw = this.getToMonsterPHYDmg(physicDmg, afterClawMeat, 0)
+    let monsterPhyDmgClawSp1 = this.getToMonsterPHYDmg(physicDmg, afterClawMeatSp1, 0)
+    let monsterPhyDmgClawSp2 = this.getToMonsterPHYDmg(physicDmg, afterClawMeatSp2, 0)
+    let totalDamage = this.getTotalDmg(toMonsterPHYDmg, toMonsterElDmg)
+    let res = {}
+    res.totalDmg = totalDamage // 总伤害
+    res.toMonsterPHYDmg = toMonsterPHYDmg // 物理伤害
+    res.toMonsterElDmg = toMonsterElDmg // 属性伤害
+    res.monsterPhyDmgClaw = monsterPhyDmgClaw + toMonsterElDmg // 软化后伤害
+    res.monsterPhyDmgClawSp1 = monsterPhyDmgClawSp1 + toMonsterElDmg // 软化后伤害(特殊情况)
+    res.monsterPhyDmgClawSp2 = monsterPhyDmgClawSp2 + toMonsterElDmg // 软化后伤害(特殊情况)
+    /* 以下为物理伤害计算部分 */
+    res.basePHYDmg = baseDmg.toFixed(3) // 基础攻击力
+    res.beforeDmgLimit = beforeDmgLimit.toFixed(3) // 攻击上限前伤害
+    res.dmgLimit = dmgLimit.toFixed(3) // 攻击上限
+    res.afterDmgLimit = afterDmgLimit.toFixed(3) // 攻击上限后伤害
+    res.attRate = attRate.toFixed(3) // 攻击力百分比
+    res.physicDmg = physicDmg.toFixed(3) // 武器物理伤害
+    res.basePHYMeatRate = basePHYMeatRate.toFixed(3) // 物理肉质百分比
+    /* 以下为属性伤害计算部分 */
+    res.baseElDmg = baseElDmg.toFixed(3) // 基础属性伤害
+    res.beforeElLimit = beforeElLimit.toFixed(3) // 属性上限前伤害
+    res.elDmgLimit = elDmgLimit.toFixed(3) // 属性伤害上限
+    res.afterElDmgLimit = afterElDmgLimit.toFixed(3) // 属性上限后伤害
+    res.elementDamage = elementDamage.toFixed(3) // 武器属性伤害
+    res.baseElMeatRate = baseElMeatRate.toFixed(3) // 属性肉质百分比
+    return res
   }
 }

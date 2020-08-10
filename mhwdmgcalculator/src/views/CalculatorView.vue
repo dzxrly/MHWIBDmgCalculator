@@ -345,38 +345,7 @@
           </el-form-item>
         </el-form>
       </div>
-      <div class="result-area">
-        <div class="btn-row">
-          <el-button type="primary"
-                     size="small"
-                     @click="handleCalculator('formData')"><i class="el-icon-check"></i>&nbsp;&nbsp;计算</el-button>
-          <div class="note"
-               @click="handleGoToNote">
-            <span>使用须知</span>
-          </div>
-        </div>
-        <span>计算结果</span>
-        <div class="row">
-          <span class="pre">最终伤害</span><span class="data">{{ res.totalDmg }}</span>
-        </div>
-        <div class="row">
-          <span class="pre">物理伤害</span><span class="data">{{ res.toMonsterPHYDmg }}</span>
-        </div>
-        <div class="row">
-          <span class="pre">属性伤害</span><span class="data">{{ res.toMonsterElDmg }}</span>
-        </div>
-        <div class="row">
-          <span class="pre">软化后伤害</span><span class="data">{{ res.monsterPhyDmgClaw }}</span>
-        </div>
-        <div class="col">
-          <span class="pre">软化后伤害(麒麟、熔岩龙、爆锤龙、惶怒恐暴龙、溟波龙、金火龙、银火龙)</span>
-          <span class="data">{{ res.monsterPhyDmgClawSp1 }}</span>
-        </div>
-        <div class="col">
-          <span class="pre">软化后伤害(冥赤龙)</span>
-          <span class="data">{{ res.monsterPhyDmgClawSp2 }}</span>
-        </div>
-      </div>
+      <CalculateRes :form="formData"></CalculateRes>
     </div>
     <Footer></Footer>
   </div>
@@ -387,12 +356,14 @@ import baseLogic from '../script/Logic'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import DataSrcDeclare from '../components/DataSrcDeclare'
+import CalculateRes from '../components/CalculateRes'
 export default {
   name: 'CalculatorView',
   components: {
     Header,
     Footer,
-    DataSrcDeclare
+    DataSrcDeclare,
+    CalculateRes
   },
   data() {
     return {
@@ -702,18 +673,7 @@ export default {
           value: true,
           label: '启用超级会心镜'
         }
-      ],
-      res: {
-        totalDmg: 0,
-        toMonsterPHYDmg: 0,
-        toMonsterElDmg: 0,
-        sumAttack: 0,
-        physicDmg: 0,
-        elDmg: 0,
-        monsterPhyDmgClaw: 0,
-        monsterPhyDmgClawSp1: 0,
-        monsterPhyDmgClawSp2: 0
-      }
+      ]
     }
   },
   mounted() {
@@ -764,9 +724,6 @@ export default {
         this.formData.weaponShowEl = '0'
       }
     },
-    handleGoToNote() {
-      window.open('https://github.com/dzxrly/MHWIBDmgCalculator/blob/master/README.md')
-    },
     handleSetElement() {
       if ((this.formData.weaponId === '12' || this.formData.weaponId === '13') && this.formData.weaponShowEl === '22') {
         this.formData.skillNumber = 0
@@ -781,77 +738,6 @@ export default {
         this.formData.action = ''
         this.formData.elementChanger = ''
       }
-    },
-    isAwakeCheck() {
-      let flag = 0
-      this.formData.elSkillList.forEach((item) => {
-        if (item.toString() === '9') flag = 1
-        if (item.toString() === '10') flag = 2
-      })
-      return flag
-    },
-    isElCriticalCheck() {
-      let flag = 0
-      this.formData.elSkillList.forEach((item) => {
-        if (item.toString() === '11') flag = 1
-        if (item.toString() === '12') flag = 2
-      })
-      return flag
-    },
-    isBluntCheck(bladeNumber) {
-      this.formData.otherAttSkillList.forEach((num) => {
-        if (num.toString() === '37') return bladeNumber
-      })
-      return 0
-    },
-    dmgCalculator() {
-      let baseDmg = baseLogic.getBaseDmg(this.formData.weaponId, this.formData.weaponShowAtt, this.formData.customAttLv, 0, this.formData.awakeAttackLv)
-      let baseElDmg = baseLogic.getBaseElDmg(this.formData.weaponId, this.formData.weaponShowEl, this.formData.customElLv, 0, this.formData.awakeElementLv)
-      let beforeDmgLimit = baseLogic.getBeforeDmgLimit(baseDmg, this.isBluntCheck(this.formData.bladeNumber), this.formData.baseAttSkillList, this.formData.otherAttSkillList)
-      let beforeElLimit = baseLogic.getBeforeElLimit(baseElDmg, this.formData.elSkillList)
-      let elDmgLimit = baseLogic.getElLimitation(this.formData.weaponId, baseElDmg, this.isAwakeCheck())
-      let dmgLimit = baseLogic.getDmgLimitation(baseDmg)
-      let afterDmgLimit = baseLogic.getAfterDmgLimit(beforeDmgLimit, dmgLimit)
-      let afterElDmgLimit = baseLogic.getAfterElLimit(beforeElLimit, elDmgLimit)
-      let sumAttack = baseLogic.getSumAttack(afterDmgLimit, this.formData.attLimitAfterRate)
-      let sumElement = baseLogic.getSumElDmg(this.formData.weaponId, afterElDmgLimit, 1, this.isElCriticalCheck())
-      let attRate = baseLogic.getAttRate(sumAttack)
-      let physicDmgRate = baseLogic.getPhysicalDmgRate(
-        this.formData.weaponId,
-        this.formData.closeItemNumber,
-        this.formData.farItemNumber,
-        this.formData.bottleType,
-        this.formData.angryRate,
-        this.formData.isBladeCheck,
-        this.formData.isScope
-      )
-      let physicDmg = baseLogic.getPhysicalDmg(this.formData.action, attRate, this.formData.criticalSituation, physicDmgRate)
-      let elementDamege = baseLogic.getElementDmg(this.formData.weaponId, sumElement, attRate, this.formData.elementChanger)
-      this.res.elDmg = elementDamege
-      let basePHYMeatRate = baseLogic.getBasePHYMeatRate(this.formData.meatRate, this.formData.bladeNumber)
-      let baseElMeatRate = baseLogic.getBaseElMeatRate(this.formData.elMeatRate, this.formData.bladeNumber)
-      let afterClawMeat = baseLogic.getBaseMeatAfterClaw(this.formData.meatRate, 0, this.formData.bladeNumber)
-      let afterClawMeatSp1 = baseLogic.getBaseMeatAfterClaw(this.formData.meatRate, 5, this.formData.bladeNumber)
-      let afterClawMeatSp2 = baseLogic.getBaseMeatAfterClaw(this.formData.meatRate, -5, this.formData.bladeNumber)
-      let toMonsterPHYDmg = baseLogic.getToMonsterPHYDmg(physicDmg, basePHYMeatRate, 0)
-      let toMonsterElDmg = baseLogic.getToMonsterElDmg(elementDamege, baseElMeatRate)
-      let monsterPhyDmgClaw = baseLogic.getToMonsterPHYDmg(physicDmg, afterClawMeat, 0)
-      let monsterPhyDmgClawSp1 = baseLogic.getToMonsterPHYDmg(physicDmg, afterClawMeatSp1, 0)
-      let monsterPhyDmgClawSp2 = baseLogic.getToMonsterPHYDmg(physicDmg, afterClawMeatSp2, 0)
-      let totalDamge = baseLogic.getTotalDmg(toMonsterPHYDmg, toMonsterElDmg)
-      this.res.toMonsterPHYDmg = toMonsterPHYDmg
-      this.res.toMonsterElDmg = toMonsterElDmg
-      this.res.totalDmg = totalDamge
-      this.res.monsterPhyDmgClaw = monsterPhyDmgClaw + toMonsterElDmg
-      this.res.monsterPhyDmgClawSp1 = monsterPhyDmgClawSp1 + toMonsterElDmg
-      this.res.monsterPhyDmgClawSp2 = monsterPhyDmgClawSp2 + toMonsterElDmg
-    },
-    handleCalculator(formName) {
-      this.dmgCalculator()
-      // TODO
-      // this.$refs[formName].validate(valid => {
-
-      // })
     }
   }
 }
@@ -942,91 +828,6 @@ export default {
             }
           }
         }
-      }
-    }
-    .result-area {
-      position sticky
-      position -webkit-sticky
-      top 50px
-      max-width 900px
-      margin 20px
-      flex 1 1 auto
-      padding 5px 20px
-      display flex
-      flex-flow column nowrap
-      justify-content flex-start
-      align-items flex-start
-      box-shadow 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108)
-      .btn-row {
-        margin 10px 0px
-        display flex
-        justify-content flex-end
-        align-items center
-        .note {
-          margin 0px 10px
-          line-height 35px
-          cursor pointer
-          span {
-            color #909399
-            font-size 12px
-            font-weight bolder
-          }
-        }
-        .note:hover {
-          text-decoration underline #909399
-        }
-      }
-      .row {
-        margin 10px 0px
-        display flex
-        flex-flow row wrap
-        justify-content flex-start
-        align-items center
-        span {
-          font-size 14px
-        }
-        .pre {
-          color #666666
-        }
-        .data {
-          margin 0 10px
-        }
-      }
-      .col {
-        margin 10px 0px
-        display flex
-        flex-flow column wrap
-        justify-content flex-start
-        align-items flex-start
-        span {
-          font-size 14px
-        }
-        .pre {
-          color #666666
-        }
-        .data {
-          margin-top 5px
-        }
-      }
-    }
-    @media screen and (max-width 1920px) {
-      .result-area {
-        max-width 660px
-      }
-    }
-    @media screen and (max-width 1200px) {
-      .result-area {
-        max-width 456px
-      }
-    }
-    @media screen and (max-width 992px) {
-      .result-area {
-        max-width 344px
-      }
-    }
-    @media screen and (max-width 768px) {
-      .result-area {
-        max-width 320px
       }
     }
   }
