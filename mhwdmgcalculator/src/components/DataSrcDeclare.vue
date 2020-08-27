@@ -1,9 +1,10 @@
 <template>
   <div class="data-src-wrap">
     <div class="data-src-row">
-      <span class="data-src-pre">计算公式及绝大部分数据来自&nbsp;</span>
+      <span class="data-src-pre">计算公式及除武器动作值招式译名以外的其他数据来自&nbsp;</span>
       <span class="data-src-link"><a href="http://wiki.mhwmod.com/"
-           target="_blank">狩技MOD组中文Wiki</a></span>
+           target="_blank">狩技MOD组中文Wiki</a>&nbsp;</span>
+      <span class="data-src-pre">特别感谢狩技MOD组与Monster Hunter Modding Discord对游戏数据的挖掘与整理</span>
     </div>
     <div class="data-src-row">
       <span class="data-src-pre">武器招式名称与动作值来自&nbsp;</span>
