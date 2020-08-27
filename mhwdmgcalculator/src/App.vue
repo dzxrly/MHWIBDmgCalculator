@@ -11,6 +11,18 @@ export default {
 </script>
 
 <style>
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  background-color: rgba(85, 85, 85, 0.6);
+  box-shadow: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108);
+}
+
 html,
 body {
   height: 100vh;

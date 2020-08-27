@@ -2,10 +2,12 @@
   <div class="footer-wrap">
     <div class="footer-divider"></div>
     <div class="text-row">
-      <span class="author-name">一个基于Vue的前端项目 By 鎧羅突擊弩賊</span>
-      <span class="author-id"
-        >小黑盒ID:1310911&nbsp;&nbsp;Ver.1.0.9&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator"> <img :src="gitIconSrc" width="12" height="12" />Github</a></span
-      >
+      <span class="author-name">一个基于Vue的前端项目 By <a href="https://api.xiaoheihe.cn/v3/bbs/app/api/web/share?link_id=43202292"
+           target="_blank">鎧羅突擊弩賊</a></span>
+      <span class="author-id">小黑盒ID:1310911&nbsp;&nbsp;Ver.1.1.0&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator"
+           target="_blank"><img :src="gitIconSrc"
+               width="12"
+               height="12" />Github</a></span>
     </div>
   </div>
 </template>
@@ -48,6 +50,16 @@ export default {
     .author-name {
       font-size 12px
       font-weight lighter
+      a {
+        text-decoration none
+        border-bottom 1px solid white
+      }
+      a:link, a:hover, a:visited {
+        color white
+      }
+      a:active {
+        color #333333
+      }
     }
     .author-id {
       margin 0px 5px

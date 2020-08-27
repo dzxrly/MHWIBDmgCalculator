@@ -1,20 +1,7 @@
 <template>
   <div class="calculator-wrap">
     <el-backtop>
-      <div style="
-           {
-            height: 100%;
-            width: 100%;
-            background-color: black;
-            box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, 0.22), 0 4.8px 14.4px 0 rgba(0, 0, 0, 0.18);
-            text-align: center;
-            line-height: 40px;
-            color: white;
-            border: solid 1px white;
-          }
-        ">
-        Top
-      </div>
+      <img :src="topImgSrc">
     </el-backtop>
     <Header></Header>
     <DataSrcDeclare></DataSrcDeclare>
@@ -296,7 +283,8 @@
             <el-select style="width: 100%;"
                        v-model="formData.skillNumber"
                        placeholder="请选择武器动作(不做选择可自定义)"
-                       @change="handleAction">
+                       @change="handleAction"
+                       no-data-text="获取数据失败">
               <el-option v-for="(item, index) in actionList"
                          :key="index"
                          :label="item.name"
@@ -367,6 +355,7 @@ export default {
   },
   data() {
     return {
+      topImgSrc: '#',
       formData: {
         weaponId: '',
         weaponShowAtt: '',
@@ -677,9 +666,13 @@ export default {
     }
   },
   mounted() {
+    this.imgInit()
     this.baseSkillOptsInit()
   },
   methods: {
+    imgInit() {
+      this.topImgSrc = require('../assets/upload.svg')
+    },
     baseSkillOptsInit() {
       this.baseSkillOpts = JSON.parse(JSON.stringify(baseLogic.getBaseDmgRate()))
       this.otherSkillOpts = JSON.parse(JSON.stringify(baseLogic.getOtherAttack()))
@@ -770,6 +763,13 @@ export default {
   display flex
   flex-flow column nowrap
   position relative
+  box-sizing border-box
+  .el-backtop {
+    background-color black
+    border 1px solid white
+    border-radius 0
+    box-shadow 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108)
+  }
   .calculator-pane {
     flex 1
     display flex
@@ -777,11 +777,13 @@ export default {
     justify-content space-around
     align-items flex-start
     .input-area {
+      box-sizing inherit
       flex 1 1 auto
       margin 20px
       .el-form {
         .el-form-item {
           .item-row {
+            box-sizing inherit
             padding 5px 20px
             display flex
             flex-flow column nowrap
@@ -794,11 +796,13 @@ export default {
               flex-flow row wrap
               justify-content flex-start
               .el-radio-group {
+                box-sizing inherit
                 margin 20px 5px
               }
             }
           }
           .awake-area {
+            box-sizing inherit
             padding 5px 20px
             display flex
             flex-flow column nowrap
@@ -812,6 +816,7 @@ export default {
             }
           }
           .base-skills-row {
+            box-sizing inherit
             padding 5px 20px
             display flex
             flex-flow column wrap

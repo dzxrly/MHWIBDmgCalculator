@@ -8,7 +8,7 @@
 
 [https://egg-targaryen.gitee.io/mhwibdmgcalculator/#/](https://egg-targaryen.gitee.io/mhwibdmgcalculator/#/)(Gitee 码云, 国内访问更快)
 
-当前版本`Ver.1.0.9`
+当前版本`Ver.1.1.0`
 
 ## 数据来源
 
@@ -61,6 +61,10 @@
 |   功能   |    Done    |                             怒后补正计算                             |
 
 ## 更新日志
+
+- 2020-08-27 `Ver.1.1.0`
+
+  - **代码优化**-优化了页面跳转与页面布局
 
 - 2020-08-10 `Ver.1.0.9`
 

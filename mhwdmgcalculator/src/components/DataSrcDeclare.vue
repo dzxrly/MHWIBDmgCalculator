@@ -2,11 +2,13 @@
   <div class="data-src-wrap">
     <div class="data-src-row">
       <span class="data-src-pre">计算公式及绝大部分数据来自&nbsp;</span>
-      <span class="data-src-link"><a href="http://wiki.mhwmod.com/">狩技MOD组中文Wiki</a></span>
+      <span class="data-src-link"><a href="http://wiki.mhwmod.com/"
+           target="_blank">狩技MOD组中文Wiki</a></span>
     </div>
     <div class="data-src-row">
       <span class="data-src-pre">武器招式名称与动作值来自&nbsp;</span>
-      <span class="data-src-link"><a href="https://tieba.baidu.com/p/6591591373">[搬运]冰原所有武器动作值各种补正表</a></span>
+      <span class="data-src-link"><a href="https://tieba.baidu.com/p/6591591373"
+           target="_blank">[搬运]冰原所有武器动作值各种补正表</a></span>
     </div>
   </div>
 </template>
@@ -19,6 +21,7 @@ export default {
 
 <style lang="stylus" scoped>
 .data-src-wrap {
+  box-sizing border-box
   background-color #FFFFFF
   font-size 14px
   margin 20px
@@ -30,6 +33,7 @@ export default {
   align-items flex-start
   border-left 5px solid #F7797D
   .data-src-row {
+    box-sizing inherit
     margin 5px 10px
     flex auto
     display flex

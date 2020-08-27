@@ -126,6 +126,7 @@ export default {
 
 <style lang="stylus" scoped>
 .result-wrap {
+  box-sizing inherit
   position sticky
   position -webkit-sticky
   top 20px
@@ -147,23 +148,27 @@ export default {
     cursor pointer
     transition all 0.5s linear
     span {
+      box-sizing inherit
       margin 5px 0px
       font-size 12px
       user-select none
     }
   }
   .res {
+    box-sizing inherit
     margin 5px 20px
     display flex
     flex-flow column nowrap
     justify-content center
     align-items flex-start
     .btn-row {
+      box-sizing inherit
       margin 5px 0px
       display flex
       justify-content flex-start
       align-items center
       .note {
+        box-sizing inherit
         margin 0px 10px
         line-height 35px
         cursor pointer
@@ -178,6 +183,7 @@ export default {
       }
     }
     .row {
+      box-sizing inherit
       margin 5px 0px
       display flex
       flex-flow row wrap
@@ -194,6 +200,7 @@ export default {
       }
     }
     .col {
+      box-sizing inherit
       margin 5px 0px
       display flex
       flex-flow column wrap
@@ -211,6 +218,7 @@ export default {
     }
   }
   .moreinfo {
+    box-sizing inherit
     padding 10px 0px
     transition all 0.5s linear
   }
