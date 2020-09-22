@@ -1,7 +1,11 @@
 <template>
   <div class="header-wrap">
     <div class="title-text-row">
-      <span>MHWIB简易伤害计算器</span>
+      <span class="page-name">MHWIB简易伤害计算器</span>
+      <span class="page-count"
+            id="busuanzi_container_site_pv">
+        累计访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+      </span>
     </div>
     <div class="divider-row"></div>
   </div>
@@ -19,14 +23,34 @@ export default {
   .title-text-row {
     display flex
     flex 1
+    flex-flow row wrap
     justify-content flex-start
     align-items center
     height 50px
     background-color #0f0f0f
-    span {
-      margin 0px 20px
+    .page-name {
+      margin 0 20px
       color white
       font-weight lighter
+    }
+    .page-count {
+      cursor default
+      box-sizing border-box
+      padding 2px 5px
+      margin 0 20px
+      color white
+      font-weight lighter
+      font-size 12px
+      background-image linear-gradient(to bottom, black 50%, white 50%)
+      background-size 100% 200%
+      background-position 0% 200%
+      border solid white
+      border-width 0 0 1px 0
+      transition all .3s ease-in-out
+    }
+    .page-count:hover {
+      color black
+      background-position 0% 100%
     }
   }
   .divider-row {
