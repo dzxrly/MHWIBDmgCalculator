@@ -4,7 +4,7 @@
       <span class="page-name">MHWIB简易伤害计算器</span>
       <span class="page-count"
             id="busuanzi_container_site_pv">
-        累计访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+        累计访问量&nbsp;<span id="busuanzi_value_site_pv"><i class="el-icon-loading"></i></span>
       </span>
     </div>
     <div class="divider-row"></div>
