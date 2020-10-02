@@ -5,6 +5,7 @@
       <span class="page-count"
             id="busuanzi_container_site_pv">
         累计访问量&nbsp;<span id="busuanzi_value_site_pv"><i class="el-icon-loading"></i></span>
+        <!-- 更新后需要手动修改dist目录下的index.html与SEO插件生成的index.html -->
       </span>
     </div>
     <div class="divider-row"></div>
@@ -41,7 +42,7 @@ export default {
       color white
       font-weight lighter
       font-size 12px
-      background-image linear-gradient(to bottom, black 50%, white 50%)
+      background-image linear-gradient(to bottom, transparent 50%, white 50%)
       background-size 100% 200%
       background-position 0% 200%
       border solid white
@@ -49,7 +50,7 @@ export default {
       transition all .3s ease-in-out
     }
     .page-count:hover {
-      color black
+      color #0f0f0f
       background-position 0% 100%
     }
   }
