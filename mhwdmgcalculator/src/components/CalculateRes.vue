@@ -2,11 +2,8 @@
   <div class="result-wrap">
     <div class="res">
       <div class="btn-row">
-        <el-button type="primary"
-                   size="small"
-                   @click="handleCalculator()"><i class="el-icon-check"></i>&nbsp;&nbsp;计算</el-button>
-        <div class="note"
-             @click="handleGoToNote">
+        <el-button type="primary" size="small" @click="handleCalculator()"><i class="el-icon-check"></i>&nbsp;&nbsp;计算</el-button>
+        <div class="note" @click="handleGoToNote">
           <span>使用须知</span>
         </div>
       </div>
@@ -32,17 +29,15 @@
         <span class="data">{{ res.monsterPhyDmgClawSp2 }}</span>
       </div>
     </div>
-    <div class="show-more-btn"
-         v-on:click="handleShowMore">
-      <span>{{ tip }}</span>
+    <div class="show-more-btn" v-on:click="handleShowMore">
+      <span class="triangle" :class="{ 'triangle-rotate': showMore }"></span><span>{{ tip }}</span>
     </div>
-    <div class="res moreinfo"
-         v-if="showMore">
-      <div class="row"
-           v-for="(item, index) in texts"
-           :key="index">
-        <span class="pre">{{item.text}}</span>
-        <span class="data">{{ res[item.key] }}</span>
+    <div class="moreinfo" :class="{ 'show-more-visable': showMore }">
+      <div class="infos">
+        <div class="row" v-for="(item, index) in texts" :key="index">
+          <span class="pre">{{ item.text }}</span>
+          <span class="data">{{ res[item.key] }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -126,7 +121,7 @@ export default {
 
 <style lang="stylus" scoped>
 .result-wrap {
-  box-sizing inherit
+  box-sizing border-box
   position sticky
   position -webkit-sticky
   top 20px
@@ -141,34 +136,43 @@ export default {
   .show-more-btn {
     width 100%
     display flex
-    flex-flow column nowrap
+    flex-flow row nowrap
     justify-content center
     align-items center
     background-color #EDF2F4
     cursor pointer
     transition all 0.5s linear
+    .triangle {
+      margin 0 3px
+      width 0
+      height 0
+      border-left 10px solid rgba(0, 0, 0, 0.5)
+      border-top 5px solid transparent
+      border-bottom 5px solid transparent
+      transition all 0.25s linear
+    }
+    .triangle-rotate {
+      transform rotate(90deg)
+    }
     span {
-      box-sizing inherit
       margin 5px 0px
       font-size 12px
+      width 120px
       user-select none
     }
   }
   .res {
-    box-sizing inherit
     margin 5px 20px
     display flex
     flex-flow column nowrap
     justify-content center
     align-items flex-start
     .btn-row {
-      box-sizing inherit
       margin 5px 0px
       display flex
       justify-content flex-start
       align-items center
       .note {
-        box-sizing inherit
         margin 0px 10px
         line-height 35px
         cursor pointer
@@ -183,7 +187,6 @@ export default {
       }
     }
     .row {
-      box-sizing inherit
       margin 5px 0px
       display flex
       flex-flow row wrap
@@ -200,7 +203,6 @@ export default {
       }
     }
     .col {
-      box-sizing inherit
       margin 5px 0px
       display flex
       flex-flow column wrap
@@ -218,9 +220,32 @@ export default {
     }
   }
   .moreinfo {
-    box-sizing inherit
-    padding 10px 0px
-    transition all 0.5s linear
+    transition all 0.25s linear
+    max-height 0
+    overflow auto
+    width 100%
+    .infos {
+      box-sizing border-box
+      padding 5px 20px
+      .row {
+      margin 5px 0px
+      display flex
+      flex-flow row wrap
+      justify-content flex-start
+      align-items center
+      font-size 14px
+      .pre {
+        width 150px
+        color #666666
+      }
+      .data {
+        margin 0 10px
+      }
+    }
+    }
+  }
+  .show-more-visable {
+    max-height 300px
   }
 }
 @media screen and (max-width 1920px) {

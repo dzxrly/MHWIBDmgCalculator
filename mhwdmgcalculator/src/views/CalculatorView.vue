@@ -364,14 +364,14 @@ export default {
         customElLv: -1,
         awakeAttackLv: [-1, -1, -1, -1, -1],
         awakeElementLv: [-1, -1, -1, -1, -1],
-        limitRate: '0',
+        limitRate: '0', // 未启用数据
         baseAttSkillList: [],
         otherAttSkillList: [],
         elSkillList: [],
         attLimitAfterRate: [],
-        closeItemNumber: 0,
-        farItemNumber: 0,
-        bottleType: 0,
+        closeItemNumber: 0, // 近身零件个数
+        farItemNumber: 0, // 远程零件个数
+        bottleType: 0, // 弓箭瓶子种类
         criticalSituation: 1,
         skillNumber: '',
         action: '',
@@ -777,13 +777,12 @@ export default {
     justify-content space-around
     align-items flex-start
     .input-area {
-      box-sizing inherit
       flex 1 1 auto
       margin 20px
       .el-form {
         .el-form-item {
           .item-row {
-            box-sizing inherit
+            box-sizing border-box
             padding 5px 20px
             display flex
             flex-flow column nowrap
@@ -796,13 +795,12 @@ export default {
               flex-flow row wrap
               justify-content flex-start
               .el-radio-group {
-                box-sizing inherit
                 margin 20px 5px
               }
             }
           }
           .awake-area {
-            box-sizing inherit
+            box-sizing border-box
             padding 5px 20px
             display flex
             flex-flow column nowrap
@@ -816,7 +814,7 @@ export default {
             }
           }
           .base-skills-row {
-            box-sizing inherit
+            box-sizing border-box
             padding 5px 20px
             display flex
             flex-flow column wrap
