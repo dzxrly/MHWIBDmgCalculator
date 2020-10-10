@@ -21,11 +21,11 @@
         <span class="pre">软化后伤害</span><span class="data">{{ res.monsterPhyDmgClaw }}</span>
       </div>
       <div class="col">
-        <span class="pre">软化后伤害(麒麟、熔岩龙、爆锤龙、惶怒恐暴龙、溟波龙、金火龙、银火龙、黑龙)</span>
+        <span class="pre">软化后伤害(麒麟、熔岩龙、爆锤龙、惶怒恐暴龙、溟波龙、金火龙、银火龙)</span>
         <span class="data">{{ res.monsterPhyDmgClawSp1 }}</span>
       </div>
       <div class="col">
-        <span class="pre">软化后伤害(冥赤龙)</span>
+        <span class="pre">软化后伤害(冥赤龙、黑龙)</span>
         <span class="data">{{ res.monsterPhyDmgClawSp2 }}</span>
       </div>
     </div>
