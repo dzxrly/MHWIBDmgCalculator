@@ -1,45 +1,57 @@
 <template>
   <div class="result-wrap">
-    <div class="res">
-      <div class="btn-row">
-        <el-button type="primary" size="small" @click="handleCalculator()"><i class="el-icon-check"></i>&nbsp;&nbsp;计算</el-button>
-        <div class="note" @click="handleGoToNote">
-          <span>使用须知</span>
+    <transition name="change" mode="out-in">
+      <div class="tips-wrap" v-if="showTips" key="tips">
+        <div class="btn">
+          <span @click="handleGoBack()"><i class="el-icon-back"></i></span>
+        </div>
+        <div class="tips markdown-body">
+          <readme></readme>
         </div>
       </div>
-      <span>计算结果</span>
-      <div class="row">
-        <span class="pre">最终伤害</span><span class="data">{{ res.totalDmg }}</span>
-      </div>
-      <div class="row">
-        <span class="pre">物理伤害</span><span class="data">{{ res.toMonsterPHYDmg }}</span>
-      </div>
-      <div class="row">
-        <span class="pre">属性伤害</span><span class="data">{{ res.toMonsterElDmg }}</span>
-      </div>
-      <div class="row">
-        <span class="pre">软化后伤害</span><span class="data">{{ res.monsterPhyDmgClaw }}</span>
-      </div>
-      <div class="col">
-        <span class="pre">软化后伤害(麒麟、熔岩龙、爆锤龙、惶怒恐暴龙、溟波龙、金火龙、银火龙)</span>
-        <span class="data">{{ res.monsterPhyDmgClawSp1 }}</span>
-      </div>
-      <div class="col">
-        <span class="pre">软化后伤害(冥赤龙、黑龙)</span>
-        <span class="data">{{ res.monsterPhyDmgClawSp2 }}</span>
-      </div>
-    </div>
-    <div class="show-more-btn" v-on:click="handleShowMore">
-      <span class="triangle" :class="{ 'triangle-rotate': showMore }"></span><span>{{ tip }}</span>
-    </div>
-    <div class="moreinfo" :class="{ 'show-more-visable': showMore }">
-      <div class="infos">
-        <div class="row" v-for="(item, index) in texts" :key="index">
-          <span class="pre">{{ item.text }}</span>
-          <span class="data">{{ res[item.key] }}</span>
+      <div class="dmg-wrap" v-else key="dmg">
+        <div class="res">
+          <div class="btn-row">
+            <el-button type="primary" size="small" @click="handleCalculator()"><i class="el-icon-check"></i>&nbsp;&nbsp;计算</el-button>
+            <div class="note" @click="handleGoToNote">
+              <span>使用须知</span>
+            </div>
+          </div>
+          <span>计算结果</span>
+          <div class="row">
+            <span class="pre">最终伤害</span><span class="data">{{ res.totalDmg }}</span>
+          </div>
+          <div class="row">
+            <span class="pre">物理伤害</span><span class="data">{{ res.toMonsterPHYDmg }}</span>
+          </div>
+          <div class="row">
+            <span class="pre">属性伤害</span><span class="data">{{ res.toMonsterElDmg }}</span>
+          </div>
+          <div class="row">
+            <span class="pre">软化后伤害</span><span class="data">{{ res.monsterPhyDmgClaw }}</span>
+          </div>
+          <div class="col">
+            <span class="pre">软化后伤害(麒麟、熔岩龙、爆锤龙、惶怒恐暴龙、溟波龙、金火龙、银火龙)</span>
+            <span class="data">{{ res.monsterPhyDmgClawSp1 }}</span>
+          </div>
+          <div class="col">
+            <span class="pre">软化后伤害(冥赤龙、黑龙)</span>
+            <span class="data">{{ res.monsterPhyDmgClawSp2 }}</span>
+          </div>
+        </div>
+        <div class="show-more-btn" v-on:click="handleShowMore">
+          <span class="triangle" :class="{ 'triangle-rotate': showMore }"></span><span>{{ tip }}</span>
+        </div>
+        <div class="moreinfo" :class="{ 'show-more-visable': showMore }">
+          <div class="infos">
+            <div class="row" v-for="(item, index) in texts" :key="index">
+              <span class="pre">{{ item.text }}</span>
+              <span class="data">{{ res[item.key] }}</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -50,8 +62,12 @@ export default {
   props: {
     form: Object
   },
+  components: {
+    readme: resolve => require(['../assets/README.md'], resolve)
+  },
   data() {
     return {
+      showTips: false,
       tip: '点击查看详细数据',
       showMore: false,
       res: {
@@ -95,7 +111,11 @@ export default {
   },
   methods: {
     handleGoToNote() {
-      window.open('https://github.com/dzxrly/MHWIBDmgCalculator/blob/master/README.md')
+      this.showTips = true
+      // window.open('https://github.com/dzxrly/MHWIBDmgCalculator/blob/master/README.md')
+    },
+    handleGoBack() {
+      this.showTips = false
     },
     handleCalculator() {
       this.res = baseLogic.calDamage(this.form)
@@ -133,119 +153,156 @@ export default {
   justify-content center
   align-items flex-start
   box-shadow 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108)
-  .show-more-btn {
-    width 100%
-    display flex
-    flex-flow row nowrap
-    justify-content center
-    align-items center
-    background-color #EDF2F4
-    cursor pointer
-    transition all 0.5s linear
-    .triangle {
-      margin 0 3px
-      width 0
-      height 0
-      border-left 10px solid rgba(0, 0, 0, 0.5)
-      border-top 5px solid transparent
-      border-bottom 5px solid transparent
-      transition all 0.25s linear
-    }
-    .triangle-rotate {
-      transform rotate(90deg)
-    }
-    span {
-      margin 5px 0px
-      font-size 12px
-      width 120px
-      user-select none
-    }
+  overflow hidden
+  .change-enter {
+    transform translateX(-100%)
   }
-  .res {
-    margin 5px 20px
+  .change-leave-to {
+    transform translateX(100%)
+  }
+  .change-enter-active, .change-leave-active {
+    transition all .3s ease-in-out
+  }
+  .tips-wrap {
+    width 100%
     display flex
     flex-flow column nowrap
-    justify-content center
-    align-items flex-start
-    .btn-row {
-      margin 5px 0px
+    justify-content flex-start
+    box-sizing border-box
+    padding 5px 20px
+    overflow auto
+    .btn {
+      width 100%
       display flex
+      flex-flow row nowrap
       justify-content flex-start
-      align-items center
-      .note {
-        margin 0px 10px
-        line-height 35px
+      span {
         cursor pointer
-        span {
-          color #909399
-          font-size 12px
-          font-weight bolder
+        font-size 30px
+        font-weight bold
+      }
+    }
+    .tips {
+      width 100%
+      max-height 80vh
+      text-align left
+    }
+  }
+  .dmg-wrap {
+    .show-more-btn {
+      width 100%
+      display flex
+      flex-flow row nowrap
+      justify-content center
+      align-items center
+      background-color #EDF2F4
+      cursor pointer
+      transition all 0.5s linear
+      .triangle {
+        margin 0 3px
+        width 0
+        height 0
+        border-left 10px solid rgba(0, 0, 0, 0.5)
+        border-top 5px solid transparent
+        border-bottom 5px solid transparent
+        transition all 0.25s linear
+      }
+      .triangle-rotate {
+        transform rotate(90deg)
+      }
+      span {
+        margin 5px 0px
+        font-size 12px
+        width 120px
+        user-select none
+      }
+    }
+    .res {
+      margin 5px 20px
+      display flex
+      flex-flow column nowrap
+      justify-content center
+      align-items flex-start
+      .btn-row {
+        margin 5px 0px
+        display flex
+        justify-content flex-start
+        align-items center
+        .note {
+          margin 0px 10px
+          line-height 35px
+          cursor pointer
+          span {
+            color #909399
+            font-size 12px
+            font-weight bolder
+          }
+        }
+        .note:hover {
+          text-decoration underline #909399
         }
       }
-      .note:hover {
-        text-decoration underline #909399
-      }
-    }
-    .row {
-      margin 5px 0px
-      display flex
-      flex-flow row wrap
-      justify-content flex-start
-      align-items center
-      span {
-        font-size 14px
-      }
-      .pre {
-        color #666666
-      }
-      .data {
-        margin 0 10px
-      }
-    }
-    .col {
-      margin 5px 0px
-      display flex
-      flex-flow column wrap
-      justify-content flex-start
-      align-items flex-start
-      span {
-        font-size 14px
-      }
-      .pre {
-        color #666666
-      }
-      .data {
-        margin-top 5px
-      }
-    }
-  }
-  .moreinfo {
-    transition all 0.25s linear
-    max-height 0
-    overflow auto
-    width 100%
-    .infos {
-      box-sizing border-box
-      padding 5px 20px
       .row {
-      margin 5px 0px
-      display flex
-      flex-flow row wrap
-      justify-content flex-start
-      align-items center
-      font-size 14px
-      .pre {
-        width 150px
-        color #666666
+        margin 5px 0px
+        display flex
+        flex-flow row wrap
+        justify-content flex-start
+        align-items center
+        span {
+          font-size 14px
+        }
+        .pre {
+          color #666666
+        }
+        .data {
+          margin 0 10px
+        }
       }
-      .data {
-        margin 0 10px
+      .col {
+        margin 5px 0px
+        display flex
+        flex-flow column wrap
+        justify-content flex-start
+        align-items flex-start
+        span {
+          font-size 14px
+        }
+        .pre {
+          color #666666
+        }
+        .data {
+          margin-top 5px
+        }
       }
     }
+    .moreinfo {
+      transition all 0.25s linear
+      max-height 0
+      overflow auto
+      width 100%
+      .infos {
+        box-sizing border-box
+        padding 5px 20px
+        .row {
+          margin 5px 0px
+          display flex
+          flex-flow row wrap
+          justify-content flex-start
+          align-items center
+          font-size 14px
+          .pre {
+            width 150px
+            color #666666
+          }
+          .data {
+            margin 0 10px
+          }
+        }
+      }
     }
-  }
-  .show-more-visable {
-    max-height 300px
+    .show-more-visable {
+      max-height 300px
+    }
   }
 }
 @media screen and (max-width 1920px) {

@@ -2512,7 +2512,7 @@ export default {
    * 根据武器编号获取武器动作值列表
    * @param {String} weaponId
    */
-  getActionListById (weaponId) {
+  getActionListById(weaponId) {
     let actions = []
     actionDataList.forEach(item => {
       if (weaponId.toString() === item.id) {
@@ -2525,7 +2525,7 @@ export default {
    * 根据序号获取武器动作值列表
    * @param {Number} orderNumber
    */
-  getActionListByOrder (orderNumber) {
+  getActionListByOrder(orderNumber) {
     return actionDataList[parseInt(orderNumber)].actions
   }
 }
