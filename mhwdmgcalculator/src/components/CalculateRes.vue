@@ -189,6 +189,7 @@ export default {
     }
   }
   .dmg-wrap {
+    width 100%
     .show-more-btn {
       width 100%
       display flex
