@@ -3,7 +3,8 @@
     <transition name="change" mode="out-in">
       <div class="tips-wrap" v-if="showTips" key="tips">
         <div class="btn">
-          <span @click="handleGoBack()"><i class="el-icon-back"></i></span>
+          <div class="icon" @click="handleGoBack()"><i class="el-icon-back"></i></div>
+          <div class="title"><span>使用须知</span></div>
         </div>
         <div class="tips markdown-body">
           <readme></readme>
@@ -168,24 +169,45 @@ export default {
     display flex
     flex-flow column nowrap
     justify-content flex-start
-    box-sizing border-box
-    padding 5px 20px
-    overflow auto
     .btn {
+      position sticky
+      position -webkit-sticky
+      top 0
       width 100%
       display flex
       flex-flow row nowrap
       justify-content flex-start
-      span {
+      align-items center
+      background white
+      box-sizing border-box
+      padding 10px 20px
+      box-shadow 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108)
+      z-index 1
+      .icon {
+        width 32px
+        height 32px
+        color #909399
         cursor pointer
         font-size 30px
-        font-weight bold
+        border solid 2px #909399
+        border-radius 50%
+      }
+      .title {
+        flex auto
+        color #909399
+        font-size 20px
+        display flex
+        flex-flow row nowrap
+        justify-content flex-end
       }
     }
     .tips {
       width 100%
       max-height 80vh
       text-align left
+      box-sizing border-box
+      padding 5px 20px
+      overflow auto
     }
   }
   .dmg-wrap {
