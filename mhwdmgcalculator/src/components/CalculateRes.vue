@@ -57,14 +57,23 @@
 </template>
 
 <script>
+import loading from './Loading'
+import error from './Error'
 import baseLogic from '../script/Logic'
+const readme = () => ({
+  component: import('../assets/README.md'),
+  loading: loading,
+  error: error,
+  timeouot: 3000
+})
 export default {
   name: 'CalculateRes',
   props: {
     form: Object
   },
   components: {
-    readme: resolve => require(['../assets/README.md'], resolve)
+    readme,
+    error
   },
   data() {
     return {
