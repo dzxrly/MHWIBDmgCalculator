@@ -47,7 +47,7 @@ export default {
     }
     .data-src-link {
       a {
-        text-decoration none
+        underline #4C5C68
       }
       a:link, a:hover, a:visited {
         color #4C5C68

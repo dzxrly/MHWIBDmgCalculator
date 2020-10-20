@@ -113,7 +113,6 @@ export default {
   methods: {
     handleGoToNote() {
       this.showTips = true
-      // window.open('https://github.com/dzxrly/MHWIBDmgCalculator/blob/master/README.md')
     },
     handleGoBack() {
       this.showTips = false
