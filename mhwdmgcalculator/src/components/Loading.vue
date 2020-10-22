@@ -20,7 +20,7 @@ export default {
 <style lang="stylus" scoped>
 .loading-wrap {
   margin 20px
-  width 200px
+  width 100%
   height 200px
   .loading {
     width 100%

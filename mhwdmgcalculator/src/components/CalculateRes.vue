@@ -1,5 +1,6 @@
 <template>
   <div class="result-wrap">
+    <loading></loading>
     <transition name="change" mode="out-in">
       <div class="tips-wrap" v-if="showTips" key="tips">
         <div class="btn">
@@ -72,7 +73,8 @@ export default {
     form: Object
   },
   components: {
-    readme
+    readme,
+    loading
   },
   data() {
     return {
