@@ -72,8 +72,7 @@ export default {
     form: Object
   },
   components: {
-    readme,
-    error
+    readme
   },
   data() {
     return {

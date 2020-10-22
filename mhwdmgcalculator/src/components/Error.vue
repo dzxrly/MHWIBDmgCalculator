@@ -1,7 +1,7 @@
 <template>
   <div class="error-wrap">
-    <span>Σ( ° △ °|||)︴</span>
-    <span>找不到文档啦！请检查网络情况~</span>
+    <span class="emoji">Σ( ° △ °|||)︴</span>
+    <span class="text">找不到文档啦！请检查网络情况~</span>
   </div>
 </template>
 
@@ -18,6 +18,8 @@ export default {
   flex-flow column nowrap
   justify-content center
   align-items center
-  color #f7797d
+  .text {
+    color #f7797d
+  }
 }
 </style>

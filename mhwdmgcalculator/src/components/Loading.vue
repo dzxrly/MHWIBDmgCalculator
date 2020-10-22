@@ -1,15 +1,12 @@
 <template>
   <div class="loading-wrap">
-    <div class="loading-logo">
-      <div class="rec rec1"></div>
-      <div class="rec rec2"></div>
-      <div class="rec rec3"></div>
-      <div class="rec rec4"></div>
-      <div class="rec rec5"></div>
-      <div class="rec rec6"></div>
-    </div>
-    <div class="text">
-      <span>加载中...</span>
+    <div class="loading">
+      <div class="circle circle1"></div>
+      <div class="circle circle2"></div>
+      <div class="circle circle3"></div>
+      <div class="text">
+        <span>加载中...</span>
+      </div>
     </div>
   </div>
 </template>
@@ -22,56 +19,73 @@ export default {
 
 <style lang="stylus" scoped>
 .loading-wrap {
-  width 100%
-  display flex
-  flex-flow column nowrap
-  justify-content center
-  align-items center
-  .text {
-    color #0f0f0f
-  }
-  .loading-logo {
-    width 50px
-    height 50px
-    display flex
-    flex-flow row nowrap
-    justify-content center
-    align-items center
-    .rec {
-      width 5px
-      height 20px
-      background #0f0f0f
-      margin-right 1px
-      transform scaleY(1)
-      animation change-height 2s linear infinite
+  margin 20px
+  width 200px
+  height 200px
+  .loading {
+    width 100%
+    height 100%
+    position relative
+    font-size 64px
+    .circle, .text {
+      position absolute
+      top 50%
+      left 50%
+      transform translate(-50%, -50%) rotate(0deg)
     }
-    .rec1 {
-      animation-delay 0s
+    .text {
+      width 100%
+      height 100%
+      display flex
+      justify-content center
+      align-items center
+      color transparent
+      font-family Helvetica
+      font-size 0.25em
+      background linear-gradient(to right, rgba(0, 0, 0, 0.2) 33.33%, rgba(0, 0, 0, 1) 66.66%, rgba(0, 0, 0, 0.2) 100%)
+      background-size 300% 50%
+      background-clip text
+      -webkit-background-clip text
+      animation text-animate 5s linear infinite
     }
-    .rec2 {
-      animation-delay .2s
+    .circle1 {
+      width 2em
+      height 2em
+      border solid 0.1em #f7797d
+      border-radius 50%
+      border-bottom-color transparent
+      animation rotate-ring 1s linear infinite
     }
-    .rec3 {
-      animation-delay .4s
+    .circle2 {
+      width 2.3em
+      height 2.3em
+      border solid 0.1em #fbd786
+      border-radius 50%
+      border-left-color transparent
+      animation rotate-ring 2s linear infinite
     }
-    .rec4 {
-      animation-delay .6s
+    .circle3 {
+      width 2.6em
+      height 2.6em
+      border solid 0.1em #c6ffdd
+      border-radius 50%
+      border-top-color transparent
+      animation rotate-ring 3s linear infinite
     }
-    .rec5 {
-      animation-delay .8s
-    }
-    .rec6 {
-      animation-delay 1s
-    }
-    @keyframes change-height {
-      0% {
-        transform scaleY(1)
+    @keyframes text-animate {
+      from {
+        background-position 300% 50%
       }
-      50% {
-        transform scaleY(2)
+      to {
+        background-position 0% 50%
       }
-      100% {
-        transform scaleY(1)
+    }
+    @keyframes rotate-ring {
+      from {
+        transform translate(-50%, -50%) rotate(0deg)
+      }
+      to {
+        transform translate(-50%, -50%) rotate(360deg)
       }
     }
   }

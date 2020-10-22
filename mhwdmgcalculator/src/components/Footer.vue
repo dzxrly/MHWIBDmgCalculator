@@ -4,7 +4,7 @@
     <div class="text-row">
       <span class="author-name">一个基于Vue的前端项目 By <a href="https://api.xiaoheihe.cn/v3/bbs/app/api/web/share?link_id=43202292" target="_blank">鎧羅突擊弩賊</a></span>
       <span class="author-id"
-        >小黑盒ID:1310911&nbsp;&nbsp;Ver.1.1.3&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator" target="_blank"><img :src="gitIconSrc" width="12" height="12" />Github</a></span
+        >小黑盒ID:1310911&nbsp;&nbsp;Ver.1.1.4&nbsp;<a href="https://github.com/dzxrly/MHWIBDmgCalculator" target="_blank"><img :src="gitIconSrc" width="12" height="12" />Github</a></span
       >
     </div>
   </div>
