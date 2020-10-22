@@ -19,12 +19,14 @@ export default {
 
 <style lang="stylus" scoped>
 .loading-wrap {
-  margin 20px
   width 100%
-  height 200px
+  display flex
+  justify-content center
+  align-items center
   .loading {
-    width 100%
-    height 100%
+    margin 20px
+    width 200px
+    height 200px
     position relative
     font-size 64px
     .circle, .text {
