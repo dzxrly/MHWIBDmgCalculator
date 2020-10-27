@@ -36,8 +36,6 @@ export default {
       transform translate(-50%, -50%) rotate(0deg)
     }
     .text {
-      width 100%
-      height 100%
       display flex
       justify-content center
       align-items center
