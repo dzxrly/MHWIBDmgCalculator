@@ -14,7 +14,8 @@
     "build": "node build/build.js",
     "copyDocument": "copy /y C:\\Users\\91961\\OneDrive\\CODE\\HTML\\MHWDMGCalculator\\mhwdmgcalculator\\src\\assets\\README.md C:\\Users\\91961\\OneDrive\\CODE\\HTML\\MHWDMGCalculator\\README.md",
     "copyDist": "xcopy C:\\Users\\91961\\OneDrive\\CODE\\HTML\\MHWDMGCalculator\\mhwdmgcalculator\\dist C:\\Users\\91961\\OneDrive\\CODE\\HTML\\MHWDMGCalculator /s/y",
-    "copy": "npm run copyDocument && npm run copyDist"
+    "replaceString": "node seoHTMLFileInit.js",
+    "buildAndCopy": "npm run build && npm run replaceString && npm run copyDocument && npm run copyDist"
   },
   "dependencies": {
     "element-ui": "^2.13.2",

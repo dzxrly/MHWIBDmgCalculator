@@ -27,10 +27,11 @@ export default {
     align-items center
     height 50px
     background-color #0f0f0f
+    padding 10px 0
     .page-name {
       margin 0 20px
       color white
-      font-weight lighter
+      font-size 20px
     }
     .page-count {
       cursor default

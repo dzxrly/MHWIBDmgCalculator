@@ -4,7 +4,7 @@
       <img :src="topImgSrc" />
     </el-backtop>
     <Header></Header>
-    <DataSrcDeclare></DataSrcDeclare>
+    <data-src-declare></data-src-declare>
     <div class="calculator-pane">
       <div class="input-area">
         <el-form :model="formData" ref="formData" :rules="formRules">
@@ -201,8 +201,9 @@
           </el-form-item>
         </el-form>
       </div>
-      <CalculateRes :form="formData"></CalculateRes>
+      <calculate-res :form="formData"></calculate-res>
     </div>
+    <stars-row></stars-row>
     <Footer></Footer>
   </div>
 </template>
@@ -213,13 +214,15 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import DataSrcDeclare from '../components/DataSrcDeclare'
 import CalculateRes from '../components/CalculateRes'
+import StarsRow from '../components/StarsRow.vue'
 export default {
   name: 'CalculatorView',
   components: {
     Header,
     Footer,
     DataSrcDeclare,
-    CalculateRes
+    CalculateRes,
+    StarsRow
   },
   data() {
     return {
