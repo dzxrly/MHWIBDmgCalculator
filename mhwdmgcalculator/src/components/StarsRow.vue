@@ -1,6 +1,6 @@
 <template>
   <div class="stars-wrap">
-    <span>喜欢的话不妨到该项目的<a href="https://github.com/dzxrly/MHWIBDmgCalculator" target="_blank">Github页面</a>点个<code>Star</code>吧&nbsp;</span>
+    <span>喜欢的话不妨到该项目的<a href="https://github.com/dzxrly/MHWIBDmgCalculator" target="_blank">Github页面</a>点个<code><i class="el-icon-star-on"></i>Star</code>吧&nbsp;</span>
     <span>ヾ(●´∇｀●)ﾉ</span>
     <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/dzxrly/MHWIBDmgCalculator?style=for-the-badge" />
   </div>
