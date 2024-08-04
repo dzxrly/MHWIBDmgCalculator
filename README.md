@@ -64,6 +64,7 @@
   - **URL**-Vue Router使用History模式
   - **页面优化**-去除了访问量统计显示
   - **网站迁移**站点迁移至Cloud Flare Pages
+  - **SEO**移除了SEO优化
 
 - 2020-10-28 `Ver.1.1.6`
 
