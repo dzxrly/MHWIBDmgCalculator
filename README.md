@@ -4,11 +4,9 @@
 
 计算器链接：
 
-[https://dzxrly.github.io/MHWIBDmgCalculator/#/](https://dzxrly.github.io/MHWIBDmgCalculator/#/)(Github Page)
+[https://mhwibdmg.eggtargaryen.com](https://dzxrly.github.io/MHWIBDmgCalculator/#/)(Github Page)
 
-[https://egg-targaryen.gitee.io/mhwibdmgcalculator/#/](https://egg-targaryen.gitee.io/mhwibdmgcalculator/#/)(Gitee 码云, 国内访问更快)
-
-当前版本`Ver.1.1.6`
+当前版本`Ver.1.1.7`
 
 ## 数据来源
 
@@ -62,6 +60,12 @@
 |   功能   |    Done    |                             怒后补正计算                             |
 
 ## 更新日志
+
+- 2024-08-04 `Ver.1.1.7`
+
+  - **URL**-Vue Router使用History模式
+  - **页面优化**-去除了访问量统计显示
+  - **网站迁移**站点迁移至Cloud Flare Pages
 
 - 2020-10-28 `Ver.1.1.6`
 
