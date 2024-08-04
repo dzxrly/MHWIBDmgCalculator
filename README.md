@@ -2,7 +2,7 @@
 
 ## 一个基于 `Vue.js` 的简易伤害计算器
 
-计算器链接：[https://mhwibdmg.eggtargaryen.com](https://dzxrly.github.io/MHWIBDmgCalculator/#/)
+计算器链接：[https://mhwibdmg.eggtargaryen.com](https://mhwibdmg.eggtargaryen.com)
 
 当前版本`Ver.1.1.7`
 
@@ -63,8 +63,8 @@
 
   - **URL**-Vue Router使用History模式
   - **页面优化**-去除了访问量统计显示
-  - **网站迁移**站点迁移至Cloud Flare Pages
-  - **SEO**移除了SEO优化
+  - **网站迁移**-站点迁移至Cloud Flare Pages
+  - **SEO**-移除了SEO优化
 
 - 2020-10-28 `Ver.1.1.6`
 
