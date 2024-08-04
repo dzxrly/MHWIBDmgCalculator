@@ -2,9 +2,7 @@
 
 ## 一个基于 `Vue.js` 的简易伤害计算器
 
-计算器链接：
-
-[https://mhwibdmg.eggtargaryen.com](https://dzxrly.github.io/MHWIBDmgCalculator/#/)(Github Page)
+计算器链接：[https://mhwibdmg.eggtargaryen.com](https://dzxrly.github.io/MHWIBDmgCalculator/#/)
 
 当前版本`Ver.1.1.7`
 
